@@ -19,41 +19,26 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 if not BOT_TOKEN:
     raise RuntimeError("❌ BOT_TOKEN не найден. Добавь переменную окружения BOT_TOKEN.")
 
-# ✅ username твоего бота (без @)
 BOT_USERNAME = os.getenv("BOT_USERNAME", "sebtech_store_bot").replace("@", "").strip().lower()
-
-# ✅ твой Telegram ID (админ)
 ADMIN_ID = int(os.getenv("ADMIN_ID", "6013591658"))
-
-# ✅ канал магазина (если нужен пост с кнопкой)
 CHANNEL_ID = os.getenv("CHANNEL_ID", "@SEBTECH_APPLE_STORE").strip()
 
 def normalize_webapp_url(url: str) -> str:
     url = (url or "").strip()
     if not url:
         return url
-
-    # Если дали папку — приводим к index.html
-    # https://.../sebtech-store/  -> https://.../sebtech-store/index.html
-    # https://.../sebtech-store   -> https://.../sebtech-store/index.html
     if "github.io" in url:
-        # отделим query
         if "?" in url:
             base, q = url.split("?", 1)
             q = "?" + q
         else:
             base, q = url, ""
-
         base = base.rstrip("/")
-        # если уже заканчивается на .html — не трогаем
         if not base.lower().endswith(".html"):
             base = base + "/index.html"
-
         return base + q
-
     return url
 
-# ✅ GitHub Pages WebApp — открываем ЯВНО index.html (самое стабильное для Telegram)
 DEFAULT_WEBAPP = "https://tahirovdd-lang.github.io/sebtech-store/index.html?v=10"
 WEBAPP_URL = normalize_webapp_url(os.getenv("WEBAPP_URL", DEFAULT_WEBAPP))
 
@@ -98,7 +83,6 @@ def welcome_text() -> str:
         "Choose Apple devices and place an order — tap “Open” below."
     )
 
-# ====== /start ======
 @dp.message(CommandStart())
 async def start(message: types.Message):
     if not allow_start(message.from_user.id):
@@ -111,18 +95,12 @@ async def startapp(message: types.Message):
         return
     await message.answer(welcome_text(), reply_markup=kb_webapp_reply())
 
-# ====== DEBUG: показать текущий WEBAPP_URL в Telegram ======
 @dp.message(Command("debug_url"))
 async def debug_url(message: types.Message):
     if message.from_user.id != ADMIN_ID:
         return
-    await message.answer(
-        "✅ Текущие настройки:\n"
-        f"BOT_USERNAME = <code>{BOT_USERNAME}</code>\n"
-        f"WEBAPP_URL = <code>{WEBAPP_URL}</code>"
-    )
+    await message.answer(f"WEBAPP_URL = <code>{WEBAPP_URL}</code>")
 
-# ====== ПОСТ В КАНАЛ ======
 @dp.message(Command("post_shop"))
 async def post_shop(message: types.Message):
     if message.from_user.id != ADMIN_ID:
@@ -175,7 +153,6 @@ def safe_int(v, default=0) -> int:
     except Exception:
         return default
 
-# ====== ЧТЕНИЕ ЗАКАЗА ======
 def build_order_lines(data: dict) -> list[str]:
     raw_items = data.get("items")
     lines: list[str] = []
@@ -184,73 +161,78 @@ def build_order_lines(data: dict) -> list[str]:
         for it in raw_items:
             if not isinstance(it, dict):
                 continue
-
-            name = (
-                clean_str(it.get("name"))
-                or clean_str(it.get("model"))
-                or clean_str(it.get("name_lang"))
-                or clean_str(it.get("name_ru"))
-                or clean_str(it.get("id"))
-                or "—"
-            )
-
+            name = clean_str(it.get("name")) or clean_str(it.get("id")) or "—"
             qty = safe_int(it.get("qty"), 0)
             if qty <= 0:
                 continue
-
             price = safe_int(it.get("price"), 0)
             if price > 0:
                 lines.append(f"• {name} × {qty} = {fmt_sum(price * qty)} сум")
             else:
                 lines.append(f"• {name} × {qty}")
 
-    if not lines:
-        lines = ["⚠️ Корзина пустая"]
-
     return lines
 
-# ====== ЗАКАЗ ИЗ WEBAPP ======
+# ====== ДАННЫЕ ИЗ WEBAPP ======
 @dp.message(F.web_app_data)
 async def webapp_data(message: types.Message):
     raw = message.web_app_data.data
-    await message.answer("✅ <b>Получил заказ.</b> Обрабатываю…")
 
     try:
         data = json.loads(raw) if raw else {}
     except Exception:
         data = {}
 
-    lines = build_order_lines(data)
+    action = clean_str(data.get("action")).lower()
 
-    total_str = clean_str(data.get("total")) or clean_str(data.get("total_with_delivery")) or clean_str(data.get("total_items")) or "0"
-    payment = clean_str(data.get("payment")) or "—"
-    order_type = clean_str(data.get("type")) or clean_str(data.get("delivery_type")) or "—"
-    address = clean_str(data.get("address")) or "—"
-    phone = clean_str(data.get("phone")) or "—"
-    comment = clean_str(data.get("comment"))
-    order_id = clean_str(data.get("order_id")) or "—"
+    # ✅ 1) КОНСУЛЬТАЦИЯ: отправляем админу ТЕКСТ клиента + ник
+    if action == "consultation":
+        text = clean_str(data.get("text"))
+        if not text:
+            # если вдруг пусто — не шлём "пустой заказ"
+            return await message.answer("⚠️ Пустое сообщение. Напишите текст обращения.")
 
-    admin_text = (
-        "🚨 <b>НОВЫЙ ЗАКАЗ SEBTECH</b>\n"
-        f"🆔 <b>{order_id}</b>\n\n"
-        + "\n".join(lines) +
-        f"\n\n💰 <b>Сумма:</b> {total_str} сум"
-        f"\n🚚 <b>Тип:</b> {order_type}"
-        f"\n💳 <b>Оплата:</b> {payment}"
-        f"\n📍 <b>Адрес:</b> {address}"
-        f"\n📞 <b>Телефон:</b> {phone}"
-        f"\n👤 <b>Telegram:</b> {tg_label(message.from_user)}"
-    )
+        admin_text = (
+            "💬 <b>НОВАЯ КОНСУЛЬТАЦИЯ SEBTECH</b>\n\n"
+            f"📝 <b>Текст:</b> {text}\n\n"
+            f"👤 <b>Telegram:</b> {tg_label(message.from_user)}"
+        )
+        await bot.send_message(ADMIN_ID, admin_text)
+        return await message.answer("✅ <b>Сообщение отправлено!</b>\nМы скоро ответим.")
 
-    if comment:
-        admin_text += f"\n💬 <b>Комментарий:</b> {comment}"
+    # ✅ 2) ЗАКАЗ: отправляем как заказ
+    if action == "order":
+        lines = build_order_lines(data)
+        if not lines:
+            return await message.answer("⚠️ Корзина пустая. Добавьте товары и повторите.")
 
-    await bot.send_message(ADMIN_ID, admin_text)
+        total_str = clean_str(data.get("total")) or "0"
+        payment = clean_str(data.get("payment")) or "—"
+        order_type = clean_str(data.get("type")) or "—"
+        address = clean_str(data.get("address")) or "—"
+        phone = clean_str(data.get("phone")) or "—"
+        comment = clean_str(data.get("comment"))
+        order_id = clean_str(data.get("order_id")) or "—"
 
-    await message.answer(
-        "✅ <b>Ваш заказ принят!</b>\n"
-        "🙏 Спасибо! Мы скоро свяжемся с вами."
-    )
+        admin_text = (
+            "🚨 <b>НОВЫЙ ЗАКАЗ SEBTECH</b>\n"
+            f"🆔 <b>{order_id}</b>\n\n"
+            + "\n".join(lines) +
+            f"\n\n💰 <b>Сумма:</b> {total_str} сум"
+            f"\n🚚 <b>Тип:</b> {order_type}"
+            f"\n💳 <b>Оплата:</b> {payment}"
+            f"\n📍 <b>Адрес:</b> {address}"
+            f"\n📞 <b>Телефон:</b> {phone}"
+            f"\n👤 <b>Telegram:</b> {tg_label(message.from_user)}"
+        )
+        if comment:
+            admin_text += f"\n💬 <b>Комментарий:</b> {comment}"
+
+        await bot.send_message(ADMIN_ID, admin_text)
+        return await message.answer("✅ <b>Ваш заказ принят!</b>\n🙏 Спасибо! Мы скоро свяжемся с вами.")
+
+    # ✅ 3) если пришло непонятно что — не шлём админу мусор
+    await message.answer("⚠️ Данные не распознаны. Откройте каталог и попробуйте снова.")
 
 # ====== ЗАПУСК ======
 async def main():
