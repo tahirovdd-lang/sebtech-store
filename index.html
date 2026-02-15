@@ -9,9 +9,10 @@
 
 <style>
 :root{
-  /* ✅ SEBTECH palette: Silver + Light Blue */
+  /* ✅ Silver + Light Blue */
   --bg:#C9D0D8;
   --bg2:#EAF6FF;
+
   --white:#ffffff;
   --text:#111827;
   --muted: rgba(17,24,39,.72);
@@ -28,7 +29,7 @@
   --accent:#78BFFF;
   --accent2:#2F7EF7;
 
-  /* ✅ header (profile cap) black + white text */
+  /* ✅ header black + white text */
   --header-bg:#0B0B0C;
   --header-text:#ffffff;
 }
@@ -89,7 +90,6 @@ body{
 .brand-phone{margin-top:2px;display:flex;flex-direction:column;gap:2px;}
 .brand-phone a{color:rgba(255,255,255,.92);text-decoration:none;font-size:14px;font-weight:800;}
 
-/* ✅ greeting */
 .welcome{
   margin-top:6px;
   font-weight:900;
@@ -126,7 +126,7 @@ body{
 .burger span:nth-child(3){bottom:0;}
 .act-ico{font-size:14px;line-height:1;color:#fff;}
 
-/* rows */
+/* top rows */
 .langs{
   display:flex;
   gap:10px;
@@ -185,7 +185,12 @@ body{
 }
 
 /* categories + products */
-.categories{display:flex;gap:12px;padding:14px;overflow-x:auto;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;}
+.categories{
+  display:flex;gap:12px;padding:14px;
+  overflow-x:auto;scroll-behavior:smooth;
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior-x:contain;
+}
 .products{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;padding:12px;}
 .card{
   border-radius:24px;padding:12px;text-align:center;
@@ -236,7 +241,6 @@ body{
 .mini-name{font-weight:900;margin-top:8px;font-size:12px;line-height:1.15;min-height:28px;}
 .pop-counter span,.mini-counter span{font-weight:900; min-width:18px; text-align:center;}
 
-/* neat badge */
 .badge-pill{
   position:absolute;left:10px;top:10px;
   padding:6px 8px;
@@ -407,19 +411,6 @@ textarea.input{height:90px;}
   border:1px solid rgba(255,255,255,.45);
 }
 
-/* about text blocks */
-.about-desc{
-  margin-top:10px;
-  padding:12px;
-  border-radius:14px;
-  border:1px solid rgba(17,24,39,.08);
-  background:#fff;
-  color:#0b1220;
-  line-height:1.28;
-  font-weight:800;
-}
-.about-desc b{font-weight:900;}
-
 /* search */
 .search-title{display:none;width:100%;padding:10px 14px 0;font-weight:900;color:#0b1220;}
 .search-title.show{display:block;}
@@ -461,7 +452,6 @@ textarea.input{height:90px;}
 }
 .click-qr img{width:100%;max-width:360px;height:auto;display:block;}
 
-/* responsive */
 @media (max-width:420px){
   .brand-title{font-size:28px;}
   .brand-title2{font-size:13px;}
@@ -492,7 +482,6 @@ textarea.input{height:90px;}
 
   <div class="brand-wrap">
     <div class="brand-title">SEBTECH</div>
-    <!-- ✅ в шапке убрали Makon Mall: только APPLE TECH STORE -->
     <div class="brand-title2" id="branchTitle">APPLE TECH STORE</div>
 
     <div class="welcome" id="welcomeLine" style="display:none;"></div>
@@ -507,7 +496,6 @@ textarea.input{height:90px;}
     <div class="act-btn" onclick="openTopMenu()" title="Меню">
       <div class="burger"><span></span><span></span><span></span></div>
     </div>
-    <!-- ✅ геолокация в шапке теперь фиксированная ссылка -->
     <div class="act-btn" onclick="openHeaderLocation()" title="Маршрут">
       <span class="act-ico">📍</span>
     </div>
@@ -519,7 +507,7 @@ textarea.input{height:90px;}
 
 <div class="page">
 
-<!-- top menu -->
+<!-- burger menu -->
 <div class="menu-backdrop" id="menuBackdrop" onclick="closeTopMenu()"></div>
 <div class="menu-sheet" id="menuSheet">
   <div class="menu-handle"></div>
@@ -530,7 +518,7 @@ textarea.input{height:90px;}
 
   <div class="menu-list">
 
-    <!-- ✅ 1) Выбрать филиал -->
+    <!-- 1) Выбрать филиал -->
     <div class="menu-item" onclick="toggleBranch()" role="button">
       <div class="menu-left">
         <div class="menu-ic">🏬</div>
@@ -545,7 +533,6 @@ textarea.input{height:90px;}
     <div class="branch-box" id="branchWrap">
       <div class="branch-inner">
         <div class="branch-grid">
-          <!-- ✅ при нажатии сразу открывает маршрут -->
           <button class="branch-btn" id="branchMakon" onclick="chooseBranchAndRoute('makon', event)">
             <span id="branchMakonName">Makon Mall</span>
             <small id="addrMakonMini">г. Самарканд, Улица Гульабад 1</small>
@@ -558,7 +545,7 @@ textarea.input{height:90px;}
       </div>
     </div>
 
-    <!-- ✅ 2) Позвонить -->
+    <!-- 2) Позвонить -->
     <a class="menu-item" href="tel:+998901001110" onclick="closeTopMenu()">
       <div class="menu-left">
         <div class="menu-ic">📞</div>
@@ -570,7 +557,7 @@ textarea.input{height:90px;}
       <div class="menu-right">›</div>
     </a>
 
-    <!-- ✅ 3) Консультация -->
+    <!-- 3) Консультация -->
     <div class="menu-item" onclick="toggleVip()" role="button">
       <div class="menu-left">
         <div class="menu-ic">💬</div>
@@ -584,7 +571,7 @@ textarea.input{height:90px;}
 
     <div class="vip-box" id="vipWrap" style="display:none; padding:6px 4px 10px;">
       <div class="vip-inner" style="border:1px solid rgba(17,24,39,.08);border-radius:16px;overflow:hidden;background:rgba(17,24,39,.03);padding:12px;">
-        <div class="toggle-row" onclick="toggleInHall()" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 10px;border-radius:14px;background:#fff;border:1px solid rgba(17,24,39,.08);">
+        <div class="toggle-row" onclick="toggleNeedHelp()" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 10px;border-radius:14px;background:#fff;border:1px solid rgba(17,24,39,.08);">
           <div class="toggle-left" style="display:flex;flex-direction:column;gap:2px;">
             <b id="vipToggleTitle" style="font-weight:900;color:#0b1220;">Нужна консультация</b>
             <small id="vipToggleSub" style="font-weight:800;opacity:.7;color:#0b1220;">Включите, чтобы отправить запрос</small>
@@ -592,10 +579,10 @@ textarea.input{height:90px;}
           <div class="switch" id="vipSwitch" aria-label="toggle" style="width:52px;height:30px;border-radius:999px;background:rgba(17,24,39,.12);position:relative;cursor:pointer;border:1px solid rgba(17,24,39,.08);"></div>
         </div>
 
-        <input class="vip-input" id="vipTable" placeholder="Ваш вопрос (например: iPhone 15 Pro 256?)" style="width:100%;margin:8px 0 0;padding:12px 14px;border-radius:16px;border:1px solid rgba(17,24,39,.08);background:#fff;font-weight:900;outline:none;">
+        <input class="vip-input" id="vipQuestion" placeholder="Ваш вопрос (например: iPhone 15 Pro 256?)" style="width:100%;margin:8px 0 0;padding:12px 14px;border-radius:16px;border:1px solid rgba(17,24,39,.08);background:#fff;font-weight:900;outline:none;">
 
         <div class="vip-actions" style="margin-top:10px;display:flex;flex-direction:column;gap:8px;">
-          <button class="btn" style="min-width:auto;width:100%;" onclick="sendConsult(event)" id="vipCallBtn">💬 Написать консультанту</button>
+          <button class="btn" style="min-width:auto;width:100%;" onclick="sendConsult(event)" id="vipSendBtn">💬 Написать консультанту</button>
           <button class="btn" style="min-width:auto;width:100%; background:rgba(17,24,39,.06); color:#0b1220; border:1px solid rgba(17,24,39,.08);" onclick="toggleVip(event)" id="vipCloseBtn">Закрыть</button>
         </div>
         <div style="margin-top:8px;font-size:12px;opacity:.72;font-weight:800;" id="vipHint">
@@ -604,31 +591,31 @@ textarea.input{height:90px;}
       </div>
     </div>
 
-    <!-- ✅ 4) Instagram (1) -->
+    <!-- 4) Instagram 1 -->
     <a class="menu-item" href="#" onclick="openInstagram('makon', event)">
       <div class="menu-left">
         <div class="menu-ic">📸</div>
         <div class="menu-txt">
-          <div class="menu-name" id="mInsta1">@sebtech.uz</div>
+          <div class="menu-name">@sebtech.uz</div>
           <div class="menu-sub" id="mInstaSub1">Открыть Instagram</div>
         </div>
       </div>
       <div class="menu-right">›</div>
     </a>
 
-    <!-- ✅ 5) Instagram (2) -->
+    <!-- 5) Instagram 2 -->
     <a class="menu-item" href="#" onclick="openInstagram('bulvar', event)">
       <div class="menu-left">
         <div class="menu-ic">📸</div>
         <div class="menu-txt">
-          <div class="menu-name" id="mInsta2">@sebtech_bulvar</div>
+          <div class="menu-name">@sebtech_bulvar</div>
           <div class="menu-sub" id="mInstaSub2">Открыть Instagram</div>
         </div>
       </div>
       <div class="menu-right">›</div>
     </a>
 
-    <!-- ✅ 6) Оставить отзыв -->
+    <!-- 6) Оставить отзыв -->
     <a class="menu-item" href="#" onclick="openReview(event)">
       <div class="menu-left">
         <div class="menu-ic">⭐</div>
@@ -640,7 +627,7 @@ textarea.input{height:90px;}
       <div class="menu-right">›</div>
     </a>
 
-    <!-- ✅ 7) О нас -->
+    <!-- 7) О нас -->
     <div class="menu-item" onclick="toggleAbout()" role="button">
       <div class="menu-left">
         <div class="menu-ic">ℹ️</div>
@@ -680,7 +667,7 @@ textarea.input{height:90px;}
         <div style="font-weight:900; margin-bottom:6px;" id="aboutHoursLabel">🕒 График работы</div>
         <div style="font-weight:900; color:#0b1220; opacity:.92;" id="aboutHoursText">09:30–23:00</div>
 
-        <div class="about-desc" id="aboutDescText"></div>
+        <div style="margin-top:10px;padding:12px;border-radius:14px;border:1px solid rgba(17,24,39,.08);background:#fff;font-weight:800;line-height:1.28;" id="aboutDescText"></div>
       </div>
     </div>
 
@@ -694,13 +681,14 @@ textarea.input{height:90px;}
   <div class="search-clear" onclick="clearSearch()" title="Очистить">✖</div>
 </div>
 
-<!-- languages -->
+<!-- languages (3 only) -->
 <div class="langs">
   <button class="btn" id="langRU" onclick="setLang('ru',this)"><span class="lang-flag">🇷🇺</span>RU</button>
   <button class="btn" id="langUZ" onclick="setLang('uz',this)"><span class="lang-flag">🇺🇿</span>UZ</button>
   <button class="btn" id="langEN" onclick="setLang('en',this)"><span class="lang-flag">🇬🇧</span>EN</button>
 </div>
 
+<!-- ✅ categories & menu restored -->
 <div class="popular-wrap" id="popularWrap">
   <div class="popular-title" id="popularTitle">🔥 Популярное</div>
   <div class="popular-row" id="popularRow"></div>
@@ -803,7 +791,7 @@ function syncStickyHeight(){
 window.addEventListener('resize', ()=>setTimeout(syncStickyHeight, 50), {passive:true});
 window.addEventListener('orientationchange', ()=>setTimeout(syncStickyHeight, 250), {passive:true});
 
-/* ✅ fixed Yandex URLs */
+/* ✅ fixed links */
 const HEADER_LOCATION_URL = "https://yandex.uz/maps/org/107331183238/?ll=66.956433%2C39.611594&z=13.38";
 const REVIEW_URL = "https://yandex.uz/maps/org/107331183238/?ll=66.956433%2C39.611594&z=13.38";
 
@@ -819,18 +807,14 @@ const PHONE2_TEL = "tel:+998912859999";
 /* ✅ branches */
 const BRANCHES = {
   makon:{
-    titleRU:"Makon Mall",
-    titleUZ:"Makon Mall",
-    titleEN:"Makon Mall",
+    titleRU:"Makon Mall", titleUZ:"Makon Mall", titleEN:"Makon Mall",
     addressRU:"г. Самарканд, Улица Гульабад 1",
     addressUZ:"Samarqand, Gulabad ko‘chasi 1",
     addressEN:"Samarkand, Gulabad street 1",
     insta:"https://www.instagram.com/sebtech.uz/",
   },
   bulvar:{
-    titleRU:"Bulvar",
-    titleUZ:"Bulvar",
-    titleEN:"Bulvar",
+    titleRU:"Bulvar", titleUZ:"Bulvar", titleEN:"Bulvar",
     addressRU:"г. Самарканд, Улица Шахруха Мирзы 17",
     addressUZ:"Samarqand, Shahrux Mirzo ko‘chasi 17",
     addressEN:"Samarkand, Shahrukh Mirzo street 17",
@@ -848,15 +832,12 @@ function yandexSearchUrl(query){
 function openLink(url){
   try{Telegram.WebApp.openLink(url);}catch(_){window.open(url,'_blank');}
 }
-function openHeaderLocation(){
-  openLink(HEADER_LOCATION_URL);
-}
+function openHeaderLocation(){ openLink(HEADER_LOCATION_URL); }
 function openReview(e){
   try{e?.preventDefault?.();e?.stopPropagation?.();}catch(_){}
   closeTopMenu();
   openLink(REVIEW_URL);
 }
-
 function branchAddressForLang(){
   const b = BRANCHES[branch];
   if(lang==='uz') return b.addressUZ;
@@ -869,11 +850,8 @@ function branchTitleForLang(){
   if(lang==='en') return b.titleEN;
   return b.titleRU;
 }
-function openRouteByBranch(){
-  openLink(yandexSearchUrl(branchAddressForLang()));
-}
-function openRouteFromAbout(e){
-  try{e.preventDefault();e.stopPropagation();}catch(_){}
+function openRouteByBranch(){ openLink(yandexSearchUrl(branchAddressForLang())); }
+function openRouteFromAbout(e){ try{e.preventDefault();e.stopPropagation();}catch(_){}
   openRouteByBranch();
 }
 
@@ -927,56 +905,26 @@ const tg_id = tgUser.id || "";
 const UI = {
   ru:{
     menu:'Меню',
-
-    branchPick:'Выбрать филиал',
-    branchSub:'Makon Mall / Bulvar',
-
-    callTitle:'Позвонить',
-    callSub: PHONE1_DISPLAY,
-
-    vipTitle:'Консультация',
-    vipSub:'Задайте вопрос — отправим админу',
-    vipToggleTitle:'Нужна консультация',
-    vipToggleSub:'Включите, чтобы отправить запрос',
-    vipCall:'💬 Написать консультанту',
-    vipClose:'Закрыть',
-    vipHint:'Запрос уйдёт администратору.',
-    vipTablePh:'Ваш вопрос (например: iPhone 15 Pro 256?)',
+    branchPick:'Выбрать филиал', branchSub:'Makon Mall / Bulvar',
+    callTitle:'Позвонить', callSub: PHONE1_DISPLAY,
+    vipTitle:'Консультация', vipSub:'Задайте вопрос — отправим админу',
+    vipToggleTitle:'Нужна консультация', vipToggleSub:'Включите, чтобы отправить запрос',
+    vipCall:'💬 Написать консультанту', vipClose:'Закрыть', vipHint:'Запрос уйдёт администратору.',
+    vipPh:'Ваш вопрос (например: iPhone 15 Pro 256?)',
     consultSent:'✅ Запрос отправлен',
-
     instaSub:'Открыть Instagram',
-
-    reviewTitle:'Оставить отзыв',
-    reviewSub:'Яндекс Карты',
-
-    aboutTitle:'О нас',
-    aboutSub:'Адрес, телефоны, график',
-    aboutAddr:'📍 Адрес',
-    aboutRoute:'📍 Построить маршрут',
-    aboutPhone:'📞 Телефон',
-    aboutHours:'🕒 График работы',
-
+    reviewTitle:'Оставить отзыв', reviewSub:'Яндекс Карты',
+    aboutTitle:'О нас', aboutSub:'Адрес, телефоны, график',
+    aboutAddr:'📍 Адрес', aboutRoute:'📍 Построить маршрут',
+    aboutPhone:'📞 Телефон', aboutHours:'🕒 График работы',
     searchResults:'Результаты поиска',
-    popular:'🔥 Популярное',
-    gift:'⭐ Рекомендуем',
-
+    popular:'🔥 Популярное', gift:'⭐ Рекомендуем',
     phone:'📞 Телефон',
-
-    cart:'🛒 Корзина',
-    total:'Итого',
-    order:'Оформить заказ',
-    comment:'✍️ Комментарий к заказу',
-
-    cash:'💵 Наличные',
-    click:'💳 CLICK',
-    online:'💳 Онлайн',
+    cart:'🛒 Корзина', total:'Итого', order:'Оформить заказ', comment:'✍️ Комментарий к заказу',
+    cash:'💵 Наличные', click:'💳 CLICK', online:'💳 Онлайн',
     sum:'сум',
-
-    recip:'Получатель',
-    card:'Карта',
-    copy:'Копировать',
+    recip:'Получатель', card:'Карта', copy:'Копировать',
     onlineHint:'После оплаты нажмите «Оформить заказ» и напишите в комментарии “Оплатил(а)”.',
-
     empty:'Корзина пустая',
     clickTitle:'CLICK QR',
     clickHint:'Отсканируйте QR в приложении CLICK, затем нажмите «Оформить заказ».',
@@ -985,56 +933,26 @@ const UI = {
   },
   uz:{
     menu:'Menyu',
-
-    branchPick:'Filialni tanlash',
-    branchSub:'Makon Mall / Bulvar',
-
-    callTitle:"Qo'ng'iroq qilish",
-    callSub: PHONE1_DISPLAY,
-
-    vipTitle:'Konsultatsiya',
-    vipSub:'Savol bering — admindan xabar',
-    vipToggleTitle:'Konsultatsiya kerak',
-    vipToggleSub:'Yoqing — so‘rov yuborasiz',
-    vipCall:'💬 Konsultantga yozish',
-    vipClose:'Yopish',
-    vipHint:'So‘rov administratorga yuboriladi.',
-    vipTablePh:'Savolingiz (masalan: iPhone 15 Pro 256?)',
+    branchPick:'Filialni tanlash', branchSub:'Makon Mall / Bulvar',
+    callTitle:"Qo'ng'iroq qilish", callSub: PHONE1_DISPLAY,
+    vipTitle:'Konsultatsiya', vipSub:'Savol bering — adminga yuboramiz',
+    vipToggleTitle:'Konsultatsiya kerak', vipToggleSub:'Yoqing — so‘rov yuborasiz',
+    vipCall:'💬 Konsultantga yozish', vipClose:'Yopish', vipHint:'So‘rov administratorga yuboriladi.',
+    vipPh:'Savolingiz (masalan: iPhone 15 Pro 256?)',
     consultSent:'✅ So‘rov yuborildi',
-
     instaSub:"Instagramni ochish",
-
-    reviewTitle:'Fikr qoldirish',
-    reviewSub:'Yandex Xaritalar',
-
-    aboutTitle:'Biz haqimizda',
-    aboutSub:'Manzil, telefonlar, ish vaqti',
-    aboutAddr:'📍 Manzil',
-    aboutRoute:"📍 Yo‘l ko‘rsatish",
-    aboutPhone:'📞 Telefon',
-    aboutHours:'🕒 Ish vaqti',
-
+    reviewTitle:'Fikr qoldirish', reviewSub:'Yandex Xaritalar',
+    aboutTitle:'Biz haqimizda', aboutSub:'Manzil, telefonlar, ish vaqti',
+    aboutAddr:'📍 Manzil', aboutRoute:"📍 Yo‘l ko‘rsatish",
+    aboutPhone:'📞 Telefon', aboutHours:'🕒 Ish vaqti',
     searchResults:'Qidiruv natijalari',
-    popular:'🔥 Ommabop',
-    gift:'⭐ Tavsiya',
-
+    popular:'🔥 Ommabop', gift:'⭐ Tavsiya',
     phone:'📞 Telefon',
-
-    cart:'🛒 Savat',
-    total:'Jami',
-    order:'Buyurtma berish',
-    comment:'✍️ Izoh',
-
-    cash:'💵 Naqd',
-    click:'💳 CLICK',
-    online:'💳 Onlayn',
+    cart:'🛒 Savat', total:'Jami', order:'Buyurtma berish', comment:'✍️ Izoh',
+    cash:'💵 Naqd', click:'💳 CLICK', online:'💳 Onlayn',
     sum:"so‘m",
-
-    recip:'Qabul qiluvchi',
-    card:'Karta',
-    copy:'Nusxa',
+    recip:'Qabul qiluvchi', card:'Karta', copy:'Nusxa',
     onlineHint:'To‘lovdan so‘ng “Buyurtma berish”ni bosing va izohga “To‘ladim” deb yozing.',
-
     empty:"Savat bo‘sh",
     clickTitle:'CLICK QR',
     clickHint:"CLICK ilovasida QR ni skaner qiling, so‘ng “Buyurtma berish”ni bosing.",
@@ -1043,56 +961,26 @@ const UI = {
   },
   en:{
     menu:'Menu',
-
-    branchPick:'Choose branch',
-    branchSub:'Makon Mall / Bulvar',
-
-    callTitle:'Call',
-    callSub: PHONE1_DISPLAY,
-
-    vipTitle:'Consultation',
-    vipSub:'Ask a question — we notify admin',
-    vipToggleTitle:'Need consultation',
-    vipToggleSub:'Enable to send request',
-    vipCall:'💬 Message consultant',
-    vipClose:'Close',
-    vipHint:'Request will be sent to admin.',
-    vipTablePh:'Your question (e.g. iPhone 15 Pro 256?)',
+    branchPick:'Choose branch', branchSub:'Makon Mall / Bulvar',
+    callTitle:'Call', callSub: PHONE1_DISPLAY,
+    vipTitle:'Consultation', vipSub:'Ask a question — we notify admin',
+    vipToggleTitle:'Need consultation', vipToggleSub:'Enable to send request',
+    vipCall:'💬 Message consultant', vipClose:'Close', vipHint:'Request will be sent to admin.',
+    vipPh:'Your question (e.g. iPhone 15 Pro 256?)',
     consultSent:'✅ Request sent',
-
     instaSub:'Open Instagram',
-
-    reviewTitle:'Leave a review',
-    reviewSub:'Yandex Maps',
-
-    aboutTitle:'About us',
-    aboutSub:'Address, phones, hours',
-    aboutAddr:'📍 Address',
-    aboutRoute:'📍 Get directions',
-    aboutPhone:'📞 Phone',
-    aboutHours:'🕒 Working hours',
-
+    reviewTitle:'Leave a review', reviewSub:'Yandex Maps',
+    aboutTitle:'About us', aboutSub:'Address, phones, hours',
+    aboutAddr:'📍 Address', aboutRoute:'📍 Get directions',
+    aboutPhone:'📞 Phone', aboutHours:'🕒 Working hours',
     searchResults:'Search results',
-    popular:'🔥 Popular',
-    gift:'⭐ Recommended',
-
+    popular:'🔥 Popular', gift:'⭐ Recommended',
     phone:'📞 Phone',
-
-    cart:'🛒 Cart',
-    total:'Total',
-    order:'Place order',
-    comment:'✍️ Comment',
-
-    cash:'💵 Cash',
-    click:'💳 CLICK',
-    online:'💳 Online',
+    cart:'🛒 Cart', total:'Total', order:'Place order', comment:'✍️ Comment',
+    cash:'💵 Cash', click:'💳 CLICK', online:'💳 Online',
     sum:'sum',
-
-    recip:'Recipient',
-    card:'Card',
-    copy:'Copy',
+    recip:'Recipient', card:'Card', copy:'Copy',
     onlineHint:'After payment press “Place order” and write “Paid” in comment.',
-
     empty:'Cart is empty',
     clickTitle:'CLICK QR',
     clickHint:'Scan the QR in CLICK app, then press “Place order”.',
@@ -1101,51 +989,26 @@ const UI = {
   }
 };
 
-/* ✅ Hours updated */
 const ABOUT_HOURS = "09:30–23:00";
 
-/* ABOUT dynamic description */
-const ABOUT_DESC = {
-  ru:`SEBTECH — магазин техники Apple в Самарканде.<br>
-Подберём iPhone, Mac, iPad, Watch и AirPods под ваши задачи, поможем с переносом данных и настройкой.<br><br>
-<b>✔️ Гарантия</b> • <b>✔️ Проверка</b> • <b>✔️ Подбор аксессуаров</b><br><br>
-<b>📍 Адрес:</b> ${BRANCHES[branch].addressRU}<br>
-<b>📞 Телефон:</b> ${PHONE1_DISPLAY}<br>
-<b>📞 Телефон:</b> ${PHONE2_DISPLAY}<br>
-<b>🕒 График работы:</b> ${ABOUT_HOURS}`,
-  uz:`SEBTECH — Samarqanddagi Apple texnika do‘koni.<br>
-iPhone, Mac, iPad, Watch va AirPods tanlashda yordam beramiz, ma’lumot ko‘chirish va sozlashni ham qilamiz.<br><br>
-<b>✔️ Kafolat</b> • <b>✔️ Tekshiruv</b> • <b>✔️ Aksessuarlar</b><br><br>
-<b>📍 Manzil:</b> ${BRANCHES[branch].addressUZ}<br>
-<b>📞 Telefon:</b> ${PHONE1_DISPLAY}<br>
-<b>📞 Telefon:</b> ${PHONE2_DISPLAY}<br>
-<b>🕒 Ish vaqti:</b> ${ABOUT_HOURS}`,
-  en:`SEBTECH is an Apple tech store in Samarkand.<br>
-We help you choose iPhone, Mac, iPad, Watch, and AirPods, and assist with setup and data transfer.<br><br>
-<b>✔️ Warranty</b> • <b>✔️ Check</b> • <b>✔️ Accessories</b><br><br>
-<b>📍 Address:</b> ${BRANCHES[branch].addressEN}<br>
-<b>📞 Phone:</b> ${PHONE1_DISPLAY}<br>
-<b>📞 Phone:</b> ${PHONE2_DISPLAY}<br>
-<b>🕒 Hours:</b> ${ABOUT_HOURS}`
+const CATS = {
+  ru:{iphone:'📱 iPhone', mac:'💻 Mac', ipad:'📲 iPad', watch:'⌚ Watch', airpods:'🎧 AirPods', accessories:'🧩 Аксессуары'},
+  uz:{iphone:'📱 iPhone', mac:'💻 Mac', ipad:'📲 iPad', watch:'⌚ Watch', airpods:'🎧 AirPods', accessories:'🧩 Aksessuarlar'},
+  en:{iphone:'📱 iPhone', mac:'💻 Mac', ipad:'📲 iPad', watch:'⌚ Watch', airpods:'🎧 AirPods', accessories:'🧩 Accessories'}
 };
 
-/* ✅ QR */
-const CLICK_QR_IMG = "images/qr_click.jpg";
-
-/* state */
-let lang='uz', category='iphone', payment='cash', cart={};
-
-/* ✅ Catalog (JPG names) */
+/* ✅ MENU restored (categories + items) */
 const MENU = {
   iphone:[
     {id:'iphone_15_pro', p:16900000, img:'images/iphone_15_pro.jpg', n:{ru:'iPhone 15 Pro 128GB', uz:'iPhone 15 Pro 128GB', en:'iPhone 15 Pro 128GB'}},
+    {id:'iphone_15_pro_max', p:18900000, img:'images/iphone_15_pro_max.jpg', n:{ru:'iPhone 15 Pro Max 256GB', uz:'iPhone 15 Pro Max 256GB', en:'iPhone 15 Pro Max 256GB'}},
     {id:'iphone_15', p:12900000, img:'images/iphone_15.jpg', n:{ru:'iPhone 15 128GB', uz:'iPhone 15 128GB', en:'iPhone 15 128GB'}},
     {id:'iphone_14', p:10500000, img:'images/iphone_14.jpg', n:{ru:'iPhone 14 128GB', uz:'iPhone 14 128GB', en:'iPhone 14 128GB'}}
   ],
   mac:[
     {id:'macbook_air_m2', p:13500000, img:'images/macbook_air_m2.jpg', n:{ru:'MacBook Air M2', uz:'MacBook Air M2', en:'MacBook Air M2'}},
-    {id:'macbook_pro_m3', p:21000000, img:'images/macbook_pro_m3.jpg', n:{ru:'MacBook Pro M3', uz:'MacBook Pro M3', en:'MacBook Pro M3'}},
-    {id:'imac_m3', p:24000000, img:'images/imac_m3.jpg', n:{ru:'iMac M3', uz:'iMac M3', en:'iMac M3'}}
+    {id:'macbook_air_m3', p:15500000, img:'images/macbook_air_m3.jpg', n:{ru:'MacBook Air M3', uz:'MacBook Air M3', en:'MacBook Air M3'}},
+    {id:'macbook_pro_m3', p:21000000, img:'images/macbook_pro_m3.jpg', n:{ru:'MacBook Pro M3', uz:'MacBook Pro M3', en:'MacBook Pro M3'}}
   ],
   ipad:[
     {id:'ipad_pro', p:17500000, img:'images/ipad_pro.jpg', n:{ru:'iPad Pro', uz:'iPad Pro', en:'iPad Pro'}},
@@ -1170,19 +1033,16 @@ const MENU = {
   ]
 };
 
-const CATS = {
-  ru:{iphone:'📱 iPhone', mac:'💻 Mac', ipad:'📲 iPad', watch:'⌚ Watch', airpods:'🎧 AirPods', accessories:'🧩 Аксессуары'},
-  uz:{iphone:'📱 iPhone', mac:'💻 Mac', ipad:'📲 iPad', watch:'⌚ Watch', airpods:'🎧 AirPods', accessories:'🧩 Aksessuarlar'},
-  en:{iphone:'📱 iPhone', mac:'💻 Mac', ipad:'📲 iPad', watch:'⌚ Watch', airpods:'🎧 AirPods', accessories:'🧩 Accessories'}
-};
+const ITEM_INDEX = {};
+for (const c in MENU){ MENU[c].forEach(it => ITEM_INDEX[it.id]=it); }
 
 /* carousels */
 const POPULAR = ['iphone_15_pro','macbook_air_m2','airpods_pro_2'];
 const GIFT_ITEMS = ['watch_series_9','ipad_air','charger_20w'];
 
-/* index */
-const ITEM_INDEX = {};
-for (const c in MENU){ MENU[c].forEach(it => ITEM_INDEX[it.id]=it); }
+/* state */
+let lang='uz', category=localStorage.getItem('sebtech_cat') || 'iphone', payment='cash', cart={};
+if(!MENU[category]) category='iphone';
 
 /* helpers */
 function escapeHtml(s){return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
@@ -1211,7 +1071,6 @@ function closeSearch(){
 }
 function clearSearch(){ closeSearch(); }
 function onSearchKey(e){ if(e.key==='Enter') closeSearch(); }
-
 function matchesQuery(it,q){
   if(!q) return true;
   const all=[it.n?.ru,it.n?.uz,it.n?.en,String(it.id||'')].filter(Boolean).join(' ').toLowerCase();
@@ -1237,6 +1096,44 @@ function searchProducts(){
       ${lang==='ru'?'Ничего не найдено':lang==='uz'?'Hech narsa topilmadi':'Nothing found'}
     </div>`;
   }
+}
+
+/* categories */
+function renderCats(){
+  cats.innerHTML='';
+  for(const k in MENU){
+    cats.innerHTML += `<button class="btn cat-btn ${k===category?'active':''}" onclick="onCategoryClick('${k}')">${CATS[lang][k]||k}</button>`;
+  }
+}
+function onCategoryClick(k){
+  category=k;
+  localStorage.setItem('sebtech_cat', category);
+  renderCats();
+  if(!isSearchOpen()) renderProducts();
+}
+
+/* products */
+function cardHTML(it){
+  const id=it.id;
+  const qty=cart[id]||0;
+  return `
+  <div class="card">
+    <div class="img"><img src="${it.img}" onerror="this.src='images/logo.png'" onclick="openImage(event,'${id}')"></div>
+    <div class="item-name">${escapeHtml(nameOf(id))}</div>
+    <div class="price">${formatSum(it.p)} <small>${UI[lang].sum}</small></div>
+    <div class="counter">
+      <button onclick="chg('${id}',-1)">−</button>
+      <span id="c_${id}">${qty}</span>
+      <button onclick="chg('${id}',1)">+</button>
+    </div>
+  </div>`;
+}
+function renderProducts(){
+  products.innerHTML='';
+  (MENU[category]||[]).forEach(it=>{
+    cart[it.id]=cart[it.id]||0;
+    products.innerHTML += cardHTML(it);
+  });
 }
 
 /* carousels */
@@ -1284,43 +1181,6 @@ function renderGift(){
     const it=ITEM_INDEX[id]; if(!it) return;
     cart[id]=cart[id]||0;
     giftRow.innerHTML += miniCardHTML(it, lang==='ru'?'Рекомендуем':lang==='uz'?'Tavsiya':'Recommended');
-  });
-}
-
-/* categories */
-function renderCats(){
-  cats.innerHTML='';
-  for(const k in MENU){
-    cats.innerHTML += `<button class="btn cat-btn ${k===category?'active':''}" onclick="onCategoryClick('${k}')">${CATS[lang][k]||k}</button>`;
-  }
-}
-function onCategoryClick(k){
-  category=k;
-  renderCats();
-  if(!isSearchOpen()) renderProducts();
-}
-
-/* products */
-function cardHTML(it){
-  const id=it.id;
-  const qty=cart[id]||0;
-  return `
-  <div class="card">
-    <div class="img"><img src="${it.img}" onerror="this.src='images/logo.png'" onclick="openImage(event,'${id}')"></div>
-    <div class="item-name">${escapeHtml(nameOf(id))}</div>
-    <div class="price">${formatSum(it.p)} <small>${UI[lang].sum}</small></div>
-    <div class="counter">
-      <button onclick="chg('${id}',-1)">−</button>
-      <span id="c_${id}">${qty}</span>
-      <button onclick="chg('${id}',1)">+</button>
-    </div>
-  </div>`;
-}
-function renderProducts(){
-  products.innerHTML='';
-  (MENU[category]||[]).forEach(it=>{
-    cart[it.id]=cart[it.id]||0;
-    products.innerHTML += cardHTML(it);
   });
 }
 
@@ -1394,7 +1254,7 @@ function showToast(t){
   toastTimer=setTimeout(()=>popup.classList.remove('show'), 1200);
 }
 
-/* branch UI (active highlight) */
+/* branch UI */
 function toggleBranch(e){
   try{e?.preventDefault?.();e?.stopPropagation?.();}catch(_){}
   const w=document.getElementById('branchWrap');
@@ -1408,52 +1268,54 @@ function syncBranchUI(){
   if(b) b.classList.toggle('active', branch==='bulvar');
 }
 
-/* apply branch to about */
+function openInstagram(which, e){
+  try{e?.preventDefault?.();e?.stopPropagation?.();}catch(_){}
+  closeTopMenu();
+  const code = (which==='bulvar') ? 'bulvar' : 'makon';
+  openLink(BRANCHES[code].insta);
+}
+
+/* about */
 function applyBranchToUI(){
   const aboutAddrText=document.getElementById('aboutAddrText');
   if(aboutAddrText) aboutAddrText.innerText = branchAddressForLang();
 
   const d=document.getElementById('aboutDescText');
-  if(d) d.innerHTML = ABOUT_DESC[lang] || ABOUT_DESC.ru;
+  if(d){
+    const addr = branchAddressForLang();
+    d.innerHTML =
+      (lang==='ru' ? `SEBTECH — магазин техники Apple в Самарканде.<br>Поможем с подбором и настройкой, переносом данных и аксессуарами.<br><br><b>📍 Адрес:</b> ${addr}<br><b>🕒 График:</b> ${ABOUT_HOURS}`
+      : lang==='uz' ? `SEBTECH — Samarqanddagi Apple texnika do‘koni.<br>Tanlash, sozlash va ma’lumot ko‘chirishda yordam beramiz.<br><br><b>📍 Manzil:</b> ${addr}<br><b>🕒 Ish vaqti:</b> ${ABOUT_HOURS}`
+      : `SEBTECH is an Apple tech store in Samarkand.<br>We help with choosing, setup and data transfer.<br><br><b>📍 Address:</b> ${addr}<br><b>🕒 Hours:</b> ${ABOUT_HOURS}`);
+  }
 
   const am=document.getElementById('addrMakonMini');
   const ab=document.getElementById('addrBulvarMini');
   if(am) am.innerText = BRANCHES.makon.addressRU;
   if(ab) ab.innerText = BRANCHES.bulvar.addressRU;
-
-  // названия филиалов в кнопках переводим (если нужно — оставляем как бренд)
-  const bm=document.getElementById('branchMakonName');
-  const bb=document.getElementById('branchBulvarName');
-  if(bm) bm.innerText = BRANCHES.makon.titleRU;
-  if(bb) bb.innerText = BRANCHES.bulvar.titleRU;
+}
+function toggleAbout(){
+  const w=document.getElementById('aboutWrap');
+  w.style.display=(w.style.display==='none'||!w.style.display)?'block':'none';
 }
 
-/* instagram */
-function openInstagram(which, e){
-  try{e?.preventDefault?.();e?.stopPropagation?.();}catch(_){}
-  closeTopMenu();
-  const code = (which==='bulvar') ? 'bulvar' : 'makon';
-  const url = BRANCHES[code].insta;
-  openLink(url);
-}
-
-/* ✅ consultation: sendData to admin id in payload */
-let inHall = (localStorage.getItem('sebtech_need_help')||'0')==='1';
+/* consultation */
+let needHelp = (localStorage.getItem('sebtech_need_help')||'0')==='1';
 function toggleVip(e){
   try{e?.preventDefault?.();e?.stopPropagation?.();}catch(_){}
   const w=document.getElementById('vipWrap');
   w.style.display=(w.style.display==='none'||!w.style.display)?'block':'none';
-  syncVipUI();
+  syncNeedHelpUI();
 }
-function toggleInHall(){
-  inHall = !inHall;
-  localStorage.setItem('sebtech_need_help', inHall ? '1' : '0');
-  syncVipUI();
+function toggleNeedHelp(){
+  needHelp = !needHelp;
+  localStorage.setItem('sebtech_need_help', needHelp ? '1' : '0');
+  syncNeedHelpUI();
 }
-function syncVipUI(){
+function syncNeedHelpUI(){
   const sw = document.getElementById('vipSwitch');
   if(sw){
-    sw.style.background = inHall ? 'rgba(120,191,255,.55)' : 'rgba(17,24,39,.12)';
+    sw.style.background = needHelp ? 'rgba(120,191,255,.55)' : 'rgba(17,24,39,.12)';
     if(!sw.dataset.init){
       sw.dataset.init='1';
       const dot=document.createElement('div');
@@ -1462,19 +1324,19 @@ function syncVipUI(){
       sw.appendChild(dot);
     }
     const dot=document.getElementById('vipDot');
-    if(dot) dot.style.left = inHall ? '25px' : '3px';
+    if(dot) dot.style.left = needHelp ? '25px' : '3px';
   }
-  const btn = document.getElementById('vipCallBtn');
+  const btn = document.getElementById('vipSendBtn');
   if(btn){
-    btn.style.opacity = inHall ? '1' : '.45';
-    btn.style.pointerEvents = inHall ? 'auto' : 'none';
+    btn.style.opacity = needHelp ? '1' : '.45';
+    btn.style.pointerEvents = needHelp ? 'auto' : 'none';
   }
 }
 function sendConsult(e){
   try{e.preventDefault();e.stopPropagation();}catch(_){}
-  if(!inHall) return;
+  if(!needHelp) return;
 
-  const question = (document.getElementById('vipTable')?.value || '').trim();
+  const question = (document.getElementById('vipQuestion')?.value || '').trim();
   const payload = {
     action:'consult',
     to_admin_id: ADMIN_ID,
@@ -1495,67 +1357,6 @@ function sendConsult(e){
   }catch(_){
     showToast("✅");
   }
-}
-
-/* about */
-function toggleAbout(){
-  const w=document.getElementById('aboutWrap');
-  w.style.display=(w.style.display==='none'||!w.style.display)?'block':'none';
-}
-
-/* order */
-function genOrderId(){
-  const d=new Date();
-  const dd=String(d.getDate()).padStart(2,'0');
-  const mm=String(d.getMonth()+1).padStart(2,'0');
-  const key=`sebtech_seq_${d.getFullYear()}${mm}${dd}`;
-  let n=Number(localStorage.getItem(key)||0)+1;
-  localStorage.setItem(key,String(n));
-  return `SEB-${dd}${mm}-${String(n).padStart(3,'0')}`;
-}
-let payment='cash';
-
-function sendOrder(){
-  const items=[];
-  for(const id in cart){
-    const qty=Number(cart[id]||0);
-    if(qty>0){
-      const it=ITEM_INDEX[id]||{};
-      items.push({id,qty,price:it.p||0,name_ru:it.n?.ru||id,name_lang:nameOf(id)});
-    }
-  }
-  if(items.length===0){
-    alert(UI[lang].empty);
-    return;
-  }
-
-  popup.classList.add('show');
-  popupText.innerText = "✅";
-
-  const itemsSum=calcItemsSum();
-
-  const payload={
-    action:'order',
-    brand:'SEBTECH',
-    branch,
-    branch_title: branchTitleForLang(),
-    branch_address: branchAddressForLang(),
-    tg:{id:tg_id,username:tg_username,first_name:tg_first_name},
-    items,
-    total_items: formatSum(itemsSum),
-    total_with_delivery: formatSum(itemsSum),
-    total_num: itemsSum,
-    payment,
-    phone:phone.value,
-    comment:comment.value,
-    order_id: genOrderId(),
-    lang
-  };
-
-  setTimeout(()=>{
-    Telegram.WebApp.sendData(JSON.stringify(payload));
-    Telegram.WebApp.close();
-  },700);
 }
 
 /* greeting */
@@ -1582,10 +1383,10 @@ function applyUI(){
   mVipSub.innerText = UI[lang].vipSub;
   vipToggleTitle.innerText = UI[lang].vipToggleTitle;
   vipToggleSub.innerText = UI[lang].vipToggleSub;
-  vipCallBtn.innerText = UI[lang].vipCall;
+  vipSendBtn.innerText = UI[lang].vipCall;
   vipCloseBtn.innerText = UI[lang].vipClose;
   vipHint.innerText = UI[lang].vipHint;
-  vipTable.placeholder = UI[lang].vipTablePh;
+  vipQuestion.placeholder = UI[lang].vipPh;
 
   mInstaSub1.innerText = UI[lang].instaSub;
   mInstaSub2.innerText = UI[lang].instaSub;
@@ -1632,9 +1433,6 @@ function applyUI(){
 
   stickyCartBtn.innerText = UI[lang].cart;
 
-  clickQrImg.src = CLICK_QR_IMG;
-
-  // header subtitle fixed
   const headerSub = document.getElementById('branchTitle');
   if(headerSub) headerSub.innerText = UI[lang].brandSub;
 
@@ -1657,35 +1455,85 @@ function setLang(l,btn){
   applyUI();
 }
 
-/* init settings */
+/* payments + cart */
+function genOrderId(){
+  const d=new Date();
+  const dd=String(d.getDate()).padStart(2,'0');
+  const mm=String(d.getMonth()+1).padStart(2,'0');
+  const key=`sebtech_seq_${d.getFullYear()}${mm}${dd}`;
+  let n=Number(localStorage.getItem(key)||0)+1;
+  localStorage.setItem(key,String(n));
+  return `SEB-${dd}${mm}-${String(n).padStart(3,'0')}`;
+}
+function sendOrder(){
+  const items=[];
+  for(const id in cart){
+    const qty=Number(cart[id]||0);
+    if(qty>0){
+      const it=ITEM_INDEX[id]||{};
+      items.push({id,qty,price:it.p||0,name_ru:it.n?.ru||id,name_lang:nameOf(id)});
+    }
+  }
+  if(items.length===0){ alert(UI[lang].empty); return; }
+
+  const itemsSum=calcItemsSum();
+
+  const payload={
+    action:'order',
+    brand:'SEBTECH',
+    branch,
+    branch_title: branchTitleForLang(),
+    branch_address: branchAddressForLang(),
+    tg:{id:tg_id,username:tg_username,first_name:tg_first_name},
+    items,
+    total_items: formatSum(itemsSum),
+    total_with_delivery: formatSum(itemsSum),
+    total_num: itemsSum,
+    payment,
+    phone:phone.value,
+    comment:comment.value,
+    order_id: genOrderId(),
+    lang
+  };
+
+  popup.classList.add('show');
+  popupText.innerText = "✅";
+
+  setTimeout(()=>{
+    try{
+      Telegram.WebApp.sendData(JSON.stringify(payload));
+      Telegram.WebApp.close();
+    }catch(_){}
+  },700);
+}
+
+/* init */
 try{
   Telegram.WebApp.setHeaderColor?.('#0B0B0C');
   Telegram.WebApp.setBackgroundColor?.('#C9D0D8');
 }catch(_){}
 
-/* default: uz */
+/* default language: UZ */
 lang='uz';
 document.querySelectorAll('.langs .btn').forEach(b=>b.classList.remove('active'));
 document.getElementById('langUZ')?.classList.add('active');
 
-/* phone input */
 phone.value = localStorage.getItem('sebtech_phone') || PHONE1_DISPLAY;
 phone.addEventListener('input',()=>localStorage.setItem('sebtech_phone',phone.value));
 
-/* payment */
 setPayment('cash');
 
-/* start render */
-renderCats(); renderProducts();
-renderPopular(); renderGift();
-syncVipUI();
+renderCats();
+renderProducts();
+renderPopular();
+renderGift();
+syncNeedHelpUI();
 applyUI();
 updateTotal();
 setTimeout(syncStickyHeight, 50);
 
+/* ensure nothing auto-hides categories/products */
 closeSearch();
-
-/* open/close helpers */
 </script>
 </body>
 </html>
