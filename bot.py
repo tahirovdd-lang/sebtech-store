@@ -19,7 +19,7 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 if not BOT_TOKEN:
     raise RuntimeError("❌ BOT_TOKEN не найден. Добавь переменную окружения BOT_TOKEN.")
 
-# ✅ username твоего бота (без @), лучше всегда в нижнем регистре
+# ✅ username твоего бота (без @)
 BOT_USERNAME = os.getenv("BOT_USERNAME", "sebtech_store_bot").replace("@", "").strip().lower()
 
 # ✅ твой Telegram ID (админ)
@@ -29,37 +29,34 @@ ADMIN_ID = int(os.getenv("ADMIN_ID", "6013591658"))
 CHANNEL_ID = os.getenv("CHANNEL_ID", "@SEBTECH_APPLE_STORE").strip()
 
 def normalize_webapp_url(url: str) -> str:
-    """
-    Приводим URL к виду:
-    - https://.../repo/  (слэш в конце, если это путь GitHub Pages)
-    - затем добавляем query (?v=...)
-    Это помогает, когда Telegram/WebView иначе открывает "не тот" путь.
-    """
     url = (url or "").strip()
     if not url:
         return url
 
-    # Разделяем путь и query
-    if "?" in url:
-        base, q = url.split("?", 1)
-        q = "?" + q
-    else:
-        base, q = url, ""
+    # Если дали папку — приводим к index.html
+    # https://.../sebtech-store/  -> https://.../sebtech-store/index.html
+    # https://.../sebtech-store   -> https://.../sebtech-store/index.html
+    if "github.io" in url:
+        # отделим query
+        if "?" in url:
+            base, q = url.split("?", 1)
+            q = "?" + q
+        else:
+            base, q = url, ""
 
-    # Для GitHub Pages лучше иметь слэш на конце папки-репозитория
-    # Например: https://tahirovdd-lang.github.io/sebtech-store/
-    if base.startswith("https://") and "github.io/" in base:
-        if not base.endswith("/"):
-            base += "/"
+        base = base.rstrip("/")
+        # если уже заканчивается на .html — не трогаем
+        if not base.lower().endswith(".html"):
+            base = base + "/index.html"
 
-    return base + q
+        return base + q
 
-# ✅ GitHub Pages WebApp (ВАЖНО: твоя рабочая ссылка)
-WEBAPP_URL = normalize_webapp_url(
-    os.getenv("WEBAPP_URL", "https://tahirovdd-lang.github.io/sebtech-store/?v=2")
-)
+    return url
 
-# ✅ Логируем реальную ссылку (чтобы сразу видеть в логах BotHost)
+# ✅ GitHub Pages WebApp — открываем ЯВНО index.html (самое стабильное для Telegram)
+DEFAULT_WEBAPP = "https://tahirovdd-lang.github.io/sebtech-store/index.html?v=10"
+WEBAPP_URL = normalize_webapp_url(os.getenv("WEBAPP_URL", DEFAULT_WEBAPP))
+
 logging.info(f"WEBAPP_URL (effective) = {WEBAPP_URL}")
 
 bot = Bot(token=BOT_TOKEN, default=DefaultBotProperties(parse_mode="HTML"))
@@ -86,7 +83,6 @@ def kb_webapp_reply() -> ReplyKeyboardMarkup:
     )
 
 def kb_channel_url() -> InlineKeyboardMarkup:
-    # ✅ В канал даём ПРЯМУЮ ссылку на сайт
     return InlineKeyboardMarkup(
         inline_keyboard=[[InlineKeyboardButton(text=BTN_OPEN_MULTI, url=WEBAPP_URL)]]
     )
