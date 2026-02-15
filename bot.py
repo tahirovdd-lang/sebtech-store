@@ -173,6 +173,29 @@ def build_order_lines(data: dict) -> list[str]:
 
     return lines
 
+def is_consultation_payload(data: dict) -> bool:
+    action = clean_str(data.get("action")).lower()
+    text = clean_str(data.get("text"))
+    items = data.get("items")
+
+    if action in ("consultation", "consult", "message", "support"):
+        return True
+    # ✅ даже если action сломался — если есть text и нет items → это консультация
+    if text and not items:
+        return True
+    return False
+
+def is_order_payload(data: dict) -> bool:
+    action = clean_str(data.get("action")).lower()
+    items = data.get("items")
+
+    if action == "order":
+        return True
+    # ✅ если action сломался — но есть items списком → это заказ
+    if isinstance(items, list) and len(items) > 0:
+        return True
+    return False
+
 # ====== ДАННЫЕ ИЗ WEBAPP ======
 @dp.message(F.web_app_data)
 async def webapp_data(message: types.Message):
@@ -183,13 +206,10 @@ async def webapp_data(message: types.Message):
     except Exception:
         data = {}
 
-    action = clean_str(data.get("action")).lower()
-
-    # ✅ 1) КОНСУЛЬТАЦИЯ: отправляем админу ТЕКСТ клиента + ник
-    if action == "consultation":
+    # ✅ 1) КОНСУЛЬТАЦИЯ (строго текст клиента + ник)
+    if is_consultation_payload(data):
         text = clean_str(data.get("text"))
         if not text:
-            # если вдруг пусто — не шлём "пустой заказ"
             return await message.answer("⚠️ Пустое сообщение. Напишите текст обращения.")
 
         admin_text = (
@@ -200,8 +220,8 @@ async def webapp_data(message: types.Message):
         await bot.send_message(ADMIN_ID, admin_text)
         return await message.answer("✅ <b>Сообщение отправлено!</b>\nМы скоро ответим.")
 
-    # ✅ 2) ЗАКАЗ: отправляем как заказ
-    if action == "order":
+    # ✅ 2) ЗАКАЗ
+    if is_order_payload(data):
         lines = build_order_lines(data)
         if not lines:
             return await message.answer("⚠️ Корзина пустая. Добавьте товары и повторите.")
@@ -210,7 +230,6 @@ async def webapp_data(message: types.Message):
         payment = clean_str(data.get("payment")) or "—"
         order_type = clean_str(data.get("type")) or "—"
         address = clean_str(data.get("address")) or "—"
-        phone = clean_str(data.get("phone")) or "—"
         comment = clean_str(data.get("comment"))
         order_id = clean_str(data.get("order_id")) or "—"
 
@@ -222,7 +241,6 @@ async def webapp_data(message: types.Message):
             f"\n🚚 <b>Тип:</b> {order_type}"
             f"\n💳 <b>Оплата:</b> {payment}"
             f"\n📍 <b>Адрес:</b> {address}"
-            f"\n📞 <b>Телефон:</b> {phone}"
             f"\n👤 <b>Telegram:</b> {tg_label(message.from_user)}"
         )
         if comment:
