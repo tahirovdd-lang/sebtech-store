@@ -214,6 +214,31 @@ body{
 }
 .counter button:active{transform:scale(.96);}
 
+/* ✅ card quick actions (telegram/call) */
+.card-actions{
+  display:flex;
+  gap:8px;
+  margin-top:10px;
+  justify-content:center;
+}
+.card-actions .qa-btn{
+  flex:1 1 0;
+  min-width:auto;
+  padding:10px 10px;
+  border-radius:16px;
+  border:1px solid rgba(17,24,39,.10);
+  background:rgba(17,24,39,.04);
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:0 10px 20px rgba(0,0,0,.10);
+  transition:.15s;
+}
+.card-actions .qa-btn.primary{
+  background: linear-gradient(180deg, rgba(120,191,255,1), rgba(47,126,247,1));
+  color:#fff;
+}
+.card-actions .qa-btn:active{transform:scale(.98);}
+
 /* carousels */
 .popular-wrap{width:100%;padding:4px 12px 6px;}
 .popular-title{width:100%;font-weight:900;padding:8px 2px 10px;display:flex;align-items:center;gap:8px;color:#0b1220;}
@@ -452,6 +477,98 @@ textarea.input{height:90px;}
 }
 .click-qr img{width:100%;max-width:360px;height:auto;display:block;}
 
+/* ✅ Subcategories bottom sheet */
+.sub-open-wrap{padding:0 14px 10px;}
+.sub-open-btn{
+  width:100%;
+  min-width:auto;
+  border-radius:20px;
+  padding:12px 14px;
+  border:1px solid rgba(17,24,39,.10);
+  background:rgba(255,255,255,.92);
+  box-shadow: 0 12px 26px rgba(0,0,0,.12);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  cursor:pointer;
+  font-weight:900;
+  color:#0b1220;
+}
+.sub-open-left{display:flex;align-items:center;gap:10px;min-width:0;}
+.sub-open-ico{
+  width:36px;height:36px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(120,191,255,.16);
+  border:1px solid rgba(17,24,39,.08);
+}
+.sub-open-txt{display:flex;flex-direction:column;min-width:0;}
+.sub-open-title{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sub-open-sub{font-size:12px;opacity:.75;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px;}
+.sub-open-right{opacity:.65;font-weight:900;}
+
+.sub-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.30);opacity:0;pointer-events:none;transition:.18s;z-index:1500;}
+.sub-backdrop.show{opacity:1;pointer-events:auto;}
+.sub-sheet{
+  position:fixed;left:0;right:0;bottom:-100%;
+  background:rgba(255,255,255,.92);
+  border-top-left-radius:22px;border-top-right-radius:22px;
+  border:1px solid rgba(17,24,39,.10);
+  box-shadow:0 18px 40px rgba(0,0,0,.18);
+  transition:.22s;
+  z-index:1510;
+  padding:10px 12px 16px;
+  max-height: 78vh;
+  overflow:auto;
+  -webkit-overflow-scrolling:touch;
+  color:#0b1220;
+}
+.sub-sheet.show{bottom:0;}
+.sub-head{display:flex;align-items:center;justify-content:space-between;padding:2px 4px 10px;}
+.sub-head b{font-size:16px;}
+.sub-close{width:38px;height:38px;border:none;border-radius:12px;background:transparent;cursor:pointer;font-size:22px;line-height:1;color:#777;}
+.sub-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+.sub-ico-btn{
+  border-radius:18px;
+  border:1px solid rgba(17,24,39,.10);
+  background:#fff;
+  box-shadow:0 12px 24px rgba(0,0,0,.10);
+  padding:12px 10px;
+  cursor:pointer;
+  text-align:center;
+  transition:.15s;
+}
+.sub-ico-btn:active{transform:scale(.98);}
+.sub-ico{
+  width:42px;height:42px;border-radius:18px;margin:0 auto 8px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(120,191,255,.16);
+  border:1px solid rgba(17,24,39,.08);
+  font-size:20px;
+}
+.sub-ico-name{
+  font-weight:900;
+  font-size:12px;
+  line-height:1.15;
+  min-height:30px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.sub-ico-btn.active{
+  background: linear-gradient(180deg, rgba(120,191,255,1), rgba(47,126,247,1));
+  color:#fff;
+  border:1px solid rgba(255,255,255,.55);
+}
+.sub-ico-btn.active .sub-ico{
+  background:rgba(255,255,255,.20);
+  border:1px solid rgba(255,255,255,.40);
+}
+
 @media (max-width:420px){
   .brand-title{font-size:28px;}
   .brand-title2{font-size:13px;}
@@ -461,6 +578,7 @@ textarea.input{height:90px;}
   .products{gap:14px;}
   .online-box{width:92%;}
   .click-box{width:92%;}
+  .sub-grid{grid-template-columns:repeat(3,1fr);}
 }
 @media (max-width:360px){
   .header img{width:76px;height:76px;left:10px;}
@@ -471,6 +589,7 @@ textarea.input{height:90px;}
   .cat-btn{min-width:126px;padding:12px 16px;font-size:13px;}
   .langs .btn{min-width:86px;padding:10px 10px;font-size:13px;}
   .welcome{font-size:12px;padding:6px 9px;}
+  .sub-grid{grid-template-columns:repeat(2,1fr);}
 }
 </style>
 </head>
@@ -699,14 +818,33 @@ textarea.input{height:90px;}
   <div class="mini-row" id="giftRow"></div>
 </div>
 
-<!-- ✅ УБРАНО: поле телефона -->
-<!-- <input id="phone" class="input"> -->
-
 <!-- ✅ Категории -->
 <div class="categories" id="cats"></div>
 
-<!-- ✅ Подкатегории (новый блок) -->
-<div class="categories" id="subcats" style="padding-top:0;"></div>
+<!-- ✅ Подкатегории: кнопка открытия (лист снизу) -->
+<div class="sub-open-wrap">
+  <div class="sub-open-btn" onclick="openSubSheet()">
+    <div class="sub-open-left">
+      <div class="sub-open-ico">🧩</div>
+      <div class="sub-open-txt">
+        <div class="sub-open-title" id="subOpenTitle">Подкатегории</div>
+        <div class="sub-open-sub" id="subOpenSub">—</div>
+      </div>
+    </div>
+    <div class="sub-open-right">›</div>
+  </div>
+</div>
+
+<!-- ✅ Подкатегории: всплывающее окно снизу -->
+<div class="sub-backdrop" id="subBackdrop" onclick="closeSubSheet()"></div>
+<div class="sub-sheet" id="subSheet" role="dialog" aria-modal="true">
+  <div class="menu-handle"></div>
+  <div class="sub-head">
+    <b id="subSheetTitle">Подкатегории</b>
+    <button class="sub-close" onclick="closeSubSheet()">×</button>
+  </div>
+  <div class="sub-grid" id="subGrid"></div>
+</div>
 
 <!-- ✅ Товары -->
 <div class="products" id="products"></div>
@@ -810,6 +948,14 @@ const PHONE1_DISPLAY = "+998 90 100 11 10";
 const PHONE1_TEL = "tel:+998901001110";
 const PHONE2_DISPLAY = "+998 91 285 99 99";
 const PHONE2_TEL = "tel:+998912859999";
+
+/* ✅ quick actions settings */
+const SUPPORT_PHONE_TEL = PHONE1_TEL;
+/* ✅ without inventing username: use Telegram share sheet */
+function openTelegramShare(text){
+  const t = encodeURIComponent(text || "");
+  openLink(`https://t.me/share/url?text=${t}`);
+}
 
 /* ✅ branches */
 const BRANCHES = {
@@ -936,7 +1082,10 @@ const UI = {
     clickHint:'Отсканируйте QR в приложении CLICK, затем нажмите «Оформить заказ».',
     welcome:'👋 Добро пожаловать',
     brandSub:'APPLE TECH STORE',
-    subcatsTitle:'Подкатегории'
+    subcatsTitle:'Подкатегории',
+    subOpen:'Подкатегории',
+    qaTg:'💬 Написать',
+    qaCall:'📞 Позвонить'
   },
   uz:{
     menu:'Menyu',
@@ -964,7 +1113,10 @@ const UI = {
     clickHint:"CLICK ilovasida QR ni skaner qiling, so‘ng “Buyurtma berish”ni bosing.",
     welcome:'👋 Xush kelibsiz',
     brandSub:'APPLE TECH STORE',
-    subcatsTitle:'Подкатегории'
+    subcatsTitle:'Подкатегории',
+    subOpen:'Подкатегории',
+    qaTg:'💬 Yozish',
+    qaCall:'📞 Qo‘ng‘iroq'
   },
   en:{
     menu:'Menu',
@@ -992,7 +1144,10 @@ const UI = {
     clickHint:'Scan the QR in CLICK app, then press “Place order”.',
     welcome:'👋 Welcome',
     brandSub:'APPLE TECH STORE',
-    subcatsTitle:'Subcategories'
+    subcatsTitle:'Subcategories',
+    subOpen:'Subcategories',
+    qaTg:'💬 Message',
+    qaCall:'📞 Call'
   }
 };
 
@@ -1004,62 +1159,182 @@ const CATS = {
   en:{iphone:'📱 iPhone', mac:'💻 Mac', ipad:'📲 iPad', watch:'⌚ Watch', airpods:'🎧 AirPods', accessories:'🧩 Accessories'}
 };
 
-/* ✅ ПОДКАТЕГОРИИ (как просили) */
+/* ✅ Подкатегории в виде иконок (для bottom sheet) */
 const SUBCATS = {
-  iphone:["Iphone 17","Iphone 16","Iphone 15","Iphone 14","Iphone 13","Iphone 12","Iphone 11","Остальные модели"],
-  accessories:["Чехлы для телефона","Защитные стекла","Зарядное устройство","MagSafe","Кабели USB","Ремешки для Apple Watch","Трекеры AirTag"],
-  mac:["MacBook Air 13 (М4)","MacBook Air 15 (М4)","MacBook Air (М3)","MacBook Air (М2)","MacBook Air (М1)","MacBook Pro (М4)","MacBook Pro (М3)"],
-  ipad:["iPad Pro (М5)","iPad Pro (М4)","iPad Air (М3)","iPad Air (М2)","iPad mini"],
-  watch:["Series Ultra 3","Series Ultra 2","Series 11","Series SE 3","Series SE 2","Series 10","Series 9","Series 7"],
-  airpods:["AirPods Max","AirPods 4","AirPods 3","AirPods 2 Pro"]
-};
-
-/* ✅ MENU restored (categories + items) */
-const MENU = {
   iphone:[
-    {id:'iphone_15_pro', sub:'Iphone 15', p:16900000, img:'images/iphone_15_pro.jpg', n:{ru:'iPhone 15 Pro 128GB', uz:'iPhone 15 Pro 128GB', en:'iPhone 15 Pro 128GB'}},
-    {id:'iphone_15_pro_max', sub:'Iphone 15', p:18900000, img:'images/iphone_15_pro_max.jpg', n:{ru:'iPhone 15 Pro Max 256GB', uz:'iPhone 15 Pro Max 256GB', en:'iPhone 15 Pro Max 256GB'}},
-    {id:'iphone_15', sub:'Iphone 15', p:12900000, img:'images/iphone_15.jpg', n:{ru:'iPhone 15 128GB', uz:'iPhone 15 128GB', en:'iPhone 15 128GB'}},
-    {id:'iphone_14', sub:'Iphone 14', p:10500000, img:'images/iphone_14.jpg', n:{ru:'iPhone 14 128GB', uz:'iPhone 14 128GB', en:'iPhone 14 128GB'}},
-    /* ✅ примеры для других подкатегорий (можете заменить/добавить товары) */
-    {id:'iphone_13', sub:'Iphone 13', p:9500000, img:'images/iphone_13.jpg', n:{ru:'iPhone 13 128GB', uz:'iPhone 13 128GB', en:'iPhone 13 128GB'}},
-    {id:'iphone_12', sub:'Iphone 12', p:8200000, img:'images/iphone_12.jpg', n:{ru:'iPhone 12 128GB', uz:'iPhone 12 128GB', en:'iPhone 12 128GB'}},
-    {id:'iphone_11', sub:'Iphone 11', p:6900000, img:'images/iphone_11.jpg', n:{ru:'iPhone 11 128GB', uz:'iPhone 11 128GB', en:'iPhone 11 128GB'}}
+    {k:'iphone_17', t:'iPhone 17', ico:'📱'},
+    {k:'iphone_16', t:'iPhone 16', ico:'📱'},
+    {k:'iphone_15', t:'iPhone 15', ico:'📱'},
+    {k:'iphone_14', t:'iPhone 14', ico:'📱'},
+    {k:'iphone_13', t:'iPhone 13', ico:'📱'},
+    {k:'iphone_12', t:'iPhone 12', ico:'📱'},
+    {k:'iphone_11', t:'iPhone 11', ico:'📱'},
+    {k:'other', t:'Остальные', ico:'🧾'}
   ],
   mac:[
-    {id:'macbook_air_m2', sub:'MacBook Air (М2)', p:13500000, img:'images/macbook_air_m2.jpg', n:{ru:'MacBook Air M2', uz:'MacBook Air M2', en:'MacBook Air M2'}},
-    {id:'macbook_air_m3', sub:'MacBook Air (М3)', p:15500000, img:'images/macbook_air_m3.jpg', n:{ru:'MacBook Air M3', uz:'MacBook Air M3', en:'MacBook Air M3'}},
-    {id:'macbook_pro_m3', sub:'MacBook Pro (М3)', p:21000000, img:'images/macbook_pro_m3.jpg', n:{ru:'MacBook Pro M3', uz:'MacBook Pro M3', en:'MacBook Pro M3'}}
+    {k:'mba_13_m4', t:'Air 13 (M4)', ico:'💻'},
+    {k:'mba_15_m4', t:'Air 15 (M4)', ico:'💻'},
+    {k:'mba_m3', t:'Air (M3)', ico:'💻'},
+    {k:'mba_m2', t:'Air (M2)', ico:'💻'},
+    {k:'mbp_m4', t:'Pro (M4)', ico:'🖥️'},
+    {k:'mbp_m3', t:'Pro (M3)', ico:'🖥️'}
   ],
   ipad:[
-    {id:'ipad_pro', sub:'iPad Pro (М4)', p:17500000, img:'images/ipad_pro.jpg', n:{ru:'iPad Pro', uz:'iPad Pro', en:'iPad Pro'}},
-    {id:'ipad_air', sub:'iPad Air (М2)', p:13900000, img:'images/ipad_air.jpg', n:{ru:'iPad Air', uz:'iPad Air', en:'iPad Air'}},
-    {id:'ipad_10', sub:'iPad mini', p:8900000, img:'images/ipad_10.jpg', n:{ru:'iPad', uz:'iPad', en:'iPad'}}
+    {k:'ipad_pro_m5', t:'iPad Pro (M5)', ico:'📲'},
+    {k:'ipad_pro_m4', t:'iPad Pro (M4)', ico:'📲'},
+    {k:'ipad_air_m3', t:'iPad Air (M3)', ico:'📲'},
+    {k:'ipad_air_m2', t:'iPad Air (M2)', ico:'📲'},
+    {k:'ipad_mini', t:'iPad mini', ico:'📲'}
   ],
   watch:[
-    {id:'watch_series_9', sub:'Series 9', p:5900000, img:'images/watch_series_9.jpg', n:{ru:'Apple Watch Series 9', uz:'Apple Watch Series 9', en:'Apple Watch Series 9'}},
-    {id:'watch_ultra_2', sub:'Series Ultra 2', p:10900000, img:'images/watch_ultra_2.jpg', n:{ru:'Apple Watch Ultra 2', uz:'Apple Watch Ultra 2', en:'Apple Watch Ultra 2'}},
-    {id:'watch_se', sub:'Series SE 2', p:4200000, img:'images/watch_se.jpg', n:{ru:'Apple Watch SE', uz:'Apple Watch SE', en:'Apple Watch SE'}}
+    {k:'ultra_3', t:'Ultra 3', ico:'⌚'},
+    {k:'ultra_2', t:'Ultra 2', ico:'⌚'},
+    {k:'s11', t:'Series 11', ico:'⌚'},
+    {k:'se3', t:'SE 3', ico:'⌚'},
+    {k:'s10', t:'Series 10', ico:'⌚'},
+    {k:'s9', t:'Series 9', ico:'⌚'}
   ],
   airpods:[
-    {id:'airpods_pro_2', sub:'AirPods 2 Pro', p:3200000, img:'images/airpods_pro_2.jpg', n:{ru:'AirPods Pro 2', uz:'AirPods Pro 2', en:'AirPods Pro 2'}},
-    {id:'airpods_3', sub:'AirPods 3', p:2400000, img:'images/airpods_3.jpg', n:{ru:'AirPods 3', uz:'AirPods 3', en:'AirPods 3'}},
-    {id:'airpods_max', sub:'AirPods Max', p:7200000, img:'images/airpods_max.jpg', n:{ru:'AirPods Max', uz:'AirPods Max', en:'AirPods Max'}}
+    {k:'max', t:'AirPods Max', ico:'🎧'},
+    {k:'ap4', t:'AirPods 4', ico:'🎧'},
+    {k:'ap3', t:'AirPods 3', ico:'🎧'},
+    {k:'pro2', t:'Pro 2', ico:'🎧'}
   ],
   accessories:[
-    {id:'case_iphone', sub:'Чехлы для телефона', p:290000, img:'images/acc_case_iphone.jpg', n:{ru:'Чехол для iPhone', uz:'iPhone g‘ilofi', en:'iPhone Case'}},
-    {id:'glass_iphone', sub:'Защитные стекла', p:190000, img:'images/acc_glass_iphone.jpg', n:{ru:'Защитное стекло', uz:'Himoya oynasi', en:'Screen Protector'}},
-    {id:'charger_20w', sub:'Зарядное устройство', p:280000, img:'images/acc_charger_20w.jpg', n:{ru:'Зарядка 20W', uz:'20W zaryadlovchi', en:'20W Charger'}},
-    {id:'cable_typec', sub:'Кабели USB', p:160000, img:'images/acc_cable_typec.jpg', n:{ru:'Кабель Type-C', uz:'Type-C kabel', en:'Type-C Cable'}}
+    {k:'cases', t:'Чехлы', ico:'🛡️'},
+    {k:'glass', t:'Стекла', ico:'🪟'},
+    {k:'charger', t:'Зарядки', ico:'🔌'},
+    {k:'magsafe', t:'MagSafe', ico:'🧲'},
+    {k:'cables', t:'Кабели', ico:'🧵'},
+    {k:'bands', t:'Ремешки', ico:'⌚'},
+    {k:'airtag', t:'AirTag', ico:'📍'}
   ]
 };
 
+/* ✅ Автогенерация товаров по спискам (чтобы не забивать вручную) */
+function makeId(...parts){
+  return parts.join('_').toLowerCase().replace(/[^a-z0-9_]+/g,'_').replace(/_+/g,'_').replace(/^_|_$/g,'');
+}
+function genIphoneVariants(modelKey, modelTitle, basePrice){
+  const storages = [128,256,512];
+  const colors = ['Black','White','Blue','Natural'];
+  const out=[];
+  storages.forEach((gb,si)=>{
+    colors.forEach((c,ci)=>{
+      const price = basePrice + (si*700000) + (ci*50000);
+      const id = makeId('ip', modelKey, gb, c);
+      out.push({
+        id,
+        p: price,
+        img: `images/${id}.jpg`,
+        sub: modelKey,
+        n:{
+          ru:`${modelTitle} ${gb}GB (${c})`,
+          uz:`${modelTitle} ${gb}GB (${c})`,
+          en:`${modelTitle} ${gb}GB (${c})`
+        }
+      });
+    });
+  });
+  return out;
+}
+function genMacVariants(lineKey, title, basePrice){
+  const ram = [8,16,24];
+  const ssd = [256,512,1000];
+  const out=[];
+  ram.forEach((r,ri)=>{
+    ssd.forEach((s,si)=>{
+      const price = basePrice + (ri*900000) + (si*800000);
+      const id = makeId('mac', lineKey, `${r}gb`, `${s}ssd`);
+      out.push({
+        id,
+        p: price,
+        img: `images/${id}.jpg`,
+        sub: lineKey,
+        n:{
+          ru:`${title} ${r}GB / ${s}GB`,
+          uz:`${title} ${r}GB / ${s}GB`,
+          en:`${title} ${r}GB / ${s}GB`
+        }
+      });
+    });
+  });
+  return out;
+}
+
+/* ✅ Базовый каталог (можете менять цены и/или добавить модели) */
+const AUTO_CATALOG = {
+  iphone:{
+    iphone_15: genIphoneVariants('iphone_15','iPhone 15',12900000),
+    iphone_15_pro: genIphoneVariants('iphone_15_pro','iPhone 15 Pro',16900000),
+    iphone_15_pro_max: genIphoneVariants('iphone_15_pro_max','iPhone 15 Pro Max',18900000),
+    iphone_14: genIphoneVariants('iphone_14','iPhone 14',10500000),
+    iphone_13: genIphoneVariants('iphone_13','iPhone 13',9500000),
+    iphone_12: genIphoneVariants('iphone_12','iPhone 12',8200000),
+    iphone_11: genIphoneVariants('iphone_11','iPhone 11',6900000)
+  },
+  mac:{
+    mba_m2: genMacVariants('mba_m2','MacBook Air M2',13500000),
+    mba_m3: genMacVariants('mba_m3','MacBook Air M3',15500000),
+    mbp_m3: genMacVariants('mbp_m3','MacBook Pro M3',21000000)
+  }
+};
+
+/* ✅ MENU (не удаляем — расширяем автогенерацией) */
+const MENU = {
+  iphone:[],
+  mac:[],
+  ipad:[
+    {id:'ipad_pro_m4_256', p:17500000, img:'images/ipad_pro.jpg', sub:'ipad_pro_m4', n:{ru:'iPad Pro (M4) 256GB', uz:'iPad Pro (M4) 256GB', en:'iPad Pro (M4) 256GB'}},
+    {id:'ipad_air_m2_256', p:13900000, img:'images/ipad_air.jpg', sub:'ipad_air_m2', n:{ru:'iPad Air (M2) 256GB', uz:'iPad Air (M2) 256GB', en:'iPad Air (M2) 256GB'}},
+    {id:'ipad_mini_256', p:8900000, img:'images/ipad_10.jpg', sub:'ipad_mini', n:{ru:'iPad mini 256GB', uz:'iPad mini 256GB', en:'iPad mini 256GB'}}
+  ],
+  watch:[
+    {id:'watch_ultra_2_49', p:10900000, img:'images/watch_ultra_2.jpg', sub:'ultra_2', n:{ru:'Apple Watch Ultra 2 49mm', uz:'Apple Watch Ultra 2 49mm', en:'Apple Watch Ultra 2 49mm'}},
+    {id:'watch_series_9_45', p:5900000, img:'images/watch_series_9.jpg', sub:'s9', n:{ru:'Apple Watch Series 9 45mm', uz:'Apple Watch Series 9 45mm', en:'Apple Watch Series 9 45mm'}},
+    {id:'watch_se_44', p:4200000, img:'images/watch_se.jpg', sub:'se3', n:{ru:'Apple Watch SE 44mm', uz:'Apple Watch SE 44mm', en:'Apple Watch SE 44mm'}}
+  ],
+  airpods:[
+    {id:'airpods_pro2', p:3200000, img:'images/airpods_pro_2.jpg', sub:'pro2', n:{ru:'AirPods Pro 2', uz:'AirPods Pro 2', en:'AirPods Pro 2'}},
+    {id:'airpods_3', p:2400000, img:'images/airpods_3.jpg', sub:'ap3', n:{ru:'AirPods 3', uz:'AirPods 3', en:'AirPods 3'}},
+    {id:'airpods_max', p:7200000, img:'images/airpods_max.jpg', sub:'max', n:{ru:'AirPods Max', uz:'AirPods Max', en:'AirPods Max'}}
+  ],
+  accessories:[
+    {id:'acc_case_iphone', p:290000, img:'images/acc_case_iphone.jpg', sub:'cases', n:{ru:'Чехол для iPhone', uz:'iPhone g‘ilofi', en:'iPhone Case'}},
+    {id:'acc_glass', p:190000, img:'images/acc_glass_iphone.jpg', sub:'glass', n:{ru:'Защитное стекло', uz:'Himoya oynasi', en:'Screen Protector'}},
+    {id:'acc_charger_20w', p:280000, img:'images/acc_charger_20w.jpg', sub:'charger', n:{ru:'Зарядка 20W', uz:'20W zaryadlovchi', en:'20W Charger'}},
+    {id:'acc_cable_typec', p:160000, img:'images/acc_cable_typec.jpg', sub:'cables', n:{ru:'Кабель Type-C', uz:'Type-C kabel', en:'Type-C Cable'}}
+  ]
+};
+
+/* ✅ добавить автотовары в MENU */
+(function hydrateAutoCatalog(){
+  // iphone
+  const iph = AUTO_CATALOG.iphone || {};
+  Object.keys(iph).forEach(k=>{
+    (iph[k]||[]).forEach(it=>{
+      // sub = ключ подкатегории
+      it.sub = k;
+      MENU.iphone.push(it);
+    });
+  });
+  // mac
+  const mac = AUTO_CATALOG.mac || {};
+  Object.keys(mac).forEach(k=>{
+    (mac[k]||[]).forEach(it=>{
+      it.sub = k;
+      MENU.mac.push(it);
+    });
+  });
+})();
+
+/* ✅ Индекс */
 const ITEM_INDEX = {};
-for (const c in MENU){ MENU[c].forEach(it => ITEM_INDEX[it.id]=it); }
+for (const c in MENU){ (MENU[c]||[]).forEach(it => ITEM_INDEX[it.id]=it); }
 
 /* carousels */
-const POPULAR = ['iphone_15_pro','macbook_air_m2','airpods_pro_2'];
-const GIFT_ITEMS = ['watch_series_9','ipad_air','charger_20w'];
+const POPULAR = ['airpods_pro2','watch_series_9_45','acc_charger_20w']; // можно менять
+const GIFT_ITEMS = ['ipad_air_m2_256','airpods_max','acc_case_iphone'];
 
 /* state */
 let lang='uz',
@@ -1069,7 +1344,15 @@ let lang='uz',
     cart={};
 
 if(!MENU[category]) category='iphone';
-if(!subcat || !(SUBCATS[category]||[]).includes(subcat)) subcat = (SUBCATS[category]||[])[0] || '';
+
+function subcatsListForCat(cat){
+  return (SUBCATS[cat]||[]).map(x=>x.k);
+}
+function normalizeSubcat(){
+  const list=subcatsListForCat(category);
+  if(!list.length){ subcat=''; return; }
+  if(!subcat || !list.includes(subcat)) subcat=list[0];
+}
 
 /* helpers */
 function escapeHtml(s){return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
@@ -1110,7 +1393,7 @@ function searchProducts(){
 
   let found=0;
   for(const c in MENU){
-    MENU[c].forEach(it=>{
+    (MENU[c]||[]).forEach(it=>{
       if(matchesQuery(it,q)){
         cart[it.id]=cart[it.id]||0;
         products.innerHTML += cardHTML(it);
@@ -1132,65 +1415,103 @@ function renderCats(){
     cats.innerHTML += `<button class="btn cat-btn ${k===category?'active':''}" onclick="onCategoryClick('${k}')">${CATS[lang][k]||k}</button>`;
   }
 }
-
-/* ✅ subcategories */
-function renderSubcats(){
-  const el=document.getElementById('subcats');
-  if(!el) return;
-  const list = SUBCATS[category] || [];
-  if(!list.length){
-    el.style.display='none';
-    return;
-  }
-  el.style.display='flex';
-  el.innerHTML='';
-  if(!subcat || !list.includes(subcat)) subcat = list[0];
-  list.forEach(s=>{
-    el.innerHTML += `<button class="btn cat-btn ${s===subcat?'active':''}" onclick="onSubcatClick('${escapeHtml(s).replace(/&#39;/g,"\\'")}')">${escapeHtml(s)}</button>`;
-  });
-}
-
-/* safer click */
-function onSubcatClick(s){
-  subcat = s;
-  localStorage.setItem('sebtech_subcat', subcat);
-  renderSubcats();
-  if(!isSearchOpen()) renderProducts();
-}
-
 function onCategoryClick(k){
   category=k;
   localStorage.setItem('sebtech_cat', category);
-  const list = SUBCATS[category] || [];
-  subcat = list[0] || '';
+  normalizeSubcat();
   localStorage.setItem('sebtech_subcat', subcat);
 
   renderCats();
-  renderSubcats();
+  renderSubOpenLine();
+  renderSubGrid();
   if(!isSearchOpen()) renderProducts();
+}
+
+/* ✅ subcategories sheet */
+function openSubSheet(){
+  renderSubGrid();
+  subBackdrop.classList.add('show');
+  subSheet.classList.add('show');
+  try{Telegram.WebApp.HapticFeedback?.impactOccurred?.('light');}catch(_){}
+}
+function closeSubSheet(){
+  subBackdrop.classList.remove('show');
+  subSheet.classList.remove('show');
+}
+function getSubMeta(cat, key){
+  return (SUBCATS[cat]||[]).find(x=>x.k===key) || null;
+}
+function renderSubOpenLine(){
+  // title + current selection
+  subOpenTitle.innerText = UI[lang].subOpen;
+  const meta = getSubMeta(category, subcat);
+  subOpenSub.innerText = meta ? meta.t : '—';
+  subSheetTitle.innerText = UI[lang].subcatsTitle;
+}
+function renderSubGrid(){
+  const list = SUBCATS[category] || [];
+  subGrid.innerHTML='';
+  if(!list.length){
+    subGrid.innerHTML = `<div style="grid-column:1/-1;padding:14px;font-weight:900;opacity:.8;background:rgba(17,24,39,.04);border:1px solid rgba(17,24,39,.08);border-radius:18px;text-align:center;">
+      ${lang==='ru'?'Подкатегорий нет':lang==='uz'?'Podkategoriya yo‘q':'No subcategories'}
+    </div>`;
+    return;
+  }
+  list.forEach(sc=>{
+    const active = sc.k===subcat ? 'active' : '';
+    subGrid.innerHTML += `
+      <button class="sub-ico-btn ${active}" type="button" onclick="pickSub('${sc.k}')">
+        <div class="sub-ico">${escapeHtml(sc.ico||'🧩')}</div>
+        <div class="sub-ico-name">${escapeHtml(sc.t)}</div>
+      </button>`;
+  });
+}
+function pickSub(k){
+  subcat = k;
+  localStorage.setItem('sebtech_subcat', subcat);
+  renderSubOpenLine();
+  renderSubGrid();
+  if(!isSearchOpen()) renderProducts();
+  closeSubSheet();
+  try{Telegram.WebApp.HapticFeedback?.notificationOccurred?.('success');}catch(_){}
 }
 
 /* products */
 function cardHTML(it){
   const id=it.id;
   const qty=cart[id]||0;
+
+  // “Написать” + “Позвонить” (в карточке товара)
+  const msgText =
+    (lang==='ru' ? `Здравствуйте! Интересует: ${nameOf(id)}. Подкатегория: ${it.sub||''}.` :
+     lang==='uz' ? `Salom! Qiziqtiradi: ${nameOf(id)}. Bo‘lim: ${it.sub||''}.` :
+                   `Hello! I'm interested in: ${nameOf(id)}. Sub: ${it.sub||''}.`);
+
   return `
   <div class="card">
     <div class="img"><img src="${it.img}" onerror="this.src='images/logo.png'" onclick="openImage(event,'${id}')"></div>
     <div class="item-name">${escapeHtml(nameOf(id))}</div>
     <div class="price">${formatSum(it.p)} <small>${UI[lang].sum}</small></div>
+
     <div class="counter">
       <button onclick="chg('${id}',-1)">−</button>
       <span id="c_${id}">${qty}</span>
       <button onclick="chg('${id}',1)">+</button>
     </div>
+
+    <div class="card-actions">
+      <button class="qa-btn primary" type="button" onclick="qaTelegram(event,'${id}', ${JSON.stringify(msgText).replace(/</g,'\\u003c')})">${UI[lang].qaTg}</button>
+      <button class="qa-btn" type="button" onclick="qaCall(event)">${UI[lang].qaCall}</button>
+    </div>
   </div>`;
 }
 function renderProducts(){
   products.innerHTML='';
+  normalizeSubcat();
+
   const list=(MENU[category]||[]).filter(it=>{
     if(!subcat) return true;
-    return (it.sub || '') === subcat;
+    return String(it.sub||'') === String(subcat);
   });
 
   if(!list.length){
@@ -1204,6 +1525,19 @@ function renderProducts(){
     cart[it.id]=cart[it.id]||0;
     products.innerHTML += cardHTML(it);
   });
+}
+
+/* quick actions */
+function qaTelegram(e, id, text){
+  try{e.preventDefault();e.stopPropagation();}catch(_){}
+  // share sheet (не требует username)
+  const it = ITEM_INDEX[id] || {};
+  const price = it?.p ? ` ${formatSum(it.p)} ${UI[lang].sum}` : '';
+  openTelegramShare(`${text}${price}`);
+}
+function qaCall(e){
+  try{e?.preventDefault?.();e?.stopPropagation?.();}catch(_){}
+  try{Telegram.WebApp.openLink(SUPPORT_PHONE_TEL);}catch(_){window.location.href=SUPPORT_PHONE_TEL;}
 }
 
 /* carousels */
@@ -1408,13 +1742,14 @@ function sendConsult(e){
 
   const question = (document.getElementById('vipQuestion')?.value || '').trim();
   const payload = {
-    action:'consultation',
-    text: question || '',
+    action:'consult',
+    to_admin_id: ADMIN_ID,
     brand:'SEBTECH',
     branch,
     branch_title: branchTitleForLang(),
     branch_address: branchAddressForLang(),
     tg:{id:tg_id,username:tg_username,first_name:tg_first_name},
+    message: question || null,
     time: new Date().toISOString()
   };
 
@@ -1507,8 +1842,11 @@ function applyUI(){
   applyBranchToUI();
   syncBranchUI();
 
+  normalizeSubcat();
   renderCats();
-  renderSubcats();
+  renderSubOpenLine();
+  renderSubGrid();
+
   if(!isSearchOpen()) renderProducts();
   renderPopular(); renderGift();
   updateTotal();
@@ -1523,7 +1861,7 @@ function setLang(l,btn){
   applyUI();
 }
 
-/* cart + order */
+/* payments + cart */
 function genOrderId(){
   const d=new Date();
   const dd=String(d.getDate()).padStart(2,'0');
@@ -1539,7 +1877,14 @@ function sendOrder(){
     const qty=Number(cart[id]||0);
     if(qty>0){
       const it=ITEM_INDEX[id]||{};
-      items.push({id,qty,price:it.p||0,name_ru:it.n?.ru||id,name_lang:nameOf(id), sub: it.sub || ''});
+      items.push({
+        id,
+        qty,
+        price:it.p||0,
+        name_ru:it.n?.ru||id,
+        name_lang:nameOf(id),
+        sub:it.sub||''
+      });
     }
   }
   if(items.length===0){ alert(UI[lang].empty); return; }
@@ -1554,13 +1899,15 @@ function sendOrder(){
     branch_address: branchAddressForLang(),
     tg:{id:tg_id,username:tg_username,first_name:tg_first_name},
     items,
-    total: itemsSum,
-    type:'—',
-    address:'—',
+    total_items: formatSum(itemsSum),
+    total_with_delivery: formatSum(itemsSum),
+    total_num: itemsSum,
     payment,
-    comment:(comment.value||'').trim(),
+    comment:comment.value,
     order_id: genOrderId(),
-    lang
+    lang,
+    category,
+    subcat
   };
 
   popup.classList.add('show');
@@ -1585,10 +1932,14 @@ lang='uz';
 document.querySelectorAll('.langs .btn').forEach(b=>b.classList.remove('active'));
 document.getElementById('langUZ')?.classList.add('active');
 
+/* defaults */
+normalizeSubcat();
 setPayment('cash');
 
+/* render */
 renderCats();
-renderSubcats();
+renderSubOpenLine();
+renderSubGrid();
 renderProducts();
 renderPopular();
 renderGift();
