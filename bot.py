@@ -19,17 +19,45 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 if not BOT_TOKEN:
     raise RuntimeError("❌ BOT_TOKEN не найден. Добавь переменную окружения BOT_TOKEN.")
 
-# ✅ username твоего бота (без @)
-BOT_USERNAME = os.getenv("BOT_USERNAME", "Sebtech_store_bot").replace("@", "")
+# ✅ username твоего бота (без @), лучше всегда в нижнем регистре
+BOT_USERNAME = os.getenv("BOT_USERNAME", "sebtech_store_bot").replace("@", "").strip().lower()
 
 # ✅ твой Telegram ID (админ)
 ADMIN_ID = int(os.getenv("ADMIN_ID", "6013591658"))
 
 # ✅ канал магазина (если нужен пост с кнопкой)
-CHANNEL_ID = os.getenv("CHANNEL_ID", "@SEBTECH_APPLE_STORE")
+CHANNEL_ID = os.getenv("CHANNEL_ID", "@SEBTECH_APPLE_STORE").strip()
+
+def normalize_webapp_url(url: str) -> str:
+    """
+    Приводим URL к виду:
+    - https://.../repo/  (слэш в конце, если это путь GitHub Pages)
+    - затем добавляем query (?v=...)
+    Это помогает, когда Telegram/WebView иначе открывает "не тот" путь.
+    """
+    url = (url or "").strip()
+    if not url:
+        return url
+
+    # Разделяем путь и query
+    if "?" in url:
+        base, q = url.split("?", 1)
+        q = "?" + q
+    else:
+        base, q = url, ""
+
+    # Для GitHub Pages лучше иметь слэш на конце папки-репозитория
+    # Например: https://tahirovdd-lang.github.io/sebtech-store/
+    if base.startswith("https://") and "github.io/" in base:
+        if not base.endswith("/"):
+            base += "/"
+
+    return base + q
 
 # ✅ GitHub Pages WebApp (ВАЖНО: твоя рабочая ссылка)
-WEBAPP_URL = os.getenv("WEBAPP_URL", "https://tahirovdd-lang.github.io/sebtech-store/?v=2")
+WEBAPP_URL = normalize_webapp_url(
+    os.getenv("WEBAPP_URL", "https://tahirovdd-lang.github.io/sebtech-store/?v=2")
+)
 
 # ✅ Логируем реальную ссылку (чтобы сразу видеть в логах BotHost)
 logging.info(f"WEBAPP_URL (effective) = {WEBAPP_URL}")
@@ -58,8 +86,7 @@ def kb_webapp_reply() -> ReplyKeyboardMarkup:
     )
 
 def kb_channel_url() -> InlineKeyboardMarkup:
-    # ✅ В канал даём ПРЯМУЮ ссылку на сайт (не deep-link),
-    # чтобы исключить 404 из-за startapp/кэша Telegram.
+    # ✅ В канал даём ПРЯМУЮ ссылку на сайт
     return InlineKeyboardMarkup(
         inline_keyboard=[[InlineKeyboardButton(text=BTN_OPEN_MULTI, url=WEBAPP_URL)]]
     )
@@ -93,7 +120,11 @@ async def startapp(message: types.Message):
 async def debug_url(message: types.Message):
     if message.from_user.id != ADMIN_ID:
         return
-    await message.answer(f"WEBAPP_URL = <code>{WEBAPP_URL}</code>")
+    await message.answer(
+        "✅ Текущие настройки:\n"
+        f"BOT_USERNAME = <code>{BOT_USERNAME}</code>\n"
+        f"WEBAPP_URL = <code>{WEBAPP_URL}</code>"
+    )
 
 # ====== ПОСТ В КАНАЛ ======
 @dp.message(Command("post_shop"))
