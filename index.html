@@ -2,20 +2,21 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>SEBTECH</title>
+<title>SEBTECH — Apple Tech Store</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  /* ✅ Sebtech — Silver + Light Blue */
-  --bg:#EEF2F6;                 /* серебро/светлый */
+  /* ✅ SEBTECH palette: Silver + Light Blue */
+  --bg:#C9D0D8;
+  --bg2:#EAF6FF;
   --white:#ffffff;
-  --text:#0E1217;               /* тёмный текст */
-  --muted: rgba(14,18,23,.70);
+  --text:#111827;
+  --muted: rgba(17,24,39,.72);
 
-  --stroke: rgba(14,18,23,.10);
+  --stroke: rgba(17,24,39,.10);
   --shadow: rgba(0,0,0,.14);
 
   --r-lg:24px;
@@ -24,12 +25,12 @@
   --vh: 1vh;
   --sticky-h: 86px;
 
-  /* ✅ светло-голубой акцент для active */
-  --accent:#66B9FF;
+  --accent:#78BFFF;
+  --accent2:#2F7EF7;
 
-  /* доп оттенки */
-  --surface: rgba(255,255,255,.72);
-  --surface2: rgba(255,255,255,.54);
+  /* ✅ header (profile cap) black + white text */
+  --header-bg:#0B0B0C;
+  --header-text:#ffffff;
 }
 
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
@@ -37,7 +38,9 @@ html,body{height:100%;}
 body{
   margin:0;
   font-family:'Montserrat',sans-serif;
-  background:var(--bg);
+  background: radial-gradient(1200px 800px at 20% -10%, rgba(120,191,255,.35), transparent 55%),
+              radial-gradient(900px 600px at 110% 30%, rgba(120,191,255,.22), transparent 55%),
+              linear-gradient(180deg, var(--bg2), var(--bg));
   color:var(--text);
   min-height: calc(var(--vh) * 100);
   overflow-y:auto;
@@ -52,27 +55,28 @@ body{
 /* header */
 .header{
   padding:16px 12px 26px;
-  background:linear-gradient(135deg, rgba(255,255,255,.92), rgba(255,255,255,.62));
-  border-bottom:1px solid rgba(0,0,0,.08);
-  box-shadow:0 12px 26px rgba(0,0,0,.10);
+  background:linear-gradient(180deg, rgba(11,11,12,.98), rgba(11,11,12,.92));
+  border-bottom:1px solid rgba(255,255,255,.12);
+  box-shadow:0 12px 26px rgba(0,0,0,.25);
   display:flex;align-items:center;justify-content:center;
   position:relative;text-align:center;
+  color:var(--header-text);
 }
 .header img{
   position:absolute;left:12px;
   width:84px;height:84px;object-fit:contain;
   border-radius:18px;
-  background:rgba(255,255,255,.92);
+  background:rgba(255,255,255,.10);
   padding:8px;
-  border:1px solid rgba(0,0,0,.08);
-  box-shadow:0 14px 30px rgba(0,0,0,.12);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 14px 30px rgba(0,0,0,.22);
 }
 
 .brand-wrap{display:flex;flex-direction:column;align-items:center;gap:4px;transform: translateX(16px);}
 .brand-title{
   font-family:"Georgia","Times New Roman",Times,serif;
   font-size:30px;line-height:1;letter-spacing:.5px;font-weight:800;
-  color:#0E1217;
+  color:var(--header-text);
 }
 .brand-title2{
   font-family:'Montserrat',sans-serif;
@@ -80,26 +84,25 @@ body{
   font-size:14px;
   letter-spacing:1.6px;
   line-height:1.15;
-  color:rgba(14,18,23,.78);
+  color:rgba(255,255,255,.86);
 }
-.brand-slogan{display:none;}
 .brand-phone{margin-top:2px;display:flex;flex-direction:column;gap:2px;}
-.brand-phone a{color:#0E1217;text-decoration:none;font-size:14px;font-weight:800;opacity:.92;}
+.brand-phone a{color:rgba(255,255,255,.92);text-decoration:none;font-size:14px;font-weight:800;}
 
-/* ✅ приветствие */
+/* ✅ greeting */
 .welcome{
   margin-top:6px;
   font-weight:900;
   font-size:13px;
-  opacity:.92;
+  opacity:.95;
   padding:6px 10px;
   border-radius:999px;
-  border:1px solid rgba(0,0,0,.10);
-  background:rgba(255,255,255,.72);
-  color:#0E1217;
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(255,255,255,.10);
+  color:var(--header-text);
 }
 
-/* header actions smaller */
+/* header actions */
 .header-actions{
   position:absolute;right:8px;top:12px;bottom:12px;
   display:flex;flex-direction:column;justify-content:space-between;align-items:flex-end;
@@ -109,18 +112,19 @@ body{
   width:32px;height:32px;border-radius:12px;
   display:flex;align-items:center;justify-content:center;
   cursor:pointer;user-select:none;
-  background:rgba(255,255,255,.96);
-  border:1px solid rgba(0,0,0,.10);
-  box-shadow: inset 0 0 0 2px rgba(255,255,255,.70), 0 8px 18px rgba(0,0,0,.10);
+  background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,.06), 0 8px 18px rgba(0,0,0,.22);
   transition:.15s;
+  color:#fff;
 }
 .act-btn:active{transform:scale(.97);}
 .burger{width:18px;height:12px;position:relative;}
-.burger span{position:absolute;left:0;right:0;height:2.6px;border-radius:10px;background:#0E1217;opacity:.88;}
+.burger span{position:absolute;left:0;right:0;height:2.6px;border-radius:10px;background:#fff;opacity:.92;}
 .burger span:nth-child(1){top:0;}
 .burger span:nth-child(2){top:4.8px;}
 .burger span:nth-child(3){bottom:0;}
-.act-ico{font-size:14px;line-height:1;color:#0E1217;}
+.act-ico{font-size:14px;line-height:1;color:#fff;}
 
 /* rows */
 .langs,.types,.payments{
@@ -142,19 +146,19 @@ body{
   text-align:center;
   cursor:pointer;
   transition:.15s;
-  border:1px solid rgba(0,0,0,.10);
+  border:1px solid rgba(17,24,39,.10);
   background:#ffffff;
-  color:#0E1217;
+  color:#0b1220;
   box-shadow: 0 10px 22px rgba(0,0,0,.12);
   flex:0 0 auto;
 }
 .btn:active{transform:scale(.98);}
 
-/* ✅ active = светло-голубая */
+/* ✅ active = light blue */
 .btn.active{
-  background: var(--accent);
+  background: linear-gradient(180deg, rgba(120,191,255,1), rgba(47,126,247,1));
   color: #ffffff;
-  border:1px solid rgba(102,185,255,.55);
+  border:1px solid rgba(255,255,255,.55);
   box-shadow: 0 14px 26px rgba(0,0,0,.14);
 }
 
@@ -186,11 +190,11 @@ body{
 /* inputs */
 .input{
   margin:8px auto;display:block;padding:14px;width:85%;
-  border-radius:22px;font-size:15px;border:1px solid rgba(0,0,0,.10);
-  background:rgba(255,255,255,.94);
+  border-radius:22px;font-size:15px;border:1px solid rgba(17,24,39,.10);
+  background:rgba(255,255,255,.92);
   box-shadow: 0 10px 22px rgba(0,0,0,.12);
   outline:none;transition:.15s;
-  color:#0E1217;
+  color:#0b1220;
 }
 
 /* categories + products */
@@ -199,74 +203,73 @@ body{
 .card{
   border-radius:24px;padding:12px;text-align:center;
   background:rgba(255,255,255,.92);
-  border:1px solid rgba(0,0,0,.08);
+  border:1px solid rgba(17,24,39,.10);
   box-shadow: 0 12px 26px rgba(0,0,0,.12);
   transition:.15s;
-  color:#0E1217;
+  color:#0b1220;
 }
 .img{height:170px;display:flex;align-items:center;justify-content:center;margin-bottom:6px;}
-/* ✅ фото товара закругленные */
 .img img{max-width:150px;max-height:150px;object-fit:cover;transform:scale(1.06);cursor:pointer;border-radius:18px;}
 .item-name{margin-top:2px;padding:0 6px;font-weight:900;line-height:1.15;min-height:42px;display:flex;align-items:center;justify-content:center;word-break:break-word;}
-.price{font-weight:900;color:#0E1217;margin-top:6px;}
-.price small{font-weight:800;opacity:.68;margin-left:4px;}
+.price{font-weight:900;color:var(--accent2);margin-top:6px;}
+.price small{font-weight:800;opacity:.75;margin-left:4px;}
 .counter{display:flex;justify-content:center;gap:10px;margin-top:8px;align-items:center;}
 .counter button{
-  width:32px;height:32px;border-radius:50%;cursor:pointer;border:1px solid rgba(0,0,0,.10);
-  background:var(--accent);color:#fff;font-size:18px;font-weight:900;box-shadow:0 12px 24px rgba(0,0,0,.12);
+  width:32px;height:32px;border-radius:50%;cursor:pointer;border:1px solid rgba(17,24,39,.10);
+  background: linear-gradient(180deg, rgba(120,191,255,1), rgba(47,126,247,1));
+  color:#fff;font-size:18px;font-weight:900;box-shadow:0 12px 24px rgba(0,0,0,.12);
   transition:.15s;
 }
 .counter button:active{transform:scale(.96);}
 
 /* carousels */
 .popular-wrap{width:100%;padding:4px 12px 6px;}
-.popular-title{width:100%;font-weight:900;padding:8px 2px 10px;display:flex;align-items:center;gap:8px;color:#0E1217;}
+.popular-title{width:100%;font-weight:900;padding:8px 2px 10px;display:flex;align-items:center;gap:8px;color:#0b1220;}
 .popular-row,.mini-row{display:flex;gap:12px;overflow-x:auto;padding:2px 2px 10px;-webkit-overflow-scrolling:touch;}
 .pop-card,.mini-card{
   min-width:150px;border-radius:24px;padding:10px;
   background:rgba(255,255,255,.92);
-  border:1px solid rgba(0,0,0,.08);
+  border:1px solid rgba(17,24,39,.10);
   box-shadow: 0 12px 26px rgba(0,0,0,.12);
   cursor:pointer;transition:.15s;position:relative;
-  color:#0E1217;
+  color:#0b1220;
 }
-.pop-img,.mini-img{height:86px;border-radius:18px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:rgba(102,185,255,.10);cursor:pointer;}
-/* ✅ фото в каруселях закругленные */
+.pop-img,.mini-img{height:86px;border-radius:18px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:rgba(120,191,255,.16);cursor:pointer;}
 .pop-img img,.mini-img img{width:100%;height:100%;object-fit:cover;border-radius:18px;}
 .pop-name{font-weight:900;margin-top:8px;}
-.pop-price,.mini-price{font-weight:900;color:#0E1217;margin-top:4px;}
-.pop-price small,.mini-price small{opacity:.68;font-weight:800;margin-left:4px;}
+.pop-price,.mini-price{font-weight:900;color:var(--accent2);margin-top:4px;}
 .pop-counter,.mini-counter{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:8px;}
 .pop-counter button,.mini-counter button{
-  width:30px;height:30px;border-radius:50%;cursor:pointer;border:1px solid rgba(0,0,0,.10);
-  background:var(--accent);color:#fff;font-size:18px;font-weight:900;box-shadow:0 12px 24px rgba(0,0,0,.12);
+  width:30px;height:30px;border-radius:50%;cursor:pointer;border:1px solid rgba(17,24,39,.10);
+  background: linear-gradient(180deg, rgba(120,191,255,1), rgba(47,126,247,1));
+  color:#fff;font-size:18px;font-weight:900;box-shadow:0 12px 24px rgba(0,0,0,.12);
 }
 .mini-card{min-width:132px;border-radius:22px;}
 .mini-counter button{width:28px;height:28px;}
 .mini-name{font-weight:900;margin-top:8px;font-size:12px;line-height:1.15;min-height:28px;}
 .pop-counter span,.mini-counter span{font-weight:900; min-width:18px; text-align:center;}
 
-/* ✅ аккуратный бейдж */
+/* neat badge */
 .badge-pill{
   position:absolute;left:10px;top:10px;
   padding:6px 8px;
   border-radius:999px;
   font-size:11px;
   font-weight:900;
-  color:#0E1217;
-  background:rgba(255,255,255,.92);
-  border:1px solid rgba(0,0,0,.10);
-  box-shadow:0 10px 20px rgba(0,0,0,.10);
+  color:#fff;
+  background:rgba(47,126,247,.92);
+  border:1px solid rgba(255,255,255,.30);
+  box-shadow:0 10px 20px rgba(0,0,0,.12);
   pointer-events:none;
 }
 
-/* ✅ несколько каруселей внутри "Часто берут вместе" */
+/* multi carousels in "Often bought together" */
 .combo-groups{display:flex;flex-direction:column;gap:10px;}
 .combo-subtitle{
   font-weight:900;
   padding:6px 2px 0;
   opacity:.95;
-  color:#0E1217;
+  color:#0b1220;
   display:flex;
   align-items:center;
   gap:8px;
@@ -276,8 +279,8 @@ body{
 /* cart */
 .cart{
   background:rgba(255,255,255,.92);
-  color:#0E1217;
-  margin:12px;padding:16px;border-radius:24px;border:1px solid rgba(0,0,0,.08);
+  color:#0b1220;
+  margin:12px;padding:16px;border-radius:24px;border:1px solid rgba(17,24,39,.10);
   box-shadow: 0 12px 26px rgba(0,0,0,.12);
 }
 textarea.input{height:90px;}
@@ -287,12 +290,12 @@ textarea.input{height:90px;}
   margin-top:14px;
   border-radius:24px;
   cursor:pointer;
-  color:#0E1217;
+  color:#0b1220;
   font-size:17px;
   font-weight:900;
-  border:1px solid rgba(0,0,0,.10);
+  border:1px solid rgba(17,24,39,.10);
   background:#ffffff;
-  box-shadow: 0 14px 26px rgba(0,0,0,.12);
+  box-shadow: 0 14px 26px rgba(0,0,0,.14);
   position:relative;
   z-index:2;
   scroll-margin-bottom: calc(var(--sticky-h) + 24px);
@@ -303,12 +306,12 @@ textarea.input{height:90px;}
 }
 
 /* popup */
-.popup{position:fixed;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:.3s;}
+.popup{position:fixed;inset:0;background:rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:.3s;}
 .popup.show{opacity:1;pointer-events:auto;}
 .popup-box{
-  background:white;padding:26px;border-radius:24px;text-align:center;font-weight:800;border:1px solid rgba(0,0,0,.08);
-  box-shadow: 0 14px 26px rgba(0,0,0,.14);
-  color:#0E1217;
+  background:white;padding:26px;border-radius:24px;text-align:center;font-weight:800;border:1px solid rgba(17,24,39,.10);
+  box-shadow: 0 14px 26px rgba(0,0,0,.16);
+  color:#0b1220;
 }
 
 /* image modal */
@@ -327,8 +330,8 @@ textarea.input{height:90px;}
   border-radius:22px;
   overflow:hidden;
   background:#fff;
-  border:1px solid rgba(0,0,0,.08);
-  box-shadow:0 18px 44px rgba(0,0,0,.18);
+  border:1px solid rgba(17,24,39,.10);
+  box-shadow:0 18px 44px rgba(0,0,0,.22);
 }
 .img-modal-top{
   display:flex; align-items:center; justify-content:space-between;
@@ -336,7 +339,7 @@ textarea.input{height:90px;}
   padding:12px 12px;
   background:rgba(0,0,0,.04);
 }
-.img-modal-title{font-weight:900;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#0E1217;}
+.img-modal-title{font-weight:900;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#0b1220;}
 .img-modal-close{
   width:38px;height:38px;border:none;border-radius:14px;background:transparent;cursor:pointer;
   font-size:22px;line-height:1;color:#666;
@@ -347,10 +350,10 @@ textarea.input{height:90px;}
 .sticky-checkout{
   position:fixed;left:0;right:0;bottom:0;
   padding:10px 12px;
-  background:rgba(238,242,246,.90);
+  background:rgba(47,126,247,.18);
   backdrop-filter: blur(10px);
   z-index:999;
-  border-top:1px solid rgba(0,0,0,.08);
+  border-top:1px solid rgba(17,24,39,.10);
   height: var(--sticky-h);
   display:flex;
   align-items:center;
@@ -358,29 +361,30 @@ textarea.input{height:90px;}
 .sticky-inner{
   max-width:520px;margin:0 auto;border-radius:18px;padding:10px 12px;
   background:rgba(255,255,255,.92);
-  border:1px solid rgba(0,0,0,.08);
-  box-shadow: 0 14px 26px rgba(0,0,0,.12);
+  border:1px solid rgba(17,24,39,.10);
+  box-shadow: 0 14px 26px rgba(0,0,0,.14);
   display:flex;align-items:center;justify-content:space-between;gap:12px;
   width:100%;
-  color:#0E1217;
+  color:#0b1220;
 }
 .sticky-sum{font-weight:900;line-height:1.1;}
-.sticky-sum small{display:block;font-weight:800;opacity:.7;margin-top:2px;}
+.sticky-sum small{display:block;font-weight:800;opacity:.75;margin-top:2px;}
 .sticky-btn{
-  padding:12px 14px;border-radius:16px;border:1px solid rgba(0,0,0,.10);
-  background:#ffffff;color:#0E1217;font-weight:900;cursor:pointer;
-  box-shadow: 0 14px 26px rgba(0,0,0,.12);
+  padding:12px 14px;border-radius:16px;border:1px solid rgba(17,24,39,.10);
+  background:linear-gradient(180deg, rgba(120,191,255,1), rgba(47,126,247,1));
+  color:#fff;font-weight:900;cursor:pointer;
+  box-shadow: 0 14px 26px rgba(0,0,0,.14);
 }
 
 /* menu sheet */
-.menu-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.38);opacity:0;pointer-events:none;transition:.18s;z-index:1000;}
+.menu-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.30);opacity:0;pointer-events:none;transition:.18s;z-index:1000;}
 .menu-backdrop.show{opacity:1;pointer-events:auto;}
 .menu-sheet{
   position:fixed;left:0; right:0;bottom:-100%;
   background:rgba(255,255,255,.92);
-  color:#0E1217;
-  border-top-left-radius:22px;border-top-right-radius:22px;border:1px solid rgba(0,0,0,.08);
-  box-shadow:0 18px 40px rgba(0,0,0,.16);
+  color:#0b1220;
+  border-top-left-radius:22px;border-top-right-radius:22px;border:1px solid rgba(17,24,39,.10);
+  box-shadow:0 18px 40px rgba(0,0,0,.18);
   transition:.22s;z-index:1010;padding:10px 12px 14px;
   max-height: 86vh;overflow:auto;-webkit-overflow-scrolling:touch;
 }
@@ -392,34 +396,58 @@ textarea.input{height:90px;}
 .menu-list{display:flex;flex-direction:column;gap:8px;}
 .menu-item{
   display:flex;align-items:center;justify-content:space-between;gap:10px;
-  padding:12px 12px;border-radius:16px;border:1px solid rgba(0,0,0,.08);
-  background:rgba(0,0,0,.03);
-  cursor:pointer;text-decoration:none;color:#0E1217;
+  padding:12px 12px;border-radius:16px;border:1px solid rgba(17,24,39,.08);
+  background:rgba(17,24,39,.03);
+  cursor:pointer;text-decoration:none;color:#0b1220;
 }
 .menu-left{display:flex;align-items:center;gap:10px;min-width:0;}
-.menu-ic{width:30px;height:30px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.06);flex:0 0 auto;}
+.menu-ic{width:30px;height:30px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(17,24,39,.06);flex:0 0 auto;}
 .menu-txt{display:flex;flex-direction:column;min-width:0;}
 .menu-name{font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .menu-sub{font-size:12px;opacity:.75;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px;}
 .menu-right{opacity:.65;font-weight:900;}
+
+/* branch selector */
+.branch-box{display:none;padding:6px 4px 10px;}
+.branch-inner{border:1px solid rgba(17,24,39,.08);border-radius:16px;overflow:hidden;background:rgba(17,24,39,.03);padding:12px;}
+.branch-grid{display:grid;grid-template-columns:1fr;gap:10px;}
+.branch-btn{
+  width:100%;
+  min-width:auto;
+  border-radius:16px;
+  padding:14px 14px;
+  border:1px solid rgba(17,24,39,.08);
+  background:#fff;
+  box-shadow:0 12px 24px rgba(0,0,0,.10);
+  font-weight:900;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.branch-btn small{font-weight:800;opacity:.72;}
+.branch-btn.active{
+  background: linear-gradient(180deg, rgba(120,191,255,1), rgba(47,126,247,1));
+  color:#fff;
+  border:1px solid rgba(255,255,255,.45);
+}
 
 /* about text blocks */
 .about-desc{
   margin-top:10px;
   padding:12px;
   border-radius:14px;
-  border:1px solid rgba(0,0,0,.08);
+  border:1px solid rgba(17,24,39,.08);
   background:#fff;
-  color:#0E1217;
+  color:#0b1220;
   line-height:1.28;
   font-weight:800;
 }
 .about-desc b{font-weight:900;}
-.about-desc .muted{opacity:.85;font-weight:800;}
-.about-desc .line{margin-top:8px;}
 
-/* search (закрыт по умолчанию) */
-.search-title{display:none;width:100%;padding:10px 14px 0;font-weight:900;color:#0E1217;}
+/* search */
+.search-title{display:none;width:100%;padding:10px 14px 0;font-weight:900;color:#0b1220;}
 .search-title.show{display:block;}
 .search-wrap{display:none;position:relative;padding:10px 12px 6px;gap:10px;align-items:center;}
 .search-wrap.show{display:flex;}
@@ -428,157 +456,38 @@ textarea.input{height:90px;}
   position:absolute;right:20px;top:50%;transform:translateY(-50%);
   width:32px;height:32px;border-radius:12px;
   display:flex;align-items:center;justify-content:center;
-  background:rgba(0,0,0,.06);
-  border:1px solid rgba(0,0,0,.08);
+  background:rgba(17,24,39,.06);
+  border:1px solid rgba(17,24,39,.08);
   cursor:pointer;color:#333;font-weight:900;
 }
 
-/* online block */
-.online-box{
+/* online / click blocks */
+.online-box,.click-box{
   display:none;
   margin:10px auto 0;
   width:85%;
-  border:1px solid rgba(0,0,0,.08);
+  border:1px solid rgba(17,24,39,.08);
   border-radius:18px;
-  background:rgba(0,0,0,.03);
+  background:rgba(17,24,39,.03);
   padding:12px;
 }
 .online-row{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-top:8px;}
 .online-label{font-weight:900;}
-.online-val{font-weight:900;color:#0E1217;word-break:break-word;}
-
-/* CLICK QR block */
-.click-box{
-  display:none;
-  margin:10px auto 0;
-  width:85%;
-  border:1px solid rgba(0,0,0,.08);
-  border-radius:18px;
-  background:rgba(0,0,0,.03);
-  padding:12px;
-}
+.online-val{font-weight:900;color:var(--accent2);word-break:break-word;}
 .click-title{font-weight:900;margin-bottom:8px;}
 .click-qr{
   width:100%;
   border-radius:18px;
   overflow:hidden;
-  border:1px solid rgba(0,0,0,.08);
+  border:1px solid rgba(17,24,39,.08);
   background:#fff;
   display:flex;
   align-items:center;
   justify-content:center;
 }
-.click-qr img{
-  width:100%;
-  max-width:360px;
-  height:auto;
-  display:block;
-}
+.click-qr img{width:100%;max-width:360px;height:auto;display:block;}
 
-/* Splash */
-.splash{
-  position:fixed; inset:0;
-  background:rgba(0,0,0,.62);
-  display:flex; align-items:center; justify-content:center;
-  opacity:0; pointer-events:none;
-  transition:.18s;
-  z-index:3000;
-  padding:18px;
-}
-.splash.show{opacity:1;pointer-events:auto;}
-.splash-box{
-  width:min(520px, 100%);
-  border-radius:22px;
-  overflow:hidden;
-  background:rgba(255,255,255,.96);
-  border:1px solid rgba(0,0,0,.08);
-  box-shadow:0 18px 44px rgba(0,0,0,.18);
-  color:#0E1217;
-  position:relative;
-}
-.splash-close{
-  position:absolute; right:10px; top:10px;
-  width:38px;height:38px;border:none;border-radius:14px;background:rgba(0,0,0,.04);
-  cursor:pointer;font-size:22px;line-height:1;color:#666;
-}
-.splash-body{padding:14px 14px 16px;}
-.splash-img{
-  width:100%;
-  height:auto;
-  display:block;
-  border-radius:18px;
-  border:1px solid rgba(0,0,0,.08);
-  background:#fff;
-}
-.splash-text{
-  margin-top:12px;
-  font-weight:900;
-  line-height:1.25;
-  text-align:center;
-  color:#0E1217;
-}
-.splash-text small{
-  display:block;
-  margin-top:8px;
-  font-weight:800;
-  opacity:.80;
-}
-
-/* GALLERY */
-.gallery-box{display:none;padding:6px 4px 10px;}
-.gallery-inner{border:1px solid rgba(0,0,0,.08);border-radius:16px;overflow:hidden;background:rgba(0,0,0,.03);padding:12px;}
-.gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
-.gallery-tile{border-radius:16px;overflow:hidden;border:1px solid rgba(0,0,0,.08);background:#fff;box-shadow:0 12px 24px rgba(0,0,0,.10);cursor:pointer;}
-.gallery-tile img{width:100%;height:110px;object-fit:cover;display:block;}
-.gallery-cap{padding:8px 10px;font-weight:900;font-size:12px;color:#0E1217;opacity:.92;}
-
-/* REVIEWS */
-.reviews-box{display:none;padding:6px 4px 10px;}
-.reviews-inner{border:1px solid rgba(0,0,0,.08);border-radius:16px;overflow:hidden;background:rgba(0,0,0,.03);padding:12px;}
-.rating-row{display:flex; align-items:center; justify-content:space-between; gap:10px;margin-bottom:10px;}
-.rating-avg{font-weight:900;color:#0E1217;}
-.rating-pill{padding:6px 10px;border-radius:999px;background:#fff;border:1px solid rgba(0,0,0,.08);font-weight:900;color:#0E1217;}
-.rev-list{display:flex;flex-direction:column;gap:10px;}
-.rev-card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:10px 12px;}
-.rev-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px;}
-.rev-name{font-weight:900;}
-.rev-stars{font-weight:900;color:var(--accent);}
-.rev-text{font-weight:800;opacity:.92;line-height:1.25;}
-.rev-date{font-weight:800;opacity:.65;font-size:12px;margin-top:6px;}
-
-/* Support (бывш. VIP) */
-.vip-box{display:none;padding:6px 4px 10px;}
-.vip-inner{border:1px solid rgba(0,0,0,.08);border-radius:16px;overflow:hidden;background:rgba(0,0,0,.03);padding:12px;}
-.toggle-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 10px;border-radius:14px;background:#fff;border:1px solid rgba(0,0,0,.08);}
-.toggle-left{display:flex;flex-direction:column;gap:2px;}
-.toggle-left b{font-weight:900;color:#0E1217;}
-.toggle-left small{font-weight:800;opacity:.7;color:#0E1217;}
-.switch{
-  width:52px;height:30px;border-radius:999px;background:rgba(0,0,0,.12);
-  position:relative;cursor:pointer;border:1px solid rgba(0,0,0,.08);
-}
-.switch::after{
-  content:'';
-  position:absolute;top:3px;left:3px;
-  width:24px;height:24px;border-radius:50%;
-  background:#fff;box-shadow:0 10px 18px rgba(0,0,0,.12);
-  transition:.18s;
-}
-.switch.on{background:rgba(102,185,255,.45);}
-.switch.on::after{left:25px;}
-.vip-actions{margin-top:10px;display:flex;flex-direction:column;gap:8px;}
-.vip-actions .btn{min-width:auto;width:100%;}
-.vip-input{
-  width:100%;
-  margin:8px 0 0;
-  padding:12px 14px;
-  border-radius:16px;
-  border:1px solid rgba(0,0,0,.08);
-  background:#fff;
-  font-weight:900;
-  outline:none;
-}
-
+/* responsive */
 @media (max-width:420px){
   .brand-title{font-size:28px;}
   .brand-title2{font-size:13px;}
@@ -599,41 +508,23 @@ textarea.input{height:90px;}
   .langs .btn{min-width:86px;padding:10px 10px;font-size:13px;}
   .payments .btn{min-width:78px;padding:9px 9px;font-size:12.5px;}
   .welcome{font-size:12px;padding:6px 9px;}
-  .gallery-grid{grid-template-columns:1fr;}
-  .gallery-tile img{height:140px;}
 }
 </style>
 </head>
 
 <body>
 
-<!-- ✅ Splash overlay -->
-<!-- Имя файла: images/splash_sebtech.jpg (JPG) -->
-<div class="splash" id="splash" onclick="closeSplash(event)">
-  <div class="splash-box" onclick="event.stopPropagation()">
-    <button class="splash-close" onclick="closeSplash(event)">×</button>
-    <div class="splash-body">
-      <img class="splash-img" id="splashImg" src="images/splash_sebtech.jpg" alt="Splash" onerror="this.onerror=null;this.style.display='none';">
-      <div class="splash-text">
-        SEBTECH — техника Apple, которую приятно выбирать.
-        <small>iPhone • Mac • iPad • Watch • AirPods</small>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="header">
   <img src="images/logo.png" onerror="this.src='logo.png'" alt="SEBTECH logo">
 
   <div class="brand-wrap">
     <div class="brand-title">SEBTECH</div>
-    <div class="brand-title2">APPLE TECH STORE</div>
+    <div class="brand-title2" id="branchTitle">APPLE TECH STORE</div>
 
     <!-- ✅ Авто-приветствие по имени -->
     <div class="welcome" id="welcomeLine" style="display:none;"></div>
 
     <div class="brand-phone">
-      <!-- ✅ поменяй на свои номера -->
       <a href="tel:+998900000000" onclick="callPhone(event)">+998 90 000 00 00</a>
       <a href="tel:+998910000000" onclick="callPhone2(event)">+998 91 000 00 00</a>
     </div>
@@ -665,10 +556,37 @@ textarea.input{height:90px;}
 
   <div class="menu-list">
 
-    <!-- ✅ Support: Консультант -->
+    <!-- ✅ Выбрать филиал -->
+    <div class="menu-item" onclick="toggleBranch()" role="button">
+      <div class="menu-left">
+        <div class="menu-ic">🏬</div>
+        <div class="menu-txt">
+          <div class="menu-name" id="mBranchTitle">Выбрать филиал</div>
+          <div class="menu-sub" id="mBranchSub">Makon Mall / Bulvar</div>
+        </div>
+      </div>
+      <div class="menu-right">›</div>
+    </div>
+
+    <div class="branch-box" id="branchWrap">
+      <div class="branch-inner">
+        <div class="branch-grid">
+          <button class="branch-btn" id="branchMakon" onclick="setBranch('makon', event)">
+            <span>Makon Mall</span>
+            <small id="addrMakonMini">г. Самарканд, Улица Гульабад 1</small>
+          </button>
+          <button class="branch-btn" id="branchBulvar" onclick="setBranch('bulvar', event)">
+            <span>Bulvar</span>
+            <small id="addrBulvarMini">г. Самарканд, Улица Шахруха Мирзы 17</small>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ✅ Консультация -->
     <div class="menu-item" onclick="toggleVip()" role="button">
       <div class="menu-left">
-        <div class="menu-ic">🧑‍💻</div>
+        <div class="menu-ic">💬</div>
         <div class="menu-txt">
           <div class="menu-name" id="mVipTitle">Консультация</div>
           <div class="menu-sub" id="mVipSub">Задайте вопрос — отправим администратору</div>
@@ -677,21 +595,21 @@ textarea.input{height:90px;}
       <div class="menu-right">›</div>
     </div>
 
-    <div class="vip-box" id="vipWrap">
-      <div class="vip-inner">
-        <div class="toggle-row" onclick="toggleInHall()">
-          <div class="toggle-left">
-            <b id="vipToggleTitle">Нужна консультация</b>
-            <small id="vipToggleSub">Включите, чтобы отправить запрос</small>
+    <div class="vip-box" id="vipWrap" style="display:none; padding:6px 4px 10px;">
+      <div class="vip-inner" style="border:1px solid rgba(17,24,39,.08);border-radius:16px;overflow:hidden;background:rgba(17,24,39,.03);padding:12px;">
+        <div class="toggle-row" onclick="toggleInHall()" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 10px;border-radius:14px;background:#fff;border:1px solid rgba(17,24,39,.08);">
+          <div class="toggle-left" style="display:flex;flex-direction:column;gap:2px;">
+            <b id="vipToggleTitle" style="font-weight:900;color:#0b1220;">Нужна консультация</b>
+            <small id="vipToggleSub" style="font-weight:800;opacity:.7;color:#0b1220;">Включите, чтобы отправить запрос</small>
           </div>
-          <div class="switch" id="vipSwitch" aria-label="toggle"></div>
+          <div class="switch" id="vipSwitch" aria-label="toggle" style="width:52px;height:30px;border-radius:999px;background:rgba(17,24,39,.12);position:relative;cursor:pointer;border:1px solid rgba(17,24,39,.08);"></div>
         </div>
 
-        <input class="vip-input" id="vipTable" placeholder="Тема (например: iPhone 15 Pro, рассрочка)">
+        <input class="vip-input" id="vipTable" placeholder="Ваш вопрос (например: iPhone 15 Pro 256?)" style="width:100%;margin:8px 0 0;padding:12px 14px;border-radius:16px;border:1px solid rgba(17,24,39,.08);background:#fff;font-weight:900;outline:none;">
 
-        <div class="vip-actions">
-          <button class="btn" style="min-width:auto;" onclick="callWaiter(event)" id="vipCallBtn">💬 Написать консультанту</button>
-          <button class="btn" style="min-width:auto; background:rgba(0,0,0,.06); color:#0E1217; border:1px solid rgba(0,0,0,.08);" onclick="toggleVip(event)" id="vipCloseBtn">Закрыть</button>
+        <div class="vip-actions" style="margin-top:10px;display:flex;flex-direction:column;gap:8px;">
+          <button class="btn" style="min-width:auto;width:100%;" onclick="callWaiter(event)" id="vipCallBtn">💬 Написать консультанту</button>
+          <button class="btn" style="min-width:auto;width:100%; background:rgba(17,24,39,.06); color:#0b1220; border:1px solid rgba(17,24,39,.08);" onclick="toggleVip(event)" id="vipCloseBtn">Закрыть</button>
         </div>
         <div style="margin-top:8px;font-size:12px;opacity:.72;font-weight:800;" id="vipHint">
           Запрос уйдёт администратору. Можно продолжать оформлять заказ.
@@ -699,65 +617,7 @@ textarea.input{height:90px;}
       </div>
     </div>
 
-    <!-- ✅ ГАЛЕРЕЯ -->
-    <div class="menu-item" onclick="toggleGallery()" role="button">
-      <div class="menu-left">
-        <div class="menu-ic">🖼</div>
-        <div class="menu-txt">
-          <div class="menu-name" id="mGalleryTitle">Витрина</div>
-          <div class="menu-sub" id="mGallerySub">Магазин • Выдача • Товары • Команда</div>
-        </div>
-      </div>
-      <div class="menu-right">›</div>
-    </div>
-
-    <div class="gallery-box" id="galleryWrap">
-      <div class="gallery-inner">
-        <div class="gallery-grid" id="galleryGrid"></div>
-      </div>
-    </div>
-
-    <!-- ✅ Отзывы внутри -->
-    <div class="menu-item" onclick="toggleReviews()" role="button">
-      <div class="menu-left">
-        <div class="menu-ic">⭐</div>
-        <div class="menu-txt">
-          <div class="menu-name" id="mReviewsTitle">Отзывы</div>
-          <div class="menu-sub" id="mReviewsSub">Рейтинг и последние отзывы</div>
-        </div>
-      </div>
-      <div class="menu-right">›</div>
-    </div>
-
-    <div class="reviews-box" id="reviewsWrap">
-      <div class="reviews-inner">
-        <div class="rating-row">
-          <div class="rating-avg" id="ratingAvgTxt">Средний рейтинг</div>
-          <div class="rating-pill" id="ratingPill">4.9 ★</div>
-        </div>
-
-        <div class="rev-list" id="reviewsList"></div>
-
-        <div style="height:10px;"></div>
-        <button class="btn" style="width:100%; min-width:auto;" onclick="openYandexReviews(event)" id="reviewsYandexBtn">
-          ⭐ Открыть в Яндексе
-        </button>
-      </div>
-    </div>
-
-    <!-- Оставить отзыв -->
-    <div class="menu-item" onclick="openYandexReviews(event)" role="button">
-      <div class="menu-left">
-        <div class="menu-ic">✍️</div>
-        <div class="menu-txt">
-          <div class="menu-name" id="mReviewTitle">Оставить отзыв</div>
-          <div class="menu-sub" id="mReviewSub">Яндекс отзывы / рейтинг</div>
-        </div>
-      </div>
-      <div class="menu-right">›</div>
-    </div>
-
-    <!-- О нас -->
+    <!-- ✅ О нас -->
     <div class="menu-item" onclick="toggleAbout()" role="button">
       <div class="menu-left">
         <div class="menu-ic">ℹ️</div>
@@ -770,11 +630,9 @@ textarea.input{height:90px;}
     </div>
 
     <div id="aboutWrap" style="display:none; padding:6px 4px 10px;">
-      <div style="border:1px solid rgba(0,0,0,.08); border-radius:16px; overflow:hidden; background:rgba(0,0,0,.03); padding:12px;">
+      <div style="border:1px solid rgba(17,24,39,.08); border-radius:16px; overflow:hidden; background:rgba(17,24,39,.03); padding:12px;">
         <div style="font-weight:900; margin-bottom:6px;" id="aboutAddrLabel">📍 Адрес</div>
-        <div style="font-weight:900; color:#0E1217; opacity:.92; line-height:1.25;" id="aboutAddrText">
-          Самарканд, ваш адрес
-        </div>
+        <div style="font-weight:900; color:#0b1220; opacity:.92; line-height:1.25;" id="aboutAddrText"></div>
 
         <div style="height:10px;"></div>
 
@@ -786,10 +644,10 @@ textarea.input{height:90px;}
 
         <div style="font-weight:900; margin-bottom:6px;" id="aboutPhoneLabel">📞 Телефон</div>
         <div style="display:flex; flex-direction:column; gap:6px;">
-          <a href="tel:+998900000000" onclick="callPhone(event)" style="text-decoration:none; font-weight:900; color:#0E1217;">
+          <a href="tel:+998900000000" onclick="callPhone(event)" style="text-decoration:none; font-weight:900; color:var(--accent2);">
             +998 90 000 00 00
           </a>
-          <a href="tel:+998910000000" onclick="callPhone2(event)" style="text-decoration:none; font-weight:900; color:#0E1217;">
+          <a href="tel:+998910000000" onclick="callPhone2(event)" style="text-decoration:none; font-weight:900; color:var(--accent2);">
             +998 91 000 00 00
           </a>
         </div>
@@ -797,7 +655,7 @@ textarea.input{height:90px;}
         <div style="height:12px;"></div>
 
         <div style="font-weight:900; margin-bottom:6px;" id="aboutHoursLabel">🕒 График работы</div>
-        <div style="font-weight:900; color:#0E1217; opacity:.92;" id="aboutHoursText">10:00–22:00</div>
+        <div style="font-weight:900; color:#0b1220; opacity:.92;" id="aboutHoursText">10:00–22:00</div>
 
         <div class="about-desc" id="aboutDescText"></div>
       </div>
@@ -814,16 +672,24 @@ textarea.input{height:90px;}
       <div class="menu-right">›</div>
     </a>
 
-    <a class="menu-item" href="#" onclick="openInstagram(event)">
+    <!-- ✅ Instagram accounts -->
+    <a class="menu-item" href="#" onclick="openInstagram('makon', event)">
       <div class="menu-left">
-        <div class="menu-ic" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" style="display:block;">
-            <path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 4.3A5.7 5.7 0 1 1 6.3 14 5.7 5.7 0 0 1 12 8.3zm0 2A3.7 3.7 0 1 0 15.7 14 3.7 3.7 0 0 0 12 10.3zM18 6.7a1 1 0 1 1-1 1 1 1 0 0 1 1-1z"/>
-          </svg>
-        </div>
+        <div class="menu-ic" aria-hidden="true">📸</div>
         <div class="menu-txt">
-          <div class="menu-name" id="mInstaTitle">@sebtech</div>
-          <div class="menu-sub" id="mInstaSub">Открыть Instagram</div>
+          <div class="menu-name" id="mInsta1">@sebtech.uz</div>
+          <div class="menu-sub" id="mInstaSub1">Открыть Instagram</div>
+        </div>
+      </div>
+      <div class="menu-right">›</div>
+    </a>
+
+    <a class="menu-item" href="#" onclick="openInstagram('bulvar', event)">
+      <div class="menu-left">
+        <div class="menu-ic" aria-hidden="true">📸</div>
+        <div class="menu-txt">
+          <div class="menu-name" id="mInsta2">@sebtech_bulvar</div>
+          <div class="menu-sub" id="mInstaSub2">Открыть Instagram</div>
         </div>
       </div>
       <div class="menu-right">›</div>
@@ -839,15 +705,13 @@ textarea.input{height:90px;}
   <div class="search-clear" onclick="clearSearch()" title="Очистить">✖</div>
 </div>
 
-<!-- ✅ языки -->
+<!-- languages (TR removed полностью) -->
 <div class="langs">
   <button class="btn" id="langRU" onclick="setLang('ru',this)"><span class="lang-flag">🇷🇺</span>RU</button>
   <button class="btn" id="langUZ" onclick="setLang('uz',this)"><span class="lang-flag">🇺🇿</span>UZ</button>
   <button class="btn" id="langEN" onclick="setLang('en',this)"><span class="lang-flag">🇬🇧</span>EN</button>
-  <button class="btn" id="langTR" onclick="setLang('tr',this)"><span class="lang-flag">🇹🇷</span>TR</button>
 </div>
 
-<!-- carousels -->
 <div class="popular-wrap" id="popularWrap">
   <div class="popular-title" id="popularTitle">🔥 Популярное</div>
   <div class="popular-row" id="popularRow"></div>
@@ -858,12 +722,12 @@ textarea.input{height:90px;}
   <div class="mini-row" id="giftRow"></div>
 </div>
 
+<!-- Often bought together -->
 <div class="popular-wrap" id="comboWrap" style="display:none;">
   <div class="popular-title" id="comboTitle">🧠 Часто берут вместе</div>
   <div class="combo-groups" id="comboGroups"></div>
 </div>
 
-<!-- type -->
 <div class="types">
   <button class="btn" id="btnDelivery" onclick="setType('delivery',this)"></button>
   <button class="btn" id="btnPickup" onclick="setType('pickup',this)"></button>
@@ -889,7 +753,6 @@ textarea.input{height:90px;}
     <button class="btn" id="payOnline" onclick="setPayment('online')">💳 Онлайн</button>
   </div>
 
-  <!-- CLICK QR -->
   <div class="click-box" id="clickBox">
     <div class="click-title" id="clickTitle">CLICK QR</div>
     <div class="click-qr">
@@ -963,42 +826,102 @@ function syncStickyHeight(){
 window.addEventListener('resize', ()=>setTimeout(syncStickyHeight, 50), {passive:true});
 window.addEventListener('orientationchange', ()=>setTimeout(syncStickyHeight, 250), {passive:true});
 
-/* ✅ геолокация (поставь свою ссылку) */
-const MAP_URL = "https://yandex.uz/maps/";
+/* ✅ Филиалы */
+const BRANCHES = {
+  makon:{
+    titleRU:"Makon Mall",
+    titleUZ:"Makon Mall",
+    titleEN:"Makon Mall",
+    addressRU:"г. Самарканд, Улица Гульабад 1",
+    addressUZ:"Samarqand, Gulabad ko‘chasi 1",
+    addressEN:"Samarkand, Gulabad street 1",
+    insta:"https://www.instagram.com/sebtech.uz/",
+  },
+  bulvar:{
+    titleRU:"Bulvar",
+    titleUZ:"Bulvar",
+    titleEN:"Bulvar",
+    addressRU:"г. Самарканд, Улица Шахруха Мирзы 17",
+    addressUZ:"Samarqand, Shahrux Mirzo ko‘chasi 17",
+    addressEN:"Samarkand, Shahrukh Mirzo street 17",
+    insta:"https://www.instagram.com/sebtech_bulvar/",
+  }
+};
 
-/* ✅ ссылка на отзывы (поставь свою ссылку) */
-const YANDEX_REVIEWS_URL = "https://yandex.uz/maps/";
+let branch = localStorage.getItem('sebtech_branch') || 'makon';
+if(!BRANCHES[branch]) branch='makon';
 
-/* ✅ instagram (поставь свой аккаунт) */
-const INSTA_URL = "https://www.instagram.com/";
+function branchAddressForLang(){
+  const b = BRANCHES[branch];
+  if(lang==='uz') return b.addressUZ;
+  if(lang==='en') return b.addressEN;
+  return b.addressRU;
+}
+function branchTitleForLang(){
+  const b = BRANCHES[branch];
+  if(lang==='uz') return b.titleUZ;
+  if(lang==='en') return b.titleEN;
+  return b.titleRU;
+}
+function yandexSearchUrl(query){
+  const q = encodeURIComponent(query || '');
+  return `https://yandex.uz/maps/?text=${q}`;
+}
+function openRoute(){
+  const url = yandexSearchUrl(branchAddressForLang());
+  try{Telegram.WebApp.openLink(url);}catch(_){window.open(url,'_blank');}
+}
+function openRouteFromAbout(e){
+  try{e.preventDefault();e.stopPropagation();}catch(_){}
+  openRoute();
+}
 
-/* ✅ админ Telegram ID (если используешь sendData в боте) */
-const ADMIN_ID = 6013591658;
+function toggleBranch(e){
+  try{e?.preventDefault?.();e?.stopPropagation?.();}catch(_){}
+  const w=document.getElementById('branchWrap');
+  w.style.display=(w.style.display==='none'||!w.style.display)?'block':'none';
+  syncBranchUI();
+}
+function setBranch(code, e){
+  try{e?.preventDefault?.();e?.stopPropagation?.();}catch(_){}
+  if(!BRANCHES[code]) return;
+  branch = code;
+  localStorage.setItem('sebtech_branch', branch);
+  syncBranchUI();
+  applyBranchToUI();
+  Telegram.WebApp.HapticFeedback?.notificationOccurred?.('success');
+}
+function syncBranchUI(){
+  const a=document.getElementById('branchMakon');
+  const b=document.getElementById('branchBulvar');
+  if(a) a.classList.toggle('active', branch==='makon');
+  if(b) b.classList.toggle('active', branch==='bulvar');
+}
+function applyBranchToUI(){
+  const t=document.getElementById('branchTitle');
+  if(t) t.innerText = `APPLE TECH STORE • ${branchTitleForLang()}`;
 
-/* доставка (если нужно) */
-const DELIVERY_FEE = 0;
+  const aboutAddrText=document.getElementById('aboutAddrText');
+  if(aboutAddrText) aboutAddrText.innerText = branchAddressForLang();
 
-/* QR */
-const CLICK_QR_IMG = "images/qr_click.jpg";
+  const d=document.getElementById('aboutDescText');
+  if(d) d.innerHTML = ABOUT_DESC[lang] || ABOUT_DESC.ru;
 
-/* Splash */
-const SPLASH_IMG = "images/splash_sebtech.jpg";
+  // обновить мини-подписи
+  const am=document.getElementById('addrMakonMini');
+  const ab=document.getElementById('addrBulvarMini');
+  if(am) am.innerText = BRANCHES.makon.addressRU;
+  if(ab) ab.innerText = BRANCHES.bulvar.addressRU;
+}
 
-/* Gallery images (JPG) */
-const GALLERY = [
-  {id:'shop',   img:'images/gallery_shop.jpg',   t:{ru:'Магазин', uz:'Do‘kon', en:'Shop', tr:'Mağaza'}},
-  {id:'pickup', img:'images/gallery_pickup.jpg', t:{ru:'Выдача',  uz:'Topshirish', en:'Pickup', tr:'Teslim'}},
-  {id:'goods',  img:'images/gallery_goods.jpg',  t:{ru:'Товары',  uz:'Tovarlar', en:'Products', tr:'Ürünler'}},
-  {id:'team',   img:'images/gallery_team.jpg',   t:{ru:'Команда', uz:'Jamoa', en:'Team', tr:'Ekip'}}
-];
-
-/* Reviews */
-const REVIEWS = [
-  {name:'Aziza', stars:5, text:{ru:'Быстро подобрали iPhone, спасибо!', uz:"iPhone tanlashda yordam berishdi, rahmat!", en:'Helped me choose an iPhone быстро.', tr:'iPhone seçiminde çok yardımcı oldular!'}, date:'2026-01-28'},
-  {name:'Rustam', stars:5, text:{ru:'Отличный сервис и гарантия.', uz:'Xizmat zo‘r, kafolat bor.', en:'Great service and warranty.', tr:'Harika servis ve garanti.'}, date:'2026-01-16'},
-  {name:'Malika', stars:4, text:{ru:'AirPods оригинал, звук топ.', uz:'AirPods original, ovoz zo‘r.', en:'Original AirPods, great sound.', tr:'AirPods orijinal, ses süper.'}, date:'2025-12-30'}
-];
-const AVG_RATING = 4.9;
+/* ✅ Instagram */
+function openInstagram(which, e){
+  try{e?.preventDefault?.();e?.stopPropagation?.();}catch(_){}
+  closeTopMenu();
+  const code = (which==='bulvar') ? 'bulvar' : 'makon';
+  const url = BRANCHES[code].insta;
+  try{Telegram.WebApp.openLink(url);}catch(_){window.open(url,'_blank');}
+}
 
 /* phones */
 const PHONE1_DISPLAY = "+998 90 000 00 00";
@@ -1006,68 +929,11 @@ const PHONE1_TEL = "tel:+998900000000";
 const PHONE2_DISPLAY = "+998 91 000 00 00";
 const PHONE2_TEL = "tel:+998910000000";
 
-/* ABOUT */
-const ABOUT_ADDR = {
-  ru:"Самарканд, ваш адрес",
-  uz:"Samarqand, manzilingiz",
-  en:"Samarkand, your address",
-  tr:"Semerkant, adresiniz"
-};
-const ABOUT_HOURS = "10:00–22:00";
-
-const ABOUT_DESC = {
-  ru:`SEBTECH — магазин техники Apple.<br>
-Подбор, консультация, гарантия, рассрочка (если есть).<br><br>
-<b>📍 Адрес:</b> ${ABOUT_ADDR.ru}<br>
-<b>📞 Телефон:</b> ${PHONE1_DISPLAY}<br>
-<b>📞 Телефон:</b> ${PHONE2_DISPLAY}<br>
-<b>🕒 График работы:</b> ${ABOUT_HOURS}`,
-  uz:`SEBTECH — Apple texnikasi do‘koni.<br>
-Tanlash, maslahat, kafolat, bo‘lib to‘lash (agar mavjud bo‘lsa).<br><br>
-<b>📍 Manzil:</b> ${ABOUT_ADDR.uz}<br>
-<b>📞 Telefon:</b> ${PHONE1_DISPLAY}<br>
-<b>📞 Telefon:</b> ${PHONE2_DISPLAY}<br>
-<b>🕒 Ish vaqti:</b> ${ABOUT_HOURS}`,
-  en:`SEBTECH — Apple tech store.<br>
-Selection, consultation, warranty, installment (if available).<br><br>
-<b>📍 Address:</b> ${ABOUT_ADDR.en}<br>
-<b>📞 Phone:</b> ${PHONE1_DISPLAY}<br>
-<b>📞 Phone:</b> ${PHONE2_DISPLAY}<br>
-<b>🕒 Hours:</b> ${ABOUT_HOURS}`,
-  tr:`SEBTECH — Apple teknoloji mağazası.<br>
-Seçim, danışmanlık, garanti, taksit (varsa).<br><br>
-<b>📍 Adres:</b> ${ABOUT_ADDR.tr}<br>
-<b>📞 Telefon:</b> ${PHONE1_DISPLAY}<br>
-<b>📞 Telefon:</b> ${PHONE2_DISPLAY}<br>
-<b>🕒 Saatler:</b> ${ABOUT_HOURS}`
-};
-
-/* Telegram user */
-const tgUser = Telegram.WebApp.initDataUnsafe?.user || {};
-const tg_username = tgUser.username || "";
-const tg_first_name = tgUser.first_name || "";
-const tg_id = tgUser.id || "";
-
-/* splash */
-let splashTimer = null;
-function showSplash(){
-  try{ splashImg.src = SPLASH_IMG; }catch(_){}
-  const el = document.getElementById('splash');
-  if(!el) return;
-  el.classList.add('show');
-  clearTimeout(splashTimer);
-  splashTimer = setTimeout(()=>{ hideSplash(); }, 4500);
+function callPhone(e){ try{e.preventDefault();e.stopPropagation();}catch(_){}
+  try{Telegram.WebApp.openLink(PHONE1_TEL);}catch(_){window.location.href=PHONE1_TEL;}
 }
-function hideSplash(){
-  const el = document.getElementById('splash');
-  if(!el) return;
-  el.classList.remove('show');
-  clearTimeout(splashTimer);
-  splashTimer = null;
-}
-function closeSplash(e){
-  try{ e.preventDefault(); e.stopPropagation(); }catch(_){}
-  hideSplash();
+function callPhone2(e){ try{e.preventDefault();e.stopPropagation();}catch(_){}
+  try{Telegram.WebApp.openLink(PHONE2_TEL);}catch(_){window.location.href=PHONE2_TEL;}
 }
 
 /* copy helper */
@@ -1089,10 +955,27 @@ function copyText(t){
   }catch(_){}
 }
 
-/* UI translations */
+/* Telegram user */
+const tgUser = Telegram.WebApp.initDataUnsafe?.user || {};
+const tg_username = tgUser.username || "";
+const tg_first_name = tgUser.first_name || "";
+const tg_id = tgUser.id || "";
+
+function renderWelcome(){
+  const el = document.getElementById('welcomeLine');
+  if(!el) return;
+  const name = (tg_first_name || tg_username || '').trim();
+  if(!name){ el.style.display='none'; return; }
+  el.style.display='block';
+  el.innerText = `${UI[lang].welcome}, ${name}!`;
+}
+
+/* UI translations (TR removed) */
 const UI = {
   ru:{
     menu:'Меню',
+    branchPick:'Выбрать филиал',
+    branchSub:'Makon Mall / Bulvar',
     aboutTitle:'О нас',
     aboutSub:'Адрес, телефоны, график',
     aboutAddr:'📍 Адрес',
@@ -1107,44 +990,30 @@ const UI = {
     vipCall:'💬 Написать консультанту',
     vipClose:'Закрыть',
     vipHint:'Запрос уйдёт администратору. Можно продолжать оформлять заказ.',
-    vipTablePh:'Тема (например: iPhone 15 Pro, рассрочка)',
+    vipTablePh:'Ваш вопрос (например: iPhone 15 Pro 256?)',
 
-    galleryTitle:'Витрина',
-    gallerySub:'Магазин • Выдача • Товары • Команда',
-
-    reviewsTitle:'Отзывы',
-    reviewsSub:'Рейтинг и последние отзывы',
-    reviewsOpenY:'⭐ Открыть в Яндексе',
-    ratingAvg:'Средний рейтинг',
-
-    reviewTitle:'Оставить отзыв',
-    reviewSub:'Яндекс отзывы / рейтинг',
     callTitle:'Позвонить',
     instaSub:'Открыть Instagram',
     searchResults:'Результаты поиска',
-
     popular:'🔥 Популярное',
     gift:'⭐ Рекомендуем',
     combo:'🧠 Часто берут вместе',
     comboAcc:'Аксессуары',
-    comboCare:'Защита',
+    comboCare:'Защита/уход',
     comboMore:'Ещё рекомендуем',
 
     delivery:'🚚 Доставка',
-    pickup:'🏃 Самовывоз',
+    pickup:'🏪 Самовывоз',
     address:'📍 Адрес доставки',
     phone:'📞 Телефон',
-
     cart:'🛒 Корзина',
     total:'Итого',
     order:'Оформить заказ',
     comment:'✍️ Комментарий к заказу',
-
     cash:'💵 Наличные',
     click:'💳 CLICK',
     online:'💳 Онлайн',
     sum:'сум',
-
     recip:'Получатель',
     card:'Карта',
     copy:'Копировать',
@@ -1156,6 +1025,8 @@ const UI = {
   },
   uz:{
     menu:'Menyu',
+    branchPick:'Filialni tanlash',
+    branchSub:'Makon Mall / Bulvar',
     aboutTitle:'Biz haqimizda',
     aboutSub:'Manzil, telefonlar, ish vaqti',
     aboutAddr:'📍 Manzil',
@@ -1163,51 +1034,37 @@ const UI = {
     aboutPhone:'📞 Telefon',
     aboutHours:'🕒 Ish vaqti',
 
-    vipTitle:'Maslahat',
-    vipSub:'Savol bering — adminga yuboramiz',
-    vipToggleTitle:'Maslahat kerak',
+    vipTitle:'Konsultatsiya',
+    vipSub:'Savol bering — admindan xabar',
+    vipToggleTitle:'Konsultatsiya kerak',
     vipToggleSub:'Yoqing — so‘rov yuborasiz',
-    vipCall:'💬 Maslahatchiga yozish',
+    vipCall:'💬 Konsultantga yozish',
     vipClose:'Yopish',
     vipHint:'So‘rov administratorga yuboriladi. Buyurtmani davom ettirishingiz mumkin.',
-    vipTablePh:'Mavzu (masalan: iPhone 15 Pro, bo‘lib to‘lash)',
+    vipTablePh:'Savolingiz (masalan: iPhone 15 Pro 256?)',
 
-    galleryTitle:'Vitrina',
-    gallerySub:'Do‘kon • Topshirish • Tovarlar • Jamoa',
-
-    reviewsTitle:'Fikrlar',
-    reviewsSub:'Reyting va so‘nggi fikrlar',
-    reviewsOpenY:'⭐ Yandexda ochish',
-    ratingAvg:'O‘rtacha reyting',
-
-    reviewTitle:'Fikr qoldirish',
-    reviewSub:'Yandex fikrlar / reyting',
     callTitle:"Qo'ng'iroq qilish",
     instaSub:"Instagramni ochish",
     searchResults:'Qidiruv natijalari',
-
     popular:'🔥 Ommabop',
     gift:'⭐ Tavsiya',
     combo:'🧠 Ko‘p olinadi',
     comboAcc:'Aksessuarlar',
-    comboCare:'Himoya',
+    comboCare:'Himoya/Parvarish',
     comboMore:'Yana tavsiya',
 
     delivery:'🚚 Yetkazish',
-    pickup:'🏃 Olib ketish',
+    pickup:'🏪 Olib ketish',
     address:'📍 Manzil',
     phone:'📞 Telefon',
-
     cart:'🛒 Savat',
     total:'Jami',
     order:'Buyurtma berish',
     comment:'✍️ Izoh',
-
     cash:'💵 Naqd',
     click:'💳 CLICK',
     online:'💳 Onlayn',
     sum:"so‘m",
-
     recip:'Qabul qiluvchi',
     card:'Karta',
     copy:'Nusxa',
@@ -1219,6 +1076,8 @@ const UI = {
   },
   en:{
     menu:'Menu',
+    branchPick:'Choose branch',
+    branchSub:'Makon Mall / Bulvar',
     aboutTitle:'About us',
     aboutSub:'Address, phones, hours',
     aboutAddr:'📍 Address',
@@ -1232,45 +1091,31 @@ const UI = {
     vipToggleSub:'Enable to send request',
     vipCall:'💬 Message consultant',
     vipClose:'Close',
-    vipHint:'Notification will be sent to the admin. You can continue ordering.',
-    vipTablePh:'Topic (e.g. iPhone 15 Pro, installment)',
+    vipHint:'Request will be sent to admin. You can continue ordering.',
+    vipTablePh:'Your question (e.g. iPhone 15 Pro 256?)',
 
-    galleryTitle:'Showcase',
-    gallerySub:'Shop • Pickup • Products • Team',
-
-    reviewsTitle:'Reviews',
-    reviewsSub:'Rating and latest reviews',
-    reviewsOpenY:'⭐ Open in Yandex',
-    ratingAvg:'Average rating',
-
-    reviewTitle:'Leave a review',
-    reviewSub:'Yandex reviews / rating',
     callTitle:'Call',
     instaSub:'Open Instagram',
     searchResults:'Search results',
-
     popular:'🔥 Popular',
     gift:'⭐ Recommended',
     combo:'🧠 Often bought together',
     comboAcc:'Accessories',
-    comboCare:'Protection',
+    comboCare:'Protection/Care',
     comboMore:'More recommendations',
 
     delivery:'🚚 Delivery',
-    pickup:'🏃 Pickup',
+    pickup:'🏪 Pickup',
     address:'📍 Address',
     phone:'📞 Phone',
-
     cart:'🛒 Cart',
     total:'Total',
     order:'Place order',
     comment:'✍️ Comment',
-
     cash:'💵 Cash',
     click:'💳 CLICK',
     online:'💳 Online',
     sum:'sum',
-
     recip:'Recipient',
     card:'Card',
     copy:'Copy',
@@ -1279,118 +1124,97 @@ const UI = {
     clickTitle:'CLICK QR',
     clickHint:'Scan the QR in CLICK app, then press “Place order”.',
     welcome:'👋 Welcome'
-  },
-  tr:{
-    menu:'Menü',
-    aboutTitle:'Hakkımızda',
-    aboutSub:'Adres, telefonlar, saatler',
-    aboutAddr:'📍 Adres',
-    aboutRoute:'📍 Yol tarifi',
-    aboutPhone:'📞 Telefon',
-    aboutHours:'🕒 Çalışma saatleri',
-
-    vipTitle:'Danışmanlık',
-    vipSub:'Soru sorun — yöneticiye iletelim',
-    vipToggleTitle:'Danışmanlık istiyorum',
-    vipToggleSub:'Açın — talep gönderin',
-    vipCall:'💬 Danışmana yaz',
-    vipClose:'Kapat',
-    vipHint:'Bildirim yöneticiye gider. Siparişi sürdürebilirsiniz.',
-    vipTablePh:'Konu (örn: iPhone 15 Pro, taksit)',
-
-    galleryTitle:'Vitrin',
-    gallerySub:'Mağaza • Teslim • Ürünler • Ekip',
-
-    reviewsTitle:'Yorumlar',
-    reviewsSub:'Puan ve son yorumlar',
-    reviewsOpenY:'⭐ Yandex’te aç',
-    ratingAvg:'Ortalama puan',
-
-    reviewTitle:'Yorum bırak',
-    reviewSub:'Yandex yorumlar / puan',
-    callTitle:'Ara',
-    instaSub:"Instagram’ı aç",
-    searchResults:'Arama sonuçları',
-
-    popular:'🔥 Popüler',
-    gift:'⭐ Önerilen',
-    combo:'🧠 Sık birlikte alınır',
-    comboAcc:'Aksesuarlar',
-    comboCare:'Koruma',
-    comboMore:'Diğer öneriler',
-
-    delivery:'🚚 Teslimat',
-    pickup:'🏃 Gel-al',
-    address:'📍 Adres',
-    phone:'📞 Telefon',
-
-    cart:'🛒 Sepet',
-    total:'Toplam',
-    order:'Sipariş ver',
-    comment:'✍️ Not',
-
-    cash:'💵 Nakit',
-    click:'💳 CLICK',
-    online:'💳 Online',
-    sum:'sum',
-
-    recip:'Alıcı',
-    card:'Kart',
-    copy:'Kopyala',
-    onlineHint:'Ödemeden sonra “Sipariş ver”e basın ve nota “Ödedim” yazın.',
-    empty:'Sepet boş',
-    clickTitle:'CLICK QR',
-    clickHint:"CLICK uygulamasında QR’ı okutun, sonra “Sipariş ver”e basın.",
-    welcome:'👋 Hoş geldiniz'
   }
 };
 
+/* ABOUT content (dynamic by branch) */
+const ABOUT_HOURS = "10:00–22:00";
+const ABOUT_DESC = {
+  ru:`SEBTECH — магазин техники Apple в Самарканде.<br>
+Подберём iPhone, Mac, iPad, Watch и AirPods под ваши задачи, поможем с переносом данных и настройкой.<br><br>
+<b>✔️ Гарантия</b> • <b>✔️ Проверка</b> • <b>✔️ Подбор аксессуаров</b><br><br>
+<b>📍 Адрес:</b> ${BRANCHES[branch].addressRU}<br>
+<b>📞 Телефон:</b> +998 90 000 00 00<br>
+<b>📞 Телефон:</b> +998 91 000 00 00<br>
+<b>🕒 График работы:</b> 10:00 – 22:00`,
+  uz:`SEBTECH — Samarqanddagi Apple texnika do‘koni.<br>
+iPhone, Mac, iPad, Watch va AirPods tanlashda yordam beramiz, ma’lumot ko‘chirish va sozlashni ham qilamiz.<br><br>
+<b>✔️ Kafolat</b> • <b>✔️ Tekshiruv</b> • <b>✔️ Aksessuarlar</b><br><br>
+<b>📍 Manzil:</b> ${BRANCHES[branch].addressUZ}<br>
+<b>📞 Telefon:</b> +998 90 000 00 00<br>
+<b>📞 Telefon:</b> +998 91 000 00 00<br>
+<b>🕒 Ish vaqti:</b> 10:00 – 22:00`,
+  en:`SEBTECH is an Apple tech store in Samarkand.<br>
+We help you choose iPhone, Mac, iPad, Watch, and AirPods, and assist with setup and data transfer.<br><br>
+<b>✔️ Warranty</b> • <b>✔️ Check</b> • <b>✔️ Accessories</b><br><br>
+<b>📍 Address:</b> ${BRANCHES[branch].addressEN}<br>
+<b>📞 Phone:</b> +998 90 000 00 00<br>
+<b>📞 Phone:</b> +998 91 000 00 00<br>
+<b>🕒 Hours:</b> 10:00 – 22:00`
+};
+
+/* ✅ доставка/самовывоз */
+const DELIVERY_FEE = 0;
+
+/* ✅ QR */
+const CLICK_QR_IMG = "images/qr_click.jpg";
+
+/* ✅ Admin */
+const ADMIN_ID = 6013591658;
+
+/* state */
 let lang='uz', category='iphone', type='pickup', payment='cash', cart={};
 
-/* ✅ Sebtech каталог (JPG в папке images/) */
+/* ✅ Catalog (JPG names) */
 const MENU = {
   iphone:[
-    {id:'iphone_15_pro_256', p:17990000, img:'images/iphone_15_pro_256.jpg', n:{ru:'iPhone 15 Pro 256GB', uz:'iPhone 15 Pro 256GB', en:'iPhone 15 Pro 256GB', tr:'iPhone 15 Pro 256GB'}},
-    {id:'iphone_15_128',     p:13990000, img:'images/iphone_15_128.jpg',     n:{ru:'iPhone 15 128GB',     uz:'iPhone 15 128GB',     en:'iPhone 15 128GB',     tr:'iPhone 15 128GB'}},
-    {id:'iphone_14_128',     p:10990000, img:'images/iphone_14_128.jpg',     n:{ru:'iPhone 14 128GB',     uz:'iPhone 14 128GB',     en:'iPhone 14 128GB',     tr:'iPhone 14 128GB'}}
+    {id:'iphone_15_pro', p:16900000, img:'images/iphone_15_pro.jpg', n:{ru:'iPhone 15 Pro 128GB', uz:'iPhone 15 Pro 128GB', en:'iPhone 15 Pro 128GB'}},
+    {id:'iphone_15', p:12900000, img:'images/iphone_15.jpg', n:{ru:'iPhone 15 128GB', uz:'iPhone 15 128GB', en:'iPhone 15 128GB'}},
+    {id:'iphone_14', p:10500000, img:'images/iphone_14.jpg', n:{ru:'iPhone 14 128GB', uz:'iPhone 14 128GB', en:'iPhone 14 128GB'}}
   ],
   mac:[
-    {id:'macbook_air_m2',    p:14990000, img:'images/macbook_air_m2.jpg',    n:{ru:'MacBook Air M2',      uz:'MacBook Air M2',      en:'MacBook Air M2',      tr:'MacBook Air M2'}},
-    {id:'macbook_pro_m3',    p:21990000, img:'images/macbook_pro_m3.jpg',    n:{ru:'MacBook Pro M3',      uz:'MacBook Pro M3',      en:'MacBook Pro M3',      tr:'MacBook Pro M3'}}
+    {id:'macbook_air_m2', p:13500000, img:'images/macbook_air_m2.jpg', n:{ru:'MacBook Air M2', uz:'MacBook Air M2', en:'MacBook Air M2'}},
+    {id:'macbook_pro_m3', p:21000000, img:'images/macbook_pro_m3.jpg', n:{ru:'MacBook Pro M3', uz:'MacBook Pro M3', en:'MacBook Pro M3'}},
+    {id:'imac_m3', p:24000000, img:'images/imac_m3.jpg', n:{ru:'iMac M3', uz:'iMac M3', en:'iMac M3'}}
   ],
   ipad:[
-    {id:'ipad_air',          p: 8990000, img:'images/ipad_air.jpg',          n:{ru:'iPad Air',            uz:'iPad Air',            en:'iPad Air',            tr:'iPad Air'}},
-    {id:'ipad_pro',          p:12990000, img:'images/ipad_pro.jpg',          n:{ru:'iPad Pro',            uz:'iPad Pro',            en:'iPad Pro',            tr:'iPad Pro'}}
+    {id:'ipad_pro', p:17500000, img:'images/ipad_pro.jpg', n:{ru:'iPad Pro', uz:'iPad Pro', en:'iPad Pro'}},
+    {id:'ipad_air', p:13900000, img:'images/ipad_air.jpg', n:{ru:'iPad Air', uz:'iPad Air', en:'iPad Air'}},
+    {id:'ipad_10', p:8900000, img:'images/ipad_10.jpg', n:{ru:'iPad 10', uz:'iPad 10', en:'iPad 10'}}
   ],
   watch:[
-    {id:'watch_series_9',    p: 5990000, img:'images/watch_series_9.jpg',    n:{ru:'Apple Watch Series 9',uz:'Apple Watch Series 9',en:'Apple Watch Series 9',tr:'Apple Watch Series 9'}},
-    {id:'watch_ultra_2',     p: 9990000, img:'images/watch_ultra_2.jpg',     n:{ru:'Apple Watch Ultra 2', uz:'Apple Watch Ultra 2', en:'Apple Watch Ultra 2', tr:'Apple Watch Ultra 2'}}
+    {id:'watch_series_9', p:5900000, img:'images/watch_series_9.jpg', n:{ru:'Apple Watch Series 9', uz:'Apple Watch Series 9', en:'Apple Watch Series 9'}},
+    {id:'watch_ultra_2', p:10900000, img:'images/watch_ultra_2.jpg', n:{ru:'Apple Watch Ultra 2', uz:'Apple Watch Ultra 2', en:'Apple Watch Ultra 2'}},
+    {id:'watch_se', p:4200000, img:'images/watch_se.jpg', n:{ru:'Apple Watch SE', uz:'Apple Watch SE', en:'Apple Watch SE'}}
   ],
   airpods:[
-    {id:'airpods_pro_2',     p: 2990000, img:'images/airpods_pro_2.jpg',     n:{ru:'AirPods Pro 2',       uz:'AirPods Pro 2',       en:'AirPods Pro 2',       tr:'AirPods Pro 2'}},
-    {id:'airpods_3',         p: 2190000, img:'images/airpods_3.jpg',         n:{ru:'AirPods 3',           uz:'AirPods 3',           en:'AirPods 3',           tr:'AirPods 3'}}
+    {id:'airpods_pro_2', p:3200000, img:'images/airpods_pro_2.jpg', n:{ru:'AirPods Pro 2', uz:'AirPods Pro 2', en:'AirPods Pro 2'}},
+    {id:'airpods_3', p:2400000, img:'images/airpods_3.jpg', n:{ru:'AirPods 3', uz:'AirPods 3', en:'AirPods 3'}},
+    {id:'airpods_max', p:7200000, img:'images/airpods_max.jpg', n:{ru:'AirPods Max', uz:'AirPods Max', en:'AirPods Max'}}
   ],
   accessories:[
-    {id:'charger_20w',       p:  299000, img:'images/charger_20w.jpg',       n:{ru:'Зарядка 20W',         uz:'20W zaryadka',        en:'20W charger',         tr:'20W şarj'}},
-    {id:'magsafe_case',      p:  399000, img:'images/magsafe_case.jpg',      n:{ru:'Чехол MagSafe',       uz:'MagSafe g‘ilof',      en:'MagSafe case',        tr:'MagSafe kılıf'}},
-    {id:'screen_glass',      p:  149000, img:'images/screen_glass.jpg',      n:{ru:'Защитное стекло',     uz:'Himoya oynasi',       en:'Screen protector',    tr:'Ekran koruyucu'}}
+    {id:'case_iphone', p:290000, img:'images/acc_case_iphone.jpg', n:{ru:'Чехол для iPhone', uz:'iPhone g‘ilofi', en:'iPhone Case'}},
+    {id:'glass_iphone', p:190000, img:'images/acc_glass_iphone.jpg', n:{ru:'Защитное стекло', uz:'Himoya oynasi', en:'Screen Protector'}},
+    {id:'charger_20w', p:280000, img:'images/acc_charger_20w.jpg', n:{ru:'Зарядка 20W', uz:'20W zaryadlovchi', en:'20W Charger'}},
+    {id:'cable_typec', p:160000, img:'images/acc_cable_typec.jpg', n:{ru:'Кабель Type-C', uz:'Type-C kabel', en:'Type-C Cable'}}
   ]
 };
 
 const CATS = {
-  ru:{iphone:'📱 iPhone', mac:'💻 Mac', ipad:'📟 iPad', watch:'⌚ Watch', airpods:'🎧 AirPods', accessories:'🧩 Аксессуары'},
-  uz:{iphone:'📱 iPhone', mac:'💻 Mac', ipad:'📟 iPad', watch:'⌚ Watch', airpods:'🎧 AirPods', accessories:'🧩 Aksessuarlar'},
-  en:{iphone:'📱 iPhone', mac:'💻 Mac', ipad:'📟 iPad', watch:'⌚ Watch', airpods:'🎧 AirPods', accessories:'🧩 Accessories'},
-  tr:{iphone:'📱 iPhone', mac:'💻 Mac', ipad:'📟 iPad', watch:'⌚ Watch', airpods:'🎧 AirPods', accessories:'🧩 Aksesuarlar'}
+  ru:{iphone:'📱 iPhone', mac:'💻 Mac', ipad:'📲 iPad', watch:'⌚ Watch', airpods:'🎧 AirPods', accessories:'🧩 Аксессуары'},
+  uz:{iphone:'📱 iPhone', mac:'💻 Mac', ipad:'📲 iPad', watch:'⌚ Watch', airpods:'🎧 AirPods', accessories:'🧩 Aksessuarlar'},
+  en:{iphone:'📱 iPhone', mac:'💻 Mac', ipad:'📲 iPad', watch:'⌚ Watch', airpods:'🎧 AirPods', accessories:'🧩 Accessories'}
 };
 
 /* carousels */
-const POPULAR = ['iphone_15_pro_256','macbook_air_m2','airpods_pro_2'];
+const POPULAR = ['iphone_15_pro','macbook_air_m2','airpods_pro_2'];
 const GIFT_ITEMS = ['watch_series_9','ipad_air','charger_20w'];
 
 /* index */
 const ITEM_INDEX = {};
 for (const c in MENU){ MENU[c].forEach(it => ITEM_INDEX[it.id]=it); }
+
+/* category map */
 const ITEM_CAT = {};
 for (const c in MENU){ MENU[c].forEach(it => ITEM_CAT[it.id]=c); }
 
@@ -1398,160 +1222,10 @@ for (const c in MENU){ MENU[c].forEach(it => ITEM_CAT[it.id]=c); }
 function escapeHtml(s){return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
 function nameOf(id){const it = ITEM_INDEX[id]; return (it && it.n && (it.n[lang] || it.n.ru)) ? (it.n[lang] || it.n.ru) : id;}
 function formatSum(x){const n = Number(x) || 0; return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ');}
-function niceDate(iso){
-  const d = new Date(iso+'T00:00:00');
-  const dd=String(d.getDate()).padStart(2,'0');
-  const mm=String(d.getMonth()+1).padStart(2,'0');
-  const yy=String(d.getFullYear());
-  return `${dd}.${mm}.${yy}`;
-}
 
-/* ✅ приветствие */
-function renderWelcome(){
-  const el = document.getElementById('welcomeLine');
-  if(!el) return;
-  const name = (tg_first_name || tg_username || '').trim();
-  if(!name){ el.style.display='none'; return; }
-  el.style.display='block';
-  el.innerText = `${UI[lang].welcome}, ${name}!`;
-}
-
-/* apply UI texts */
-function applyUI(){
-  menuTitle.innerText = UI[lang].menu;
-
-  mVipTitle.innerText = UI[lang].vipTitle;
-  mVipSub.innerText = UI[lang].vipSub;
-  vipToggleTitle.innerText = UI[lang].vipToggleTitle;
-  vipToggleSub.innerText = UI[lang].vipToggleSub;
-  vipCallBtn.innerText = UI[lang].vipCall;
-  vipCloseBtn.innerText = UI[lang].vipClose;
-  vipHint.innerText = UI[lang].vipHint;
-  vipTable.placeholder = UI[lang].vipTablePh;
-
-  mGalleryTitle.innerText = UI[lang].galleryTitle;
-  mGallerySub.innerText = UI[lang].gallerySub;
-
-  mReviewsTitle.innerText = UI[lang].reviewsTitle;
-  mReviewsSub.innerText = UI[lang].reviewsSub;
-  reviewsYandexBtn.innerText = UI[lang].reviewsOpenY;
-  ratingAvgTxt.innerText = UI[lang].ratingAvg;
-  ratingPill.innerText = `${AVG_RATING} ★`;
-
-  mAboutTitle.innerText = UI[lang].aboutTitle;
-  mAboutSub.innerText   = UI[lang].aboutSub;
-  aboutAddrLabel.innerText  = UI[lang].aboutAddr;
-  aboutRouteBtn.innerText   = UI[lang].aboutRoute;
-  aboutPhoneLabel.innerText = UI[lang].aboutPhone;
-  aboutHoursLabel.innerText = UI[lang].aboutHours;
-  aboutAddrText.innerText   = ABOUT_ADDR[lang] || ABOUT_ADDR.ru;
-  aboutHoursText.innerText  = ABOUT_HOURS;
-
-  const d = document.getElementById('aboutDescText');
-  if(d) d.innerHTML = ABOUT_DESC[lang] || ABOUT_DESC.ru;
-
-  mReviewTitle.innerText = UI[lang].reviewTitle;
-  mReviewSub.innerText   = UI[lang].reviewSub;
-
-  mCallTitle.innerText = UI[lang].callTitle;
-  mInstaSub.innerText = UI[lang].instaSub;
-
-  searchTitle.innerText = UI[lang].searchResults;
-
-  popularTitle.innerText = UI[lang].popular;
-  giftTitle.innerText = UI[lang].gift;
-  comboTitle.innerText = UI[lang].combo;
-
-  btnDelivery.innerText = UI[lang].delivery;
-  btnPickup.innerText = UI[lang].pickup;
-
-  address.placeholder = UI[lang].address;
-  phone.placeholder = UI[lang].phone;
-
-  cartTitle.innerText = UI[lang].cart;
-  totalLabel.innerText = UI[lang].total;
-  orderBtn.innerText = UI[lang].order;
-  comment.placeholder = UI[lang].comment;
-
-  payCash.innerText = UI[lang].cash;
-  payClick.innerText = UI[lang].click;
-  payOnline.innerText = UI[lang].online;
-
-  clickTitle.innerText = UI[lang].clickTitle;
-  clickHint.innerText = UI[lang].clickHint;
-
-  sumCurrency.innerText = UI[lang].sum;
-  sumWord.innerText = UI[lang].sum;
-  sumWord2.innerText = UI[lang].sum;
-
-  recipLabel.innerText = UI[lang].recip;
-  cardLabel.innerText = UI[lang].card;
-  copyRecip.innerText = UI[lang].copy;
-  copyCard.innerText = UI[lang].copy;
-  onlineHint.innerText = UI[lang].onlineHint;
-
-  stickyCartBtn.innerText = UI[lang].cart;
-
-  clickQrImg.src = CLICK_QR_IMG;
-
-  renderWelcome();
-  renderGallery();
-  renderReviews();
-
-  renderCats();
-  if(!isSearchOpen()) renderProducts();
-  renderPopular(); renderGift();
-  renderComboGroups();
-
-  updateTotal();
-  setTimeout(syncStickyHeight, 50);
-}
-
-/* header actions */
+/* menu open/close */
 function openTopMenu(){ closeSearch(); menuBackdrop.classList.add('show'); menuSheet.classList.add('show'); }
 function closeTopMenu(){ menuBackdrop.classList.remove('show'); menuSheet.classList.remove('show'); }
-
-function openRoute(){ try{Telegram.WebApp.openLink(MAP_URL);}catch(_){window.open(MAP_URL,'_blank');} }
-function openRouteFromAbout(e){ try{e.preventDefault();e.stopPropagation();}catch(_){ } openRoute(); }
-
-function callPhone(e){ try{e.preventDefault();e.stopPropagation();}catch(_){ }
-  try{Telegram.WebApp.openLink(PHONE1_TEL);}catch(_){window.location.href=PHONE1_TEL;}
-}
-function callPhone2(e){ try{e.preventDefault();e.stopPropagation();}catch(_){ }
-  try{Telegram.WebApp.openLink(PHONE2_TEL);}catch(_){window.location.href=PHONE2_TEL;}
-}
-function openYandexReviews(e){
-  try{e.preventDefault();e.stopPropagation();}catch(_){ }
-  closeTopMenu();
-  try{Telegram.WebApp.openLink(YANDEX_REVIEWS_URL);}catch(_){window.open(YANDEX_REVIEWS_URL,'_blank');}
-}
-function openInstagram(e){
-  try{e.preventDefault();e.stopPropagation();}catch(_){ }
-  closeTopMenu();
-  try{Telegram.WebApp.openLink(INSTA_URL);}catch(_){window.open(INSTA_URL,'_blank');}
-}
-
-/* image modal */
-function openImage(e,id){
-  try{e.preventDefault();e.stopPropagation();}catch(_){}
-  const it=ITEM_INDEX[id];
-  imgModalTitle.innerText=nameOf(id);
-  imgModalImg.src=it?.img||'images/logo.png';
-  imgModalImg.onerror=function(){this.onerror=null;this.src='images/logo.png';};
-  imgModal.classList.add('show');
-}
-function openGalleryImage(e, title, src){
-  try{e.preventDefault();e.stopPropagation();}catch(_){}
-  imgModalTitle.innerText = title || 'Фото';
-  imgModalImg.src = src || 'images/logo.png';
-  imgModalImg.onerror=function(){this.onerror=null;this.src='images/logo.png';};
-  imgModal.classList.add('show');
-}
-function closeImgModal(e){
-  try{e.preventDefault();e.stopPropagation();}catch(_){}
-  imgModal.classList.remove('show');
-  imgModalImg.src='';
-}
 
 /* search */
 function isSearchOpen(){ return searchWrap.classList.contains('show'); }
@@ -1574,7 +1248,7 @@ function onSearchKey(e){ if(e.key==='Enter') closeSearch(); }
 
 function matchesQuery(it,q){
   if(!q) return true;
-  const all=[it.n?.ru,it.n?.uz,it.n?.en,it.n?.tr,String(it.id||'')].filter(Boolean).join(' ').toLowerCase();
+  const all=[it.n?.ru,it.n?.uz,it.n?.en,String(it.id||'')].filter(Boolean).join(' ').toLowerCase();
   return all.includes(q);
 }
 function searchProducts(){
@@ -1593,8 +1267,8 @@ function searchProducts(){
     });
   }
   if(found===0){
-    products.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:18px;font-weight:900;opacity:.9;background:rgba(0,0,0,.03);border:1px solid rgba(0,0,0,.08);border-radius:18px;">
-      ${lang==='ru'?'Ничего не найдено':lang==='uz'?'Hech narsa topilmadi':lang==='tr'?'Sonuç bulunamadı':'Nothing found'}
+    products.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:18px;font-weight:900;opacity:.9;background:rgba(17,24,39,.04);border:1px solid rgba(17,24,39,.08);border-radius:18px;">
+      ${lang==='ru'?'Ничего не найдено':lang==='uz'?'Hech narsa topilmadi':'Nothing found'}
     </div>`;
   }
 }
@@ -1635,7 +1309,7 @@ function renderPopular(){
   POPULAR.forEach(id=>{
     const it=ITEM_INDEX[id]; if(!it) return;
     cart[id]=cart[id]||0;
-    popularRow.innerHTML += popCardHTML(it, (lang==='ru'?'Хит':'TOP'));
+    popularRow.innerHTML += popCardHTML(it, lang==='ru'?'Популярное':lang==='uz'?'Ommabop':'Popular');
   });
 }
 function renderGift(){
@@ -1643,11 +1317,11 @@ function renderGift(){
   GIFT_ITEMS.forEach(id=>{
     const it=ITEM_INDEX[id]; if(!it) return;
     cart[id]=cart[id]||0;
-    giftRow.innerHTML += miniCardHTML(it, (lang==='ru'?'Совет':'Best'));
+    giftRow.innerHTML += miniCardHTML(it, lang==='ru'?'Рекомендуем':lang==='uz'?'Tavsiya':'Recommended');
   });
 }
 
-/* ✅ Часто берут вместе — для техники */
+/* Often bought together */
 function calcItemsSum(){
   let s=0;
   for(const id in cart) s += (cart[id]||0) * (ITEM_INDEX[id]?.p||0);
@@ -1668,24 +1342,22 @@ function pickSeveral(ids, limit){
   return out;
 }
 function buildComboGroups(){
-  if(calcItemsSum()===0) return [];
   const groups = [];
+  if(calcItemsSum()===0) return [];
 
-  // аксессуары к iPhone
-  if(hasCategoryInCart('iphone')){
-    const acc = pickSeveral(['magsafe_case','screen_glass','charger_20w'], 8);
-    if(acc.length) groups.push({title:UI[lang].comboAcc, label:(lang==='ru'?'Аксессуар':'Acc'), ids:acc});
+  const hasIphone = hasCategoryInCart('iphone');
+  const hasMacIpad = hasCategoryInCart('mac') || hasCategoryInCart('ipad');
+
+  if(hasIphone || hasMacIpad){
+    const accIds = pickSeveral(['case_iphone','glass_iphone','charger_20w','cable_typec'], 8);
+    if(accIds.length) groups.push({title:UI[lang].comboAcc, label:(lang==='ru'?'Аксессуар':lang==='uz'?'Aksessuar':'Accessory'), ids:accIds});
   }
-
-  // защита к любому
-  if(hasCategoryInCart('iphone') || hasCategoryInCart('ipad')){
-    const care = pickSeveral(['screen_glass','magsafe_case'], 8);
-    if(care.length) groups.push({title:UI[lang].comboCare, label:(lang==='ru'?'Защита':'Care'), ids:care});
+  if(hasIphone){
+    const careIds = pickSeveral(['glass_iphone','case_iphone'], 8);
+    if(careIds.length) groups.push({title:UI[lang].comboCare, label:(lang==='ru'?'Защита':lang==='uz'?'Himoya':'Protection'), ids:careIds});
   }
-
-  // ещё рекомендуем
-  const more = pickSeveral(['airpods_pro_2','watch_series_9','ipad_air'], 8);
-  if(more.length) groups.push({title:UI[lang].comboMore, label:(lang==='ru'?'Совет':'More'), ids:more});
+  const moreIds = pickSeveral(['airpods_pro_2','watch_series_9','ipad_air','macbook_air_m2'], 8);
+  if(moreIds.length) groups.push({title:UI[lang].comboMore, label:(lang==='ru'?'Совет':lang==='uz'?'Maslahat':'Tip'), ids:moreIds});
 
   return groups.filter(g=>g.ids && g.ids.length);
 }
@@ -1735,7 +1407,7 @@ function syncCounters(id){
   const b=document.getElementById('mc_'+id); if(b) b.innerText=cart[id]||0;
   const c=document.getElementById('c_'+id);  if(c) c.innerText=cart[id]||0;
 }
-function calcDeliveryFee(){ return (type==='delivery') ? (Number(DELIVERY_FEE)||0) : 0; }
+function calcDeliveryFee(){ return (type==='delivery') ? DELIVERY_FEE : 0; }
 function updateTotal(){
   const itemsSum=calcItemsSum();
   const dfee=calcDeliveryFee();
@@ -1810,8 +1482,23 @@ function openCart(){
   try{ el.scrollIntoView({behavior:'smooth', block:'start'}); }catch(_){}
 }
 
-/* Support toggle */
-let inHall = (localStorage.getItem('sebtech_support')||'0')==='1';
+/* image modal */
+function openImage(e,id){
+  try{e.preventDefault();e.stopPropagation();}catch(_){}
+  const it=ITEM_INDEX[id];
+  imgModalTitle.innerText=nameOf(id);
+  imgModalImg.src=it?.img||'images/logo.png';
+  imgModalImg.onerror=function(){this.onerror=null;this.src='images/logo.png';};
+  imgModal.classList.add('show');
+}
+function closeImgModal(e){
+  try{e.preventDefault();e.stopPropagation();}catch(_){}
+  imgModal.classList.remove('show');
+  imgModalImg.src='';
+}
+
+/* consultation */
+let inHall = (localStorage.getItem('sebtech_need_help')||'0')==='1';
 function toggleVip(e){
   try{e?.preventDefault?.();e?.stopPropagation?.();}catch(_){}
   const w=document.getElementById('vipWrap');
@@ -1820,12 +1507,26 @@ function toggleVip(e){
 }
 function toggleInHall(){
   inHall = !inHall;
-  localStorage.setItem('sebtech_support', inHall ? '1' : '0');
+  localStorage.setItem('sebtech_need_help', inHall ? '1' : '0');
   syncVipUI();
 }
 function syncVipUI(){
   const sw = document.getElementById('vipSwitch');
-  if(sw) sw.classList.toggle('on', !!inHall);
+  if(sw){
+    sw.classList.toggle('on', !!inHall);
+    sw.style.background = inHall ? 'rgba(120,191,255,.55)' : 'rgba(17,24,39,.12)';
+    sw.style.position='relative';
+    sw.style.cursor='pointer';
+    if(!sw.dataset.init){
+      sw.dataset.init='1';
+      const dot=document.createElement('div');
+      dot.style.cssText="position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:999px;background:#fff;box-shadow:0 10px 18px rgba(0,0,0,.14);transition:.18s;";
+      dot.id='vipDot';
+      sw.appendChild(dot);
+    }
+    const dot=document.getElementById('vipDot');
+    if(dot) dot.style.left = inHall ? '25px' : '3px';
+  }
   const btn = document.getElementById('vipCallBtn');
   if(btn){
     btn.style.opacity = inHall ? '1' : '.45';
@@ -1835,19 +1536,19 @@ function syncVipUI(){
 function callWaiter(e){
   try{e.preventDefault();e.stopPropagation();}catch(_){}
   if(!inHall) return;
-  const topic = (document.getElementById('vipTable')?.value || '').trim();
-
+  const question = (document.getElementById('vipTable')?.value || '').trim();
   const payload = {
-    action:'support',
+    action:'consult',
     brand:'SEBTECH',
+    branch,
     tg:{id:tg_id,username:tg_username,first_name:tg_first_name},
-    topic: topic || null,
+    message: question || null,
     time: new Date().toISOString()
   };
   try{
     Telegram.WebApp.HapticFeedback?.notificationOccurred?.('success');
     Telegram.WebApp.sendData(JSON.stringify(payload));
-    showToast(lang==='ru'?'✅ Запрос отправлен':lang==='uz'?'✅ So‘rov yuborildi':lang==='tr'?'✅ Talep gönderildi':'✅ Sent');
+    showToast(lang==='ru'?'✅ Запрос отправлен':lang==='uz'?'✅ So‘rov yuborildi':'✅ Request sent');
   }catch(_){
     showToast('✅');
   }
@@ -1862,59 +1563,13 @@ function showToast(t){
   toastTimer=setTimeout(()=>popup.classList.remove('show'), 1200);
 }
 
-/* Gallery */
-function toggleGallery(e){
-  try{e?.preventDefault?.();e?.stopPropagation?.();}catch(_){}
-  const w=document.getElementById('galleryWrap');
-  w.style.display=(w.style.display==='none'||!w.style.display)?'block':'none';
-}
-function renderGallery(){
-  const grid = document.getElementById('galleryGrid');
-  if(!grid) return;
-  grid.innerHTML='';
-  GALLERY.forEach(g=>{
-    const title = (g.t && (g.t[lang]||g.t.ru)) ? (g.t[lang]||g.t.ru) : g.id;
-    grid.innerHTML += `
-      <div class="gallery-tile" onclick="openGalleryImage(event,'${escapeHtml(title)}','${g.img}')">
-        <img src="${g.img}" onerror="this.src='images/logo.png'">
-        <div class="gallery-cap">${escapeHtml(title)}</div>
-      </div>
-    `;
-  });
-}
-
-/* Reviews */
-function toggleReviews(e){
-  try{e?.preventDefault?.();e?.stopPropagation?.();}catch(_){}
-  const w=document.getElementById('reviewsWrap');
-  w.style.display=(w.style.display==='none'||!w.style.display)?'block':'none';
-}
-function renderReviews(){
-  const list = document.getElementById('reviewsList');
-  if(!list) return;
-  list.innerHTML='';
-  (REVIEWS||[]).slice(0,3).forEach(r=>{
-    const text = (r.text && (r.text[lang]||r.text.ru)) ? (r.text[lang]||r.text.ru) : '';
-    list.innerHTML += `
-      <div class="rev-card">
-        <div class="rev-top">
-          <div class="rev-name">${escapeHtml(r.name||'')}</div>
-          <div class="rev-stars">${'★'.repeat(Math.max(0,Math.min(5,Number(r.stars||0))))}</div>
-        </div>
-        <div class="rev-text">${escapeHtml(text)}</div>
-        <div class="rev-date">${escapeHtml(niceDate(r.date||''))}</div>
-      </div>
-    `;
-  });
-}
-
 /* about */
 function toggleAbout(){
   const w=document.getElementById('aboutWrap');
   w.style.display=(w.style.display==='none'||!w.style.display)?'block':'none';
 }
 
-/* order */
+/* order id + send */
 function genOrderId(){
   const d=new Date();
   const dd=String(d.getDate()).padStart(2,'0');
@@ -1948,6 +1603,9 @@ function sendOrder(){
   const payload={
     action:'order',
     brand:'SEBTECH',
+    branch,
+    branch_title: branchTitleForLang(),
+    branch_address: branchAddressForLang(),
     tg:{id:tg_id,username:tg_username,first_name:tg_first_name},
     items,
     total_items: formatSum(itemsSum),
@@ -1971,11 +1629,11 @@ function sendOrder(){
 
 /* theme */
 try{
-  Telegram.WebApp.setHeaderColor?.('#EEF2F6');
-  Telegram.WebApp.setBackgroundColor?.('#EEF2F6');
+  Telegram.WebApp.setHeaderColor?.('#0B0B0C');
+  Telegram.WebApp.setBackgroundColor?.('#C9D0D8');
 }catch(_){}
 
-/* init */
+/* inputs */
 address.value = localStorage.getItem('sebtech_address') || '';
 phone.value = localStorage.getItem('sebtech_phone') || PHONE1_DISPLAY;
 address.addEventListener('input',()=>localStorage.setItem('sebtech_address',address.value));
@@ -1985,18 +1643,102 @@ function setLang(l,btn){
   lang=l;
   document.querySelectorAll('.langs .btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
+
+  // обновляем ABOUT_DESC с текущим филиалом
+  ABOUT_DESC.ru = ABOUT_DESC.ru.replace(/<b>📍 Адрес:<\/b>.*?<br>/, `<b>📍 Адрес:</b> ${BRANCHES[branch].addressRU}<br>`);
+  ABOUT_DESC.uz = ABOUT_DESC.uz.replace(/<b>📍 Manzil:<\/b>.*?<br>/, `<b>📍 Manzil:</b> ${BRANCHES[branch].addressUZ}<br>`);
+  ABOUT_DESC.en = ABOUT_DESC.en.replace(/<b>📍 Address:<\/b>.*?<br>/, `<b>📍 Address:</b> ${BRANCHES[branch].addressEN}<br>`);
+
   applyUI();
 }
 
-/* start */
-function renderCatsFirst(){
-  renderPopular(); renderGift();
-  renderCats(); renderProducts();
-}
-renderCatsFirst();
+/* apply UI */
+function applyUI(){
+  menuTitle.innerText = UI[lang].menu;
 
-/* ✅ старт: узбекский + самовывоз */
-applyUI();
+  mBranchTitle.innerText = UI[lang].branchPick;
+  mBranchSub.innerText   = UI[lang].branchSub;
+
+  mVipTitle.innerText = UI[lang].vipTitle;
+  mVipSub.innerText = UI[lang].vipSub;
+  vipToggleTitle.innerText = UI[lang].vipToggleTitle;
+  vipToggleSub.innerText = UI[lang].vipToggleSub;
+  vipCallBtn.innerText = UI[lang].vipCall;
+  vipCloseBtn.innerText = UI[lang].vipClose;
+  vipHint.innerText = UI[lang].vipHint;
+  vipTable.placeholder = UI[lang].vipTablePh;
+
+  mAboutTitle.innerText = UI[lang].aboutTitle;
+  mAboutSub.innerText   = UI[lang].aboutSub;
+  aboutAddrLabel.innerText  = UI[lang].aboutAddr;
+  aboutRouteBtn.innerText   = UI[lang].aboutRoute;
+  aboutPhoneLabel.innerText = UI[lang].aboutPhone;
+  aboutHoursLabel.innerText = UI[lang].aboutHours;
+  aboutHoursText.innerText  = ABOUT_HOURS;
+
+  // dynamic address by branch
+  aboutAddrText.innerText = branchAddressForLang();
+  aboutDescText.innerHTML = (ABOUT_DESC[lang] || ABOUT_DESC.ru);
+
+  mCallTitle.innerText = UI[lang].callTitle;
+  mInstaSub1.innerText = UI[lang].instaSub;
+  mInstaSub2.innerText = UI[lang].instaSub;
+
+  searchTitle.innerText = UI[lang].searchResults;
+
+  popularTitle.innerText = UI[lang].popular;
+  giftTitle.innerText = UI[lang].gift;
+  comboTitle.innerText = UI[lang].combo;
+
+  btnDelivery.innerText = UI[lang].delivery;
+  btnPickup.innerText = UI[lang].pickup;
+
+  address.placeholder = UI[lang].address;
+  phone.placeholder = UI[lang].phone;
+
+  cartTitle.innerText = UI[lang].cart;
+  totalLabel.innerText = UI[lang].total;
+  orderBtn.innerText = UI[lang].order;
+  comment.placeholder = UI[lang].comment;
+
+  payCash.innerText = UI[lang].cash;
+  payClick.innerText = UI[lang].click;
+  payOnline.innerText = UI[lang].online;
+
+  clickTitle.innerText = UI[lang].clickTitle;
+  clickHint.innerText = UI[lang].clickHint;
+
+  sumCurrency.innerText = UI[lang].sum;
+  sumWord.innerText = UI[lang].sum;
+  sumWord2.innerText = UI[lang].sum;
+
+  recipLabel.innerText = UI[lang].recip;
+  cardLabel.innerText = UI[lang].card;
+  copyRecip.innerText = UI[lang].copy;
+  copyCard.innerText = UI[lang].copy;
+  onlineHint.innerText = UI[lang].onlineHint;
+
+  stickyCartBtn.innerText = UI[lang].cart;
+
+  clickQrImg.src = CLICK_QR_IMG;
+
+  renderWelcome();
+  applyBranchToUI();
+
+  renderCats();
+  if(!isSearchOpen()) renderProducts();
+  renderPopular(); renderGift();
+  renderComboGroups();
+
+  updateTotal();
+  setTimeout(syncStickyHeight, 50);
+}
+
+/* init */
+renderPopular(); renderGift();
+renderCats(); renderProducts();
+
+/* ✅ старт: uz + pickup */
 setPayment('cash');
 
 type='pickup';
@@ -2008,13 +1750,16 @@ lang='uz';
 document.querySelectorAll('.langs .btn').forEach(b=>b.classList.remove('active'));
 const uzBtn = document.getElementById('langUZ');
 if(uzBtn) uzBtn.classList.add('active');
+
+applyBranchToUI();
+syncBranchUI();
 applyUI();
 
 updateTotal();
 setTimeout(syncStickyHeight, 50);
+
 closeSearch();
 syncVipUI();
-setTimeout(()=>{ showSplash(); }, 150);
 </script>
 </body>
 </html>
