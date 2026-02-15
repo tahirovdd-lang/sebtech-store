@@ -246,35 +246,77 @@ body{
 .popular-wrap{width:100%;padding:4px 12px 6px;}
 .popular-title{width:100%;font-weight:900;padding:8px 2px 10px;display:flex;align-items:center;gap:8px;color:#E5E7EB;}
 .popular-row,.mini-row{display:flex;gap:12px;overflow-x:auto;padding:2px 2px 10px;-webkit-overflow-scrolling:touch;}
+
+/* ✅ carousel cards */
 .pop-card,.mini-card{
-  min-width:160px;border-radius:24px;padding:10px;
+  min-width:160px;border-radius:24px;padding:12px;
   background: rgba(30,41,59,.60);
   border:1px solid var(--stroke2);
   box-shadow: 0 12px 26px rgba(0,0,0,.55);
   cursor:pointer;transition:.15s;position:relative;
   color:#E5E7EB;
 }
+
+/* ✅ make carousel image blocks SAME as normal product */
 .pop-img,.mini-img{
-  height:92px;
+  height:184px;
   border-radius:18px;
   overflow:hidden;
   display:flex;align-items:center;justify-content:center;
-  background:rgba(59,130,246,.14);
+  background: transparent;
   cursor:pointer;
+  margin-bottom:6px;
 }
-.pop-img img,.mini-img img{width:100%;height:100%;object-fit:cover;border-radius:18px;}
-.pop-name{font-weight:900;margin-top:8px;}
-.pop-price,.mini-price{font-weight:900;color:var(--accent);margin-top:4px;}
+.pop-img img,.mini-img img{
+  max-width:168px;
+  max-height:168px;
+  object-fit:cover;
+  transform:scale(1.06); /* ✅ "отдоли" фото немного */
+  border-radius:18px;
+}
+
+/* ✅ text blocks align with normal */
+.pop-name{
+  margin-top:2px;
+  padding:0 6px;
+  font-weight:900;
+  line-height:1.15;
+  min-height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  word-break:break-word;
+  text-align:center;
+}
+.pop-price,.mini-price{
+  font-weight:900;
+  color:var(--accent);
+  margin-top:6px;
+  text-align:center;
+}
 .pop-counter,.mini-counter{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:8px;}
 .pop-counter button,.mini-counter button{
-  width:30px;height:30px;border-radius:50%;cursor:pointer;border:1px solid rgba(255,255,255,.14);
+  width:32px;height:32px;border-radius:50%;cursor:pointer;border:1px solid rgba(255,255,255,.14);
   background: linear-gradient(180deg, var(--accent), var(--accent2));
   color:#fff;font-size:18px;font-weight:900;box-shadow:0 12px 24px rgba(0,0,0,.55);
 }
-.mini-card{min-width:140px;border-radius:22px;}
-.mini-counter button{width:28px;height:28px;}
-.mini-name{font-weight:900;margin-top:8px;font-size:12px;line-height:1.15;min-height:28px;}
+.pop-counter button:active,.mini-counter button:active{transform:scale(.96);}
 .pop-counter span,.mini-counter span{font-weight:900; min-width:18px; text-align:center;}
+
+/* ✅ recommend cards keep same sizes now */
+.mini-card{min-width:160px;border-radius:24px;}
+.mini-name{
+  margin-top:2px;
+  padding:0 6px;
+  font-weight:900;
+  line-height:1.15;
+  min-height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  word-break:break-word;
+  text-align:center;
+}
 
 /* cart */
 .cart{
@@ -311,7 +353,7 @@ textarea.input{height:90px;}
 .popup-box{
   background: rgba(15,23,42,.96);
   padding:26px;border-radius:24px;text-align:center;font-weight:800;border:1px solid rgba(255,255,255,.14);
-  box-shadow: 0 14px 26px rgba(0,0,0,.60);
+  box-shadow:0 14px 26px rgba(0,0,0,.60);
   color:#fff;
 }
 
@@ -627,87 +669,20 @@ textarea.input{height:90px;}
 <body>
 
 <!-- ✅ Файлы изображений (JPG) которые надо загрузить в папку images:
-  Лого: logo.png (если хочешь — можно заменить на logo.jpg, но тогда измени в коде)
-
   CLICK QR: qr_click.jpg
-
-  iPhone:
-  iphone_17.jpg
-  iphone_17_plus.jpg
-  iphone_17_pro.jpg
-  iphone_17_pro_max.jpg
-
-  iphone_16.jpg
-  iphone_16_plus.jpg
-  iphone_16_pro.jpg
-  iphone_16_pro_max.jpg
-
-  iphone_15.jpg
-  iphone_15_plus.jpg
-  iphone_15_pro.jpg
-  iphone_15_pro_max.jpg
-
-  iphone_14.jpg
-  iphone_14_plus.jpg
-  iphone_14_pro.jpg
-  iphone_14_pro_max.jpg
-
-  iphone_13.jpg
-  iphone_13_mini.jpg
-  iphone_13_pro.jpg
-  iphone_13_pro_max.jpg
-
-  iphone_12.jpg
-  iphone_12_mini.jpg
-  iphone_12_pro.jpg
-  iphone_12_pro_max.jpg
-
-  iphone_11.jpg
-  iphone_11_pro.jpg
-  iphone_11_pro_max.jpg
-
+  iphone_17.jpg, iphone_17_plus.jpg, iphone_17_pro.jpg, iphone_17_pro_max.jpg
+  iphone_16.jpg, iphone_16_plus.jpg, iphone_16_pro.jpg, iphone_16_pro_max.jpg
+  iphone_15.jpg, iphone_15_plus.jpg, iphone_15_pro.jpg, iphone_15_pro_max.jpg
+  iphone_14.jpg, iphone_14_plus.jpg, iphone_14_pro.jpg, iphone_14_pro_max.jpg
+  iphone_13.jpg, iphone_13_mini.jpg, iphone_13_pro.jpg, iphone_13_pro_max.jpg
+  iphone_12.jpg, iphone_12_mini.jpg, iphone_12_pro.jpg, iphone_12_pro_max.jpg
+  iphone_11.jpg, iphone_11_pro.jpg, iphone_11_pro_max.jpg
   iphone_other.jpg
-
-  Mac:
-  mac_air_13_m4.jpg
-  mac_air_15_m4.jpg
-  mac_air_m3.jpg
-  mac_air_m2.jpg
-  mac_air_m1.jpg
-  mac_pro_m4.jpg
-  mac_pro_m3.jpg
-
-  iPad:
-  ipad_pro_m5.jpg
-  ipad_pro_m4.jpg
-  ipad_air_m3.jpg
-  ipad_air_m2.jpg
-  ipad_mini.jpg
-
-  Watch:
-  watch_ultra_3.jpg
-  watch_ultra_2.jpg
-  watch_11.jpg
-  watch_se_3.jpg
-  watch_se_2.jpg
-  watch_10.jpg
-  watch_9.jpg
-  watch_7.jpg
-
-  AirPods:
-  airpods_max.jpg
-  airpods_4.jpg
-  airpods_3.jpg
-  airpods_2p.jpg
-
-  Accessories:
-  acc_cases.jpg
-  acc_glass.jpg
-  acc_charger.jpg
-  acc_magsafe.jpg
-  acc_usb.jpg
-  acc_straps.jpg
-  acc_airtag.jpg
+  mac_air_13_m4.jpg, mac_air_15_m4.jpg, mac_air_m3.jpg, mac_air_m2.jpg, mac_air_m1.jpg, mac_pro_m4.jpg, mac_pro_m3.jpg
+  ipad_pro_m5.jpg, ipad_pro_m4.jpg, ipad_air_m3.jpg, ipad_air_m2.jpg, ipad_mini.jpg
+  watch_ultra_3.jpg, watch_ultra_2.jpg, watch_11.jpg, watch_se_3.jpg, watch_se_2.jpg, watch_10.jpg, watch_9.jpg, watch_7.jpg
+  airpods_max.jpg, airpods_4.jpg, airpods_3.jpg, airpods_2p.jpg
+  acc_cases.jpg, acc_glass.jpg, acc_charger.jpg, acc_magsafe.jpg, acc_usb.jpg, acc_straps.jpg, acc_airtag.jpg
 -->
 
 <div class="header">
@@ -751,7 +726,6 @@ textarea.input{height:90px;}
 
   <div class="menu-list">
 
-    <!-- 1) Выбрать филиал -->
     <div class="menu-item" onclick="toggleBranch()" role="button">
       <div class="menu-left">
         <div class="menu-ic">🏬</div>
@@ -778,7 +752,6 @@ textarea.input{height:90px;}
       </div>
     </div>
 
-    <!-- 2) Позвонить -->
     <a class="menu-item" href="tel:+998901001110" onclick="closeTopMenu()">
       <div class="menu-left">
         <div class="menu-ic">📞</div>
@@ -790,7 +763,6 @@ textarea.input{height:90px;}
       <div class="menu-right">›</div>
     </a>
 
-    <!-- 3) Консультация -->
     <div class="menu-item" onclick="toggleVip()" role="button">
       <div class="menu-left">
         <div class="menu-ic">💬</div>
@@ -824,7 +796,6 @@ textarea.input{height:90px;}
       </div>
     </div>
 
-    <!-- 4) Instagram 1 -->
     <a class="menu-item" href="#" onclick="openInstagram('makon', event)">
       <div class="menu-left">
         <div class="menu-ic">📸</div>
@@ -836,7 +807,6 @@ textarea.input{height:90px;}
       <div class="menu-right">›</div>
     </a>
 
-    <!-- 5) Instagram 2 -->
     <a class="menu-item" href="#" onclick="openInstagram('bulvar', event)">
       <div class="menu-left">
         <div class="menu-ic">📸</div>
@@ -848,7 +818,6 @@ textarea.input{height:90px;}
       <div class="menu-right">›</div>
     </a>
 
-    <!-- 6) Оставить отзыв -->
     <a class="menu-item" href="#" onclick="openReview(event)">
       <div class="menu-left">
         <div class="menu-ic">⭐</div>
@@ -860,7 +829,6 @@ textarea.input{height:90px;}
       <div class="menu-right">›</div>
     </a>
 
-    <!-- 7) О нас -->
     <div class="menu-item" onclick="toggleAbout()" role="button">
       <div class="menu-left">
         <div class="menu-ic">ℹ️</div>
@@ -932,7 +900,7 @@ textarea.input{height:90px;}
   <button class="btn" id="langEN" onclick="setLang('en',this)"><span class="lang-flag">🇬🇧</span>EN</button>
 </div>
 
-<!-- ✅ NEW: Акция (only phones) ABOVE Popular -->
+<!-- ✅ Акция -->
 <div class="popular-wrap" id="saleWrap">
   <div class="popular-title" id="saleTitle">💥 Акция</div>
   <div class="popular-row" id="saleRow"></div>
@@ -967,7 +935,6 @@ textarea.input{height:90px;}
     <button class="btn" id="payOnline" onclick="setPayment('online')"></button>
   </div>
 
-  <!-- ✅ CLICK QR -->
   <div class="click-box" id="clickBox">
     <div class="click-title" id="clickTitle">CLICK QR</div>
     <div class="click-qr">
@@ -978,7 +945,6 @@ textarea.input{height:90px;}
     </div>
   </div>
 
-  <!-- ✅ ONLINE DATA -->
   <div class="online-box" id="onlineBox">
     <div class="online-label" id="recipLabel">Получатель</div>
     <div class="online-row">
@@ -1003,7 +969,6 @@ textarea.input{height:90px;}
 
 <div class="popup" id="popup"><div class="popup-box" id="popupText">✅</div></div>
 
-<!-- ✅ Modal with photo + specs -->
 <div class="img-modal" id="imgModal" onclick="closeImgModal(event)">
   <div class="img-modal-box" onclick="event.stopPropagation()">
     <div class="img-modal-top">
@@ -1058,20 +1023,15 @@ function syncStickyHeight(){
 window.addEventListener('resize', ()=>setTimeout(syncStickyHeight, 50), {passive:true});
 window.addEventListener('orientationchange', ()=>setTimeout(syncStickyHeight, 250), {passive:true});
 
-/* ✅ fixed links */
 const HEADER_LOCATION_URL = "https://yandex.uz/maps/org/107331183238/?ll=66.956433%2C39.611594&z=13.38";
 const REVIEW_URL = "https://yandex.uz/maps/org/107331183238/?ll=66.956433%2C39.611594&z=13.38";
-
-/* ✅ Admin */
 const ADMIN_ID = 6013591658;
 
-/* ✅ phones */
 const PHONE1_DISPLAY = "+998 90 100 11 10";
 const PHONE1_TEL = "tel:+998901001110";
 const PHONE2_DISPLAY = "+998 91 285 99 99";
 const PHONE2_TEL = "tel:+998912859999";
 
-/* ✅ branches */
 const BRANCHES = {
   makon:{
     titleRU:"Makon Mall", titleUZ:"Makon Mall", titleEN:"Makon Mall",
@@ -1121,8 +1081,6 @@ function openRouteByBranch(){ openLink(yandexSearchUrl(branchAddressForLang()));
 function openRouteFromAbout(e){ try{e.preventDefault();e.stopPropagation();}catch(_){}
   openRouteByBranch();
 }
-
-/* ✅ choose branch + open route immediately */
 function chooseBranchAndRoute(code, e){
   try{e?.preventDefault?.();e?.stopPropagation?.();}catch(_){}
   if(!BRANCHES[code]) return;
@@ -1134,16 +1092,12 @@ function chooseBranchAndRoute(code, e){
   openRouteByBranch();
   Telegram.WebApp.HapticFeedback?.notificationOccurred?.('success');
 }
-
-/* phones */
 function callPhone(e){ try{e.preventDefault();e.stopPropagation();}catch(_){}
   try{Telegram.WebApp.openLink(PHONE1_TEL);}catch(_){window.location.href=PHONE1_TEL;}
 }
 function callPhone2(e){ try{e.preventDefault();e.stopPropagation();}catch(_){}
   try{Telegram.WebApp.openLink(PHONE2_TEL);}catch(_){window.location.href=PHONE2_TEL;}
 }
-
-/* copy helper */
 function copyText(t){
   const text = String(t || "");
   if(!text) return;
@@ -1162,13 +1116,11 @@ function copyText(t){
   }catch(_){}
 }
 
-/* Telegram user */
 const tgUser = Telegram.WebApp.initDataUnsafe?.user || {};
 const tg_username = tgUser.username || "";
 const tg_first_name = tgUser.first_name || "";
 const tg_id = tgUser.id || "";
 
-/* UI translations */
 const UI = {
   ru:{
     menu:'Меню',
@@ -1273,7 +1225,6 @@ const CATS = {
   en:{iphone:'📱 iPhone', mac:'💻 Mac', ipad:'📲 iPad', watch:'⌚ Watch', airpods:'🎧 AirPods', accessories:'🧩 Accessories'}
 };
 
-/* ✅ FULL SUBCATEGORIES (icons + bottom sheet) */
 const SUBCATS = {
   iphone: [
     {k:'iphone_17', e:'📱', ru:'iPhone 17', uz:'iPhone 17', en:'iPhone 17'},
@@ -1328,7 +1279,6 @@ const SUBCATS = {
   ]
 };
 
-/* ========= PRICES ========= */
 const PRICE = {
   iphone_17: {base: 17900000, plus: 19900000, pro: 23900000, pm: 26900000},
   iphone_16: {base: 15900000, plus: 17900000, pro: 21900000, pm: 24900000},
@@ -1375,11 +1325,9 @@ const PRICE = {
   acc_airtag: 590000
 };
 
-/* ✅ names + images (JPG) */
 function mkName(ru, uz, en){ return {ru, uz, en}; }
 function imgOrDefault(path){ return path || 'images/logo.png'; }
 
-/* ✅ specs defaults */
 const SPEC_DEFAULTS = {
   region: "Global",
   color: "Mix",
@@ -1389,7 +1337,6 @@ const SPEC_DEFAULTS = {
 
 const MENU = { iphone:[], mac:[], ipad:[], watch:[], airpods:[], accessories:[] };
 
-/* ---------- iPhone generator ---------- */
 function addIphoneFamily(subKey, genLabel, options){
   const S_BASE = options.storagesBase || [128,256,512];
   const S_PRO  = options.storagesPro  || [256,512,1024];
@@ -1433,7 +1380,6 @@ function addIphoneFamily(subKey, genLabel, options){
   }
 }
 
-/* generate iPhones */
 addIphoneFamily('iphone_17','17',{hasPlus:true,hasPro:true,hasProMax:true,storagesBase:[128,256,512],storagesPro:[256,512,1024]});
 addIphoneFamily('iphone_16','16',{hasPlus:true,hasPro:true,hasProMax:true,storagesBase:[128,256,512],storagesPro:[256,512,1024]});
 addIphoneFamily('iphone_15','15',{hasPlus:true,hasPro:true,hasProMax:true,storagesBase:[128,256,512],storagesPro:[128,256,512,1024]});
@@ -1442,7 +1388,6 @@ addIphoneFamily('iphone_13','13',{hasMini:true,hasPro:true,hasProMax:true,storag
 addIphoneFamily('iphone_12','12',{hasMini:true,hasPro:true,hasProMax:true,storagesBase:[64,128,256],storagesPro:[128,256,512]});
 addIphoneFamily('iphone_11','11',{hasPro:true,hasProMax:true,storagesBase:[64,128,256],storagesPro:[64,256,512]});
 
-/* Other iPhones */
 [
   {m:'iPhone SE (2022)', mem:[64,128,256], price: 4500000},
   {m:'iPhone XR', mem:[64,128,256], price: 3900000},
@@ -1472,7 +1417,6 @@ addIphoneFamily('iphone_11','11',{hasPro:true,hasProMax:true,storagesBase:[64,12
   });
 });
 
-/* ---------- Mac generator ---------- */
 function addMac(subKey, baseNameRu, baseNameUz, baseNameEn, basePrice, configs){
   (configs||[]).forEach((c,idx)=>{
     const id=`mac_${subKey}_${idx}`;
@@ -1501,7 +1445,6 @@ addMac('mac_air_m1','MacBook Air (M1)','MacBook Air (M1)','MacBook Air (M1)', PR
 addMac('mac_pro_m4','MacBook Pro (M4)','MacBook Pro (M4)','MacBook Pro (M4)', PRICE.mac_pro_m4, ['14" 16/512','14" 24/1TB','16" 24/1TB','16" 36/1TB']);
 addMac('mac_pro_m3','MacBook Pro (M3)','MacBook Pro (M3)','MacBook Pro (M3)', PRICE.mac_pro_m3, ['14" 8/512','14" 16/1TB','16" 18/512','16" 36/1TB']);
 
-/* ---------- iPad generator ---------- */
 function addIpad(subKey, nameRu, nameUz, nameEn, basePrice, configs){
   (configs||[]).forEach((c,idx)=>{
     MENU.ipad.push({
@@ -1528,7 +1471,6 @@ addIpad('ipad_air_m3','iPad Air (M3)','iPad Air (M3)','iPad Air (M3)', PRICE.ipa
 addIpad('ipad_air_m2','iPad Air (M2)','iPad Air (M2)','iPad Air (M2)', PRICE.ipad_air_m2, ['64','256','512']);
 addIpad('ipad_mini','iPad mini','iPad mini','iPad mini', PRICE.ipad_mini, ['64','256']);
 
-/* ---------- Watch generator ---------- */
 function addWatch(subKey, nameRu, nameUz, nameEn, basePrice, variants){
   (variants||[]).forEach((v,idx)=>{
     MENU.watch.push({
@@ -1557,7 +1499,6 @@ addWatch('watch_10','Apple Watch Series 10','Apple Watch Series 10','Apple Watch
 addWatch('watch_9','Apple Watch Series 9','Apple Watch Series 9','Apple Watch Series 9', PRICE.watch_9, ['41mm','45mm']);
 addWatch('watch_7','Apple Watch Series 7','Apple Watch Series 7','Apple Watch Series 7', PRICE.watch_7, ['41mm','45mm']);
 
-/* ---------- AirPods generator ---------- */
 function addAirpods(subKey, nameRu, nameUz, nameEn, basePrice, variants){
   (variants||[]).forEach((v,idx)=>{
     MENU.airpods.push({
@@ -1582,7 +1523,6 @@ addAirpods('airpods_4','AirPods 4','AirPods 4','AirPods 4', PRICE.airpods_4, ['S
 addAirpods('airpods_3','AirPods 3','AirPods 3','AirPods 3', PRICE.airpods_3, ['MagSafe','Lightning']);
 addAirpods('airpods_2p','AirPods Pro (2)','AirPods Pro (2)','AirPods Pro (2)', PRICE.airpods_2p, ['USB-C','Lightning']);
 
-/* ---------- Accessories generator ---------- */
 function addAcc(subKey, nameRu, nameUz, nameEn, basePrice, variants, img){
   (variants||[]).forEach((v,idx)=>{
     MENU.accessories.push({
@@ -1610,11 +1550,9 @@ addAcc('acc_usb','Кабель','Kabel','Cable', PRICE.acc_usb, ['Type-C to Type
 addAcc('acc_straps','Ремешок Apple Watch','Apple Watch remeshok','Apple Watch Strap', PRICE.acc_straps, ['Sport Band','Solo Loop','Braided Loop','Leather Link','Metal Bracelet'], 'images/acc_straps.jpg');
 addAcc('acc_airtag','Трекер','Trekker','Tracker', PRICE.acc_airtag, ['AirTag (1 pack)','AirTag (4 pack)','Keyring','Case','Holder'], 'images/acc_airtag.jpg');
 
-/* Build ITEM_INDEX */
 const ITEM_INDEX = {};
 for (const c in MENU){ MENU[c].forEach(it => ITEM_INDEX[it.id]=it); }
 
-/* ✅ Carousels */
 const POPULAR = [
   MENU.iphone.find(x=>x.sub==='iphone_15' && (x.n?.ru||'').includes('Pro'))?.id,
   MENU.mac.find(x=>x.sub==='mac_air_m2')?.id,
@@ -1627,7 +1565,6 @@ const GIFT_ITEMS = [
   MENU.accessories.find(x=>x.sub==='acc_charger')?.id
 ].filter(Boolean);
 
-/* ✅ NEW: SALE (only phones) */
 const SALE_ITEMS = [
   MENU.iphone.find(x=>x.sub==='iphone_15' && (x.n?.ru||'').includes('Pro Max'))?.id,
   MENU.iphone.find(x=>x.sub==='iphone_14' && (x.n?.ru||'').includes('Pro'))?.id,
@@ -1635,7 +1572,6 @@ const SALE_ITEMS = [
   MENU.iphone.find(x=>x.sub==='iphone_12' && (x.n?.ru||'').includes('Pro'))?.id
 ].filter(Boolean);
 
-/* state */
 let lang='uz',
     category = localStorage.getItem('sebtech_cat') || 'iphone',
     subcat   = localStorage.getItem('sebtech_subcat') || (SUBCATS[category]?.[0]?.k || ''),
@@ -1645,7 +1581,6 @@ let lang='uz',
 if(!MENU[category]) category='iphone';
 if(!SUBCATS[category]?.some(s=>s.k===subcat)) subcat = (SUBCATS[category]?.[0]?.k || '');
 
-/* helpers */
 function escapeHtml(s){return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
 function nameOf(id){const it = ITEM_INDEX[id]; return (it && it.n && (it.n[lang] || it.n.ru)) ? (it.n[lang] || it.n.ru) : id;}
 function formatSum(x){const n = Number(x) || 0; return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ');}
@@ -1655,11 +1590,9 @@ function priceText(p){
   return UI[lang].priceAsk;
 }
 
-/* menu open/close */
 function openTopMenu(){ closeSearch(); menuBackdrop.classList.add('show'); menuSheet.classList.add('show'); }
 function closeTopMenu(){ menuBackdrop.classList.remove('show'); menuSheet.classList.remove('show'); }
 
-/* search */
 function isSearchOpen(){ return searchWrap.classList.contains('show'); }
 function toggleSearch(){ isSearchOpen()?closeSearch():openSearch(); }
 function openSearch(){
@@ -1677,6 +1610,7 @@ function closeSearch(){
 }
 function clearSearch(){ closeSearch(); }
 function onSearchKey(e){ if(e.key==='Enter') closeSearch(); }
+
 function matchesQuery(it,q){
   if(!q) return true;
   const all=[it.n?.ru,it.n?.uz,it.n?.en,String(it.id||''),String(it.sub||'')].filter(Boolean).join(' ').toLowerCase();
@@ -1705,7 +1639,6 @@ function searchProducts(){
   updateTotal();
 }
 
-/* categories */
 function renderCats(){
   cats.innerHTML='';
   for(const k in MENU){
@@ -1724,7 +1657,6 @@ function onCategoryClick(k){
   if(!isSearchOpen()) renderProducts();
 }
 
-/* ✅ subcategories bottom sheet */
 function subTitleForCat(){
   const catName = (CATS[lang]?.[category] || category);
   return `${UI[lang].subcats}: ${catName}`;
@@ -1766,7 +1698,6 @@ function pickSubcat(k){
   Telegram.WebApp.HapticFeedback?.notificationOccurred?.('success');
 }
 
-/* products */
 function cardHTML(it){
   const id=it.id;
   const qty=cart[id]||0;
@@ -1807,7 +1738,6 @@ function renderProducts(){
   updateTotal();
 }
 
-/* carousels */
 function popCardHTML(it, prefix){
   const id=it.id;
   const px = prefix || 'pc_';
@@ -1848,7 +1778,6 @@ function renderSale(){
     saleRow.innerHTML += popCardHTML(it, 'sc_');
   });
 }
-
 function renderPopular(){
   popularRow.innerHTML='';
   POPULAR.forEach(id=>{
@@ -1881,7 +1810,6 @@ function syncCounters(id){
   const c=document.getElementById('c_'+id);  if(c) c.innerText=cart[id]||0;
   const s=document.getElementById('sc_'+id); if(s) s.innerText=cart[id]||0;
 }
-
 function calcItemsSum(){
   let s=0;
   for(const id in cart){
@@ -1891,22 +1819,17 @@ function calcItemsSum(){
   }
   return s;
 }
-
-/* totals */
 function updateTotal(){
   const itemsSum = calcItemsSum();
   total.innerText = formatSum(itemsSum);
   grandTotal.innerText = formatSum(itemsSum);
   stickyTotal.innerText = formatSum(itemsSum);
 }
-
 function chg(id,delta){
   cart[id]=Math.max(0,(cart[id]||0)+delta);
   syncCounters(id);
   updateTotal();
 }
-
-/* payments */
 function setPayment(p){
   payment=p;
   payCash.classList.toggle('active', p==='cash');
@@ -1920,8 +1843,6 @@ function openCart(){
   syncStickyHeight();
   try{ el.scrollIntoView({behavior:'smooth', block:'start'}); }catch(_){}
 }
-
-/* image + specs modal */
 function openImage(e,id){
   try{e.preventDefault();e.stopPropagation();}catch(_){}
   const it = ITEM_INDEX[id];
@@ -1947,7 +1868,6 @@ function closeImgModal(e){
   imgModalImg.src='';
 }
 
-/* toast */
 let toastTimer=null;
 function showToast(t){
   popup.classList.add('show');
@@ -1956,7 +1876,6 @@ function showToast(t){
   toastTimer=setTimeout(()=>popup.classList.remove('show'), 1200);
 }
 
-/* branch UI */
 function toggleBranch(e){
   try{e?.preventDefault?.();e?.stopPropagation?.();}catch(_){}
   const w=document.getElementById('branchWrap');
@@ -1969,15 +1888,12 @@ function syncBranchUI(){
   if(a) a.classList.toggle('active', branch==='makon');
   if(b) b.classList.toggle('active', branch==='bulvar');
 }
-
 function openInstagram(which, e){
   try{e?.preventDefault?.();e?.stopPropagation?.();}catch(_){}
   closeTopMenu();
   const code = (which==='bulvar') ? 'bulvar' : 'makon';
   openLink(BRANCHES[code].insta);
 }
-
-/* about */
 function applyBranchToUI(){
   const aboutAddrText=document.getElementById('aboutAddrText');
   if(aboutAddrText) aboutAddrText.innerText = branchAddressForLang();
@@ -2001,7 +1917,6 @@ function toggleAbout(){
   w.style.display=(w.style.display==='none'||!w.style.display)?'block':'none';
 }
 
-/* consultation */
 let needHelp = (localStorage.getItem('sebtech_need_help')||'0')==='1';
 function toggleVip(e){
   try{e?.preventDefault?.();e?.stopPropagation?.();}catch(_){}
@@ -2067,7 +1982,6 @@ function sendConsult(e){
   }
 }
 
-/* greeting */
 function renderWelcome(){
   const el = document.getElementById('welcomeLine');
   if(!el) return;
@@ -2077,7 +1991,6 @@ function renderWelcome(){
   el.innerText = `${UI[lang].welcome}, ${name}!`;
 }
 
-/* apply UI */
 function applyUI(){
   menuTitle.innerText = UI[lang].menu;
 
@@ -2166,7 +2079,6 @@ function setLang(l,btn){
   applyUI();
 }
 
-/* payments + cart */
 function genOrderId(){
   const d=new Date();
   const dd=String(d.getDate()).padStart(2,'0');
@@ -2220,13 +2132,11 @@ function sendOrder(){
   },700);
 }
 
-/* init */
 try{
   Telegram.WebApp.setHeaderColor?.('#0B0B0C');
   Telegram.WebApp.setBackgroundColor?.('#000000');
 }catch(_){}
 
-/* default language: UZ */
 lang='uz';
 document.querySelectorAll('.langs .btn').forEach(b=>b.classList.remove('active'));
 document.getElementById('langUZ')?.classList.add('active');
@@ -2246,10 +2156,8 @@ applyUI();
 updateTotal();
 setTimeout(syncStickyHeight, 50);
 
-/* ensure nothing auto-hides categories/products */
 closeSearch();
 
-/* open subcats sheet when user taps active category again */
 cats.addEventListener('click', (e)=>{
   const b = e.target.closest('.cat-btn');
   if(!b) return;
