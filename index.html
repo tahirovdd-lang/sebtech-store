@@ -219,15 +219,15 @@ body{
   color:#E5E7EB;
 }
 
-/* ✅ bigger item icons/photos a bit */
-.img{height:184px;display:flex;align-items:center;justify-content:center;margin-bottom:6px;}
+/* ✅ product icons slightly smaller + rounded corners */
+.img{height:168px;display:flex;align-items:center;justify-content:center;margin-bottom:6px;}
 .img img{
-  max-width:168px;
-  max-height:168px;
+  max-width:152px;
+  max-height:152px;
   object-fit:cover;
-  transform:scale(1.10);
+  transform:scale(1.00);
   cursor:pointer;
-  border-radius:18px;
+  border-radius:20px;   /* ✅ rounded edges */
 }
 
 .item-name{margin-top:2px;padding:0 6px;font-weight:900;line-height:1.15;min-height:42px;display:flex;align-items:center;justify-content:center;word-break:break-word;}
@@ -257,10 +257,10 @@ body{
   color:#E5E7EB;
 }
 
-/* ✅ make carousel image blocks SAME as normal product */
+/* ✅ carousel images like product + rounded edges + “отдоли” */
 .pop-img,.mini-img{
-  height:184px;
-  border-radius:18px;
+  height:168px;
+  border-radius:20px;
   overflow:hidden;
   display:flex;align-items:center;justify-content:center;
   background: transparent;
@@ -268,11 +268,11 @@ body{
   margin-bottom:6px;
 }
 .pop-img img,.mini-img img{
-  max-width:168px;
-  max-height:168px;
+  max-width:152px;
+  max-height:152px;
   object-fit:cover;
-  transform:scale(1.06); /* ✅ "отдоли" фото немного */
-  border-radius:18px;
+  transform:scale(0.94); /* ✅ a bit further */
+  border-radius:20px;
 }
 
 /* ✅ text blocks align with normal */
@@ -303,7 +303,6 @@ body{
 .pop-counter button:active,.mini-counter button:active{transform:scale(.96);}
 .pop-counter span,.mini-counter span{font-weight:900; min-width:18px; text-align:center;}
 
-/* ✅ recommend cards keep same sizes now */
 .mini-card{min-width:160px;border-radius:24px;}
 .mini-name{
   margin-top:2px;
@@ -476,15 +475,15 @@ textarea.input{height:90px;}
   box-shadow: 0 14px 26px rgba(0,0,0,.60);
 }
 
-/* menu sheet */
+/* ✅ menu sheet — NOT transparent (solid) */
 .menu-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:.18s;z-index:1000;}
 .menu-backdrop.show{opacity:1;pointer-events:auto;}
 .menu-sheet{
   position:fixed;left:0; right:0;bottom:-100%;
-  background: rgba(15,23,42,.92);
+  background: #0B0F14; /* ✅ solid */
   color:#fff;
   border-top-left-radius:22px;border-top-right-radius:22px;border:1px solid rgba(255,255,255,.12);
-  box-shadow:0 18px 40px rgba(0,0,0,.60);
+  box-shadow:0 18px 40px rgba(0,0,0,.70);
   transition:.22s;z-index:1010;padding:10px 12px 14px;
   max-height: 86vh;overflow:auto;-webkit-overflow-scrolling:touch;
 }
@@ -497,11 +496,11 @@ textarea.input{height:90px;}
 .menu-item{
   display:flex;align-items:center;justify-content:space-between;gap:10px;
   padding:12px 12px;border-radius:16px;border:1px solid rgba(255,255,255,.10);
-  background:rgba(255,255,255,.05);
+  background:rgba(255,255,255,.06);
   cursor:pointer;text-decoration:none;color:#fff;
 }
 .menu-left{display:flex;align-items:center;gap:10px;min-width:0;}
-.menu-ic{width:30px;height:30px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.07);flex:0 0 auto;}
+.menu-ic{width:30px;height:30px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08);flex:0 0 auto;}
 .menu-txt{display:flex;flex-direction:column;min-width:0;}
 .menu-name{font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .menu-sub{font-size:12px;opacity:.75;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px;color:rgba(229,231,235,.75);}
@@ -509,7 +508,7 @@ textarea.input{height:90px;}
 
 /* branch selector */
 .branch-box{display:none;padding:6px 4px 10px;}
-.branch-inner{border:1px solid rgba(255,255,255,.10);border-radius:16px;overflow:hidden;background:rgba(255,255,255,.05);padding:12px;}
+.branch-inner{border:1px solid rgba(255,255,255,.10);border-radius:16px;overflow:hidden;background:rgba(255,255,255,.06);padding:12px;}
 .branch-grid{display:grid;grid-template-columns:1fr;gap:10px;}
 .branch-btn{
   width:100%;
@@ -556,7 +555,7 @@ textarea.input{height:90px;}
   width:85%;
   border:1px solid rgba(255,255,255,.10);
   border-radius:18px;
-  background:rgba(255,255,255,.05);
+  background:rgba(255,255,255,.06);
   padding:12px;
   color:#E5E7EB;
 }
@@ -587,11 +586,11 @@ textarea.input{height:90px;}
 .sub-backdrop.show{opacity:1;pointer-events:auto;}
 .sub-sheet{
   position:fixed; left:0; right:0; bottom:-100%;
-  background: rgba(15,23,42,.92);
+  background: #0B0F14; /* solid */
   color:#fff;
   border-top-left-radius:22px;border-top-right-radius:22px;
   border:1px solid rgba(255,255,255,.12);
-  box-shadow:0 18px 40px rgba(0,0,0,.60);
+  box-shadow:0 18px 40px rgba(0,0,0,.70);
   transition:.22s;
   z-index:1110;
   padding:10px 12px 14px;
@@ -640,6 +639,22 @@ textarea.input{height:90px;}
   .img-modal-body{flex-direction:column;}
   .img-modal-left{flex:0 0 auto;}
 }
+
+/* ✅ iPhone adaptation (safe areas + tighter header spacing) */
+@supports (-webkit-touch-callout: none){
+  body{
+    padding-top: calc(var(--safeT) + 2px);
+    padding-bottom: calc(var(--sticky-h) + 18px + var(--safeB));
+  }
+  .header{
+    padding-top: calc(14px + var(--safeT));
+  }
+  .sticky-checkout{
+    bottom: var(--safeB);
+    padding-bottom: calc(10px + var(--safeB));
+  }
+}
+
 @media (max-width:420px){
   .brand-title{font-size:28px;}
   .brand-title2{font-size:13px;}
@@ -775,7 +790,7 @@ textarea.input{height:90px;}
     </div>
 
     <div class="vip-box" id="vipWrap" style="display:none; padding:6px 4px 10px;">
-      <div class="vip-inner" style="border:1px solid rgba(255,255,255,.10);border-radius:16px;overflow:hidden;background:rgba(255,255,255,.05);padding:12px;">
+      <div class="vip-inner" style="border:1px solid rgba(255,255,255,.10);border-radius:16px;overflow:hidden;background:rgba(255,255,255,.06);padding:12px;">
         <div class="toggle-row" onclick="toggleNeedHelp()" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 10px;border-radius:14px;background:rgba(17,24,39,.55);border:1px solid rgba(255,255,255,.10);">
           <div class="toggle-left" style="display:flex;flex-direction:column;gap:2px;">
             <b id="vipToggleTitle" style="font-weight:900;color:#fff;">Нужна консультация</b>
@@ -841,7 +856,7 @@ textarea.input{height:90px;}
     </div>
 
     <div id="aboutWrap" style="display:none; padding:6px 4px 10px;">
-      <div style="border:1px solid rgba(255,255,255,.10); border-radius:16px; overflow:hidden; background:rgba(255,255,255,.05); padding:12px; color:#E5E7EB;">
+      <div style="border:1px solid rgba(255,255,255,.10); border-radius:16px; overflow:hidden; background:rgba(255,255,255,.06); padding:12px; color:#E5E7EB;">
         <div style="font-weight:900; margin-bottom:6px;" id="aboutAddrLabel">📍 Адрес</div>
         <div style="font-weight:900; color:#fff; opacity:.92; line-height:1.25;" id="aboutAddrText"></div>
 
@@ -886,7 +901,7 @@ textarea.input{height:90px;}
   <div class="sub-grid" id="subGrid"></div>
 </div>
 
-<!-- search -->
+<!-- ✅ Search (via 🔍 button) -->
 <div class="search-title" id="searchTitle">Результаты поиска</div>
 <div class="search-wrap" id="searchWrap">
   <input id="searchInput" class="input" placeholder="Поиск..." oninput="searchProducts()" onkeydown="onSearchKey(event)">
@@ -982,13 +997,13 @@ textarea.input{height:90px;}
       </div>
 
       <div class="img-modal-right" id="specBox">
-        <div class="spec-row"><div class="spec-k">Model</div><div class="spec-v" id="specModel">—</div></div>
-        <div class="spec-row"><div class="spec-k">Region</div><div class="spec-v" id="specRegion">—</div></div>
-        <div class="spec-row"><div class="spec-k">Color</div><div class="spec-v" id="specColor">—</div></div>
-        <div class="spec-row"><div class="spec-k">Memory</div><div class="spec-v" id="specMemory">—</div></div>
-        <div class="spec-row"><div class="spec-k">Battery</div><div class="spec-v" id="specBattery">—</div></div>
-        <div class="spec-row"><div class="spec-k">UZIME</div><div class="spec-v" id="specUzime">—</div></div>
-        <div class="spec-row spec-price"><div class="spec-k">Price</div><div class="spec-v" id="specPrice">—</div></div>
+        <div class="spec-row"><div class="spec-k" id="kModel">Model</div><div class="spec-v" id="specModel">—</div></div>
+        <div class="spec-row"><div class="spec-k" id="kRegion">Region</div><div class="spec-v" id="specRegion">—</div></div>
+        <div class="spec-row"><div class="spec-k" id="kColor">Color</div><div class="spec-v" id="specColor">—</div></div>
+        <div class="spec-row"><div class="spec-k" id="kMemory">Memory</div><div class="spec-v" id="specMemory">—</div></div>
+        <div class="spec-row"><div class="spec-k" id="kBattery">Battery</div><div class="spec-v" id="specBattery">—</div></div>
+        <div class="spec-row"><div class="spec-k" id="kUzime">UZIME</div><div class="spec-v" id="specUzime">—</div></div>
+        <div class="spec-row spec-price"><div class="spec-k" id="kPrice">Price</div><div class="spec-v" id="specPrice">—</div></div>
       </div>
     </div>
   </div>
@@ -1121,6 +1136,7 @@ const tg_username = tgUser.username || "";
 const tg_first_name = tgUser.first_name || "";
 const tg_id = tgUser.id || "";
 
+/* ✅ FULL 3-language UI (including spec labels + placeholders) */
 const UI = {
   ru:{
     menu:'Меню',
@@ -1137,9 +1153,9 @@ const UI = {
     aboutAddr:'📍 Адрес', aboutRoute:'📍 Построить маршрут',
     aboutPhone:'📞 Телефон', aboutHours:'🕒 График работы',
     searchResults:'Результаты поиска',
+    searchPh:'Поиск...',
     sale:'💥 Акция',
     popular:'🔥 Популярное', gift:'⭐ Рекомендуем',
-    phone:'📞 Телефон',
     cart:'🛒 Корзина', total:'Итого', order:'Оформить заказ', comment:'✍️ Комментарий к заказу',
     cash:'💵 Наличные', click:'💳 CLICK', online:'💳 Онлайн',
     sum:'сум',
@@ -1151,7 +1167,18 @@ const UI = {
     welcome:'👋 Добро пожаловать',
     brandSub:'APPLE TECH STORE',
     subcats:'Подкатегории',
-    priceAsk:'Цена уточняйте'
+    priceAsk:'Цена уточняйте',
+    nothingFound:'Ничего не найдено',
+    noItems:'Пока нет товаров в этой подкатегории',
+
+    /* spec labels */
+    kModel:'Модель',
+    kRegion:'Регион',
+    kColor:'Цвет',
+    kMemory:'Память',
+    kBattery:'Батарея',
+    kUzime:'UZIME',
+    kPrice:'Цена'
   },
   uz:{
     menu:'Menyu',
@@ -1168,9 +1195,9 @@ const UI = {
     aboutAddr:'📍 Manzil', aboutRoute:"📍 Yo‘l ko‘rsatish",
     aboutPhone:'📞 Telefon', aboutHours:'🕒 Ish vaqti',
     searchResults:'Qidiruv natijalari',
+    searchPh:'Qidirish...',
     sale:'💥 Aksiya',
     popular:'🔥 Ommabop', gift:'⭐ Tavsiya',
-    phone:'📞 Telefon',
     cart:'🛒 Savat', total:'Jami', order:'Buyurtma berish', comment:'✍️ Izoh',
     cash:'💵 Naqd', click:'💳 CLICK', online:'💳 Onlayn',
     sum:"so‘m",
@@ -1182,7 +1209,17 @@ const UI = {
     welcome:'👋 Xush kelibsiz',
     brandSub:'APPLE TECH STORE',
     subcats:'Subkategoriyalar',
-    priceAsk:'Narxni so‘rang'
+    priceAsk:'Narxni so‘rang',
+    nothingFound:'Hech narsa topilmadi',
+    noItems:"Bu subkategoriyada hozircha mahsulot yo‘q",
+
+    kModel:'Model',
+    kRegion:'Region',
+    kColor:'Rang',
+    kMemory:'Xotira',
+    kBattery:'Batareya',
+    kUzime:'UZIME',
+    kPrice:'Narx'
   },
   en:{
     menu:'Menu',
@@ -1199,9 +1236,9 @@ const UI = {
     aboutAddr:'📍 Address', aboutRoute:'📍 Get directions',
     aboutPhone:'📞 Phone', aboutHours:'🕒 Working hours',
     searchResults:'Search results',
+    searchPh:'Search...',
     sale:'💥 Sale',
     popular:'🔥 Popular', gift:'⭐ Recommended',
-    phone:'📞 Phone',
     cart:'🛒 Cart', total:'Total', order:'Place order', comment:'✍️ Comment',
     cash:'💵 Cash', click:'💳 CLICK', online:'💳 Online',
     sum:'sum',
@@ -1213,7 +1250,17 @@ const UI = {
     welcome:'👋 Welcome',
     brandSub:'APPLE TECH STORE',
     subcats:'Subcategories',
-    priceAsk:'Ask price'
+    priceAsk:'Ask price',
+    nothingFound:'Nothing found',
+    noItems:'No items in this subcategory yet',
+
+    kModel:'Model',
+    kRegion:'Region',
+    kColor:'Color',
+    kMemory:'Memory',
+    kBattery:'Battery',
+    kUzime:'UZIME',
+    kPrice:'Price'
   }
 };
 
@@ -1328,12 +1375,7 @@ const PRICE = {
 function mkName(ru, uz, en){ return {ru, uz, en}; }
 function imgOrDefault(path){ return path || 'images/logo.png'; }
 
-const SPEC_DEFAULTS = {
-  region: "Global",
-  color: "Mix",
-  battery: "100%",
-  uzime: "✅"
-};
+const SPEC_DEFAULTS = { region: "Global", color: "Mix", battery: "100%", uzime: "✅" };
 
 const MENU = { iphone:[], mac:[], ipad:[], watch:[], airpods:[], accessories:[] };
 
@@ -1479,14 +1521,7 @@ function addWatch(subKey, nameRu, nameUz, nameEn, basePrice, variants){
       p: Number(basePrice)||0,
       img: `images/${subKey}.jpg`,
       n: mkName(`${nameRu} — ${v}`, `${nameUz} — ${v}`, `${nameEn} — ${v}`),
-      spec:{
-        model: `${nameEn}`,
-        region: SPEC_DEFAULTS.region,
-        color: SPEC_DEFAULTS.color,
-        memory: '—',
-        battery: SPEC_DEFAULTS.battery,
-        uzime: SPEC_DEFAULTS.uzime
-      }
+      spec:{ model: `${nameEn}`, region: SPEC_DEFAULTS.region, color: SPEC_DEFAULTS.color, memory: '—', battery: SPEC_DEFAULTS.battery, uzime: SPEC_DEFAULTS.uzime }
     });
   });
 }
@@ -1507,14 +1542,7 @@ function addAirpods(subKey, nameRu, nameUz, nameEn, basePrice, variants){
       p: Number(basePrice)||0,
       img: `images/${subKey}.jpg`,
       n: mkName(`${nameRu}${v?(' — '+v):''}`, `${nameUz}${v?(' — '+v):''}`, `${nameEn}${v?(' — '+v):''}`),
-      spec:{
-        model: `${nameEn}`,
-        region: SPEC_DEFAULTS.region,
-        color: SPEC_DEFAULTS.color,
-        memory: '—',
-        battery: SPEC_DEFAULTS.battery,
-        uzime: SPEC_DEFAULTS.uzime
-      }
+      spec:{ model:`${nameEn}`, region: SPEC_DEFAULTS.region, color: SPEC_DEFAULTS.color, memory:'—', battery: SPEC_DEFAULTS.battery, uzime: SPEC_DEFAULTS.uzime }
     });
   });
 }
@@ -1531,14 +1559,7 @@ function addAcc(subKey, nameRu, nameUz, nameEn, basePrice, variants, img){
       p: Number(basePrice)||0,
       img: imgOrDefault(img || `images/${subKey}.jpg`),
       n: mkName(`${nameRu} — ${v}`, `${nameUz} — ${v}`, `${nameEn} — ${v}`),
-      spec:{
-        model: `${nameEn}`,
-        region: SPEC_DEFAULTS.region,
-        color: SPEC_DEFAULTS.color,
-        memory: '—',
-        battery: '—',
-        uzime: SPEC_DEFAULTS.uzime
-      }
+      spec:{ model:`${nameEn}`, region: SPEC_DEFAULTS.region, color: SPEC_DEFAULTS.color, memory:'—', battery:'—', uzime: SPEC_DEFAULTS.uzime }
     });
   });
 }
@@ -1590,17 +1611,17 @@ function priceText(p){
   return UI[lang].priceAsk;
 }
 
-function openTopMenu(){ closeSearch(); menuBackdrop.classList.add('show'); menuSheet.classList.add('show'); }
-function closeTopMenu(){ menuBackdrop.classList.remove('show'); menuSheet.classList.remove('show'); }
-
+/* ✅ SEARCH via 🔍 button */
 function isSearchOpen(){ return searchWrap.classList.contains('show'); }
 function toggleSearch(){ isSearchOpen()?closeSearch():openSearch(); }
 function openSearch(){
+  closeTopMenu();
   searchWrap.classList.add('show');
   searchTitle.classList.add('show');
   searchInput.value='';
+  searchInput.placeholder = UI[lang].searchPh;
   searchInput.focus();
-  searchProducts();
+  searchProducts();     // ✅ immediate search render
 }
 function closeSearch(){
   searchWrap.classList.remove('show');
@@ -1632,13 +1653,17 @@ function searchProducts(){
     });
   }
   if(found===0){
-    products.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:18px;font-weight:900;opacity:.9;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);border-radius:18px;color:#E5E7EB;">
-      ${lang==='ru'?'Ничего не найдено':lang==='uz'?'Hech narsa topilmadi':'Nothing found'}
+    products.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:18px;font-weight:900;opacity:.9;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10);border-radius:18px;color:#E5E7EB;">
+      ${UI[lang].nothingFound}
     </div>`;
   }
   updateTotal();
 }
 
+function openTopMenu(){ closeSearch(); menuBackdrop.classList.add('show'); menuSheet.classList.add('show'); }
+function closeTopMenu(){ menuBackdrop.classList.remove('show'); menuSheet.classList.remove('show'); }
+
+/* categories */
 function renderCats(){
   cats.innerHTML='';
   for(const k in MENU){
@@ -1657,6 +1682,7 @@ function onCategoryClick(k){
   if(!isSearchOpen()) renderProducts();
 }
 
+/* subcats */
 function subTitleForCat(){
   const catName = (CATS[lang]?.[category] || category);
   return `${UI[lang].subcats}: ${catName}`;
@@ -1698,6 +1724,7 @@ function pickSubcat(k){
   Telegram.WebApp.HapticFeedback?.notificationOccurred?.('success');
 }
 
+/* cards */
 function cardHTML(it){
   const id=it.id;
   const qty=cart[id]||0;
@@ -1723,8 +1750,8 @@ function renderProducts(){
   });
 
   if(!list.length){
-    products.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:18px;font-weight:900;opacity:.9;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);border-radius:18px;color:#E5E7EB;">
-      ${lang==='ru'?'Пока нет товаров в этой подкатегории':lang==='uz'?'Bu subkategoriyada hozircha mahsulot yo‘q':'No items in this subcategory yet'}
+    products.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:18px;font-weight:900;opacity:.9;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10);border-radius:18px;color:#E5E7EB;">
+      ${UI[lang].noItems}
     </div>`;
     updateTotal();
     return;
@@ -1738,6 +1765,7 @@ function renderProducts(){
   updateTotal();
 }
 
+/* carousels */
 function popCardHTML(it, prefix){
   const id=it.id;
   const px = prefix || 'pc_';
@@ -1795,6 +1823,7 @@ function renderGift(){
   });
 }
 
+/* counters + totals */
 function onCardClick(e,id){
   if(e?.target?.closest?.('button')) return;
   if(e?.target?.closest?.('.pop-img, .mini-img')) return;
@@ -1830,6 +1859,8 @@ function chg(id,delta){
   syncCounters(id);
   updateTotal();
 }
+
+/* payment */
 function setPayment(p){
   payment=p;
   payCash.classList.toggle('active', p==='cash');
@@ -1838,11 +1869,15 @@ function setPayment(p){
   onlineBox.style.display = (p==='online') ? 'block' : 'none';
   clickBox.style.display  = (p==='click')  ? 'block' : 'none';
 }
+
+/* cart */
 function openCart(){
   const el=document.getElementById('cartBox');
   syncStickyHeight();
   try{ el.scrollIntoView({behavior:'smooth', block:'start'}); }catch(_){}
 }
+
+/* image modal */
 function openImage(e,id){
   try{e.preventDefault();e.stopPropagation();}catch(_){}
   const it = ITEM_INDEX[id];
@@ -1868,6 +1903,7 @@ function closeImgModal(e){
   imgModalImg.src='';
 }
 
+/* toasts */
 let toastTimer=null;
 function showToast(t){
   popup.classList.add('show');
@@ -1876,6 +1912,7 @@ function showToast(t){
   toastTimer=setTimeout(()=>popup.classList.remove('show'), 1200);
 }
 
+/* branch + about */
 function toggleBranch(e){
   try{e?.preventDefault?.();e?.stopPropagation?.();}catch(_){}
   const w=document.getElementById('branchWrap');
@@ -1917,6 +1954,7 @@ function toggleAbout(){
   w.style.display=(w.style.display==='none'||!w.style.display)?'block':'none';
 }
 
+/* vip */
 let needHelp = (localStorage.getItem('sebtech_need_help')||'0')==='1';
 function toggleVip(e){
   try{e?.preventDefault?.();e?.stopPropagation?.();}catch(_){}
@@ -1982,6 +2020,7 @@ function sendConsult(e){
   }
 }
 
+/* welcome */
 function renderWelcome(){
   const el = document.getElementById('welcomeLine');
   if(!el) return;
@@ -1991,6 +2030,7 @@ function renderWelcome(){
   el.innerText = `${UI[lang].welcome}, ${name}!`;
 }
 
+/* apply UI texts everywhere */
 function applyUI(){
   menuTitle.innerText = UI[lang].menu;
 
@@ -2024,6 +2064,7 @@ function applyUI(){
   aboutHoursText.innerText  = ABOUT_HOURS;
 
   searchTitle.innerText = UI[lang].searchResults;
+  searchInput.placeholder = UI[lang].searchPh;
 
   saleTitle.innerText = UI[lang].sale;
   popularTitle.innerText = UI[lang].popular;
@@ -2056,6 +2097,15 @@ function applyUI(){
   const headerSub = document.getElementById('branchTitle');
   if(headerSub) headerSub.innerText = UI[lang].brandSub;
 
+  /* ✅ spec labels translated */
+  document.getElementById('kModel').innerText = UI[lang].kModel;
+  document.getElementById('kRegion').innerText = UI[lang].kRegion;
+  document.getElementById('kColor').innerText = UI[lang].kColor;
+  document.getElementById('kMemory').innerText = UI[lang].kMemory;
+  document.getElementById('kBattery').innerText = UI[lang].kBattery;
+  document.getElementById('kUzime').innerText = UI[lang].kUzime;
+  document.getElementById('kPrice').innerText = UI[lang].kPrice;
+
   renderWelcome();
   applyBranchToUI();
   syncBranchUI();
@@ -2066,7 +2116,7 @@ function applyUI(){
   renderPopular();
   renderGift();
 
-  if(!isSearchOpen()) renderProducts();
+  if(isSearchOpen()) searchProducts(); else renderProducts();
   updateTotal();
 
   setTimeout(syncStickyHeight, 50);
@@ -2079,6 +2129,7 @@ function setLang(l,btn){
   applyUI();
 }
 
+/* order */
 function genOrderId(){
   const d=new Date();
   const dd=String(d.getDate()).padStart(2,'0');
@@ -2132,6 +2183,7 @@ function sendOrder(){
   },700);
 }
 
+/* init */
 try{
   Telegram.WebApp.setHeaderColor?.('#0B0B0C');
   Telegram.WebApp.setBackgroundColor?.('#000000');
@@ -2158,6 +2210,7 @@ setTimeout(syncStickyHeight, 50);
 
 closeSearch();
 
+/* tap active category => open subcats */
 cats.addEventListener('click', (e)=>{
   const b = e.target.closest('.cat-btn');
   if(!b) return;
