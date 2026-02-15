@@ -214,31 +214,6 @@ body{
 }
 .counter button:active{transform:scale(.96);}
 
-/* ✅ card quick actions (telegram/call) */
-.card-actions{
-  display:flex;
-  gap:8px;
-  margin-top:10px;
-  justify-content:center;
-}
-.card-actions .qa-btn{
-  flex:1 1 0;
-  min-width:auto;
-  padding:10px 10px;
-  border-radius:16px;
-  border:1px solid rgba(17,24,39,.10);
-  background:rgba(17,24,39,.04);
-  font-weight:900;
-  cursor:pointer;
-  box-shadow:0 10px 20px rgba(0,0,0,.10);
-  transition:.15s;
-}
-.card-actions .qa-btn.primary{
-  background: linear-gradient(180deg, rgba(120,191,255,1), rgba(47,126,247,1));
-  color:#fff;
-}
-.card-actions .qa-btn:active{transform:scale(.98);}
-
 /* carousels */
 .popular-wrap{width:100%;padding:4px 12px 6px;}
 .popular-title{width:100%;font-weight:900;padding:8px 2px 10px;display:flex;align-items:center;gap:8px;color:#0b1220;}
@@ -265,19 +240,6 @@ body{
 .mini-counter button{width:28px;height:28px;}
 .mini-name{font-weight:900;margin-top:8px;font-size:12px;line-height:1.15;min-height:28px;}
 .pop-counter span,.mini-counter span{font-weight:900; min-width:18px; text-align:center;}
-
-.badge-pill{
-  position:absolute;left:10px;top:10px;
-  padding:6px 8px;
-  border-radius:999px;
-  font-size:11px;
-  font-weight:900;
-  color:#fff;
-  background:rgba(47,126,247,.92);
-  border:1px solid rgba(255,255,255,.30);
-  box-shadow:0 10px 20px rgba(0,0,0,.12);
-  pointer-events:none;
-}
 
 /* cart */
 .cart{
@@ -477,97 +439,65 @@ textarea.input{height:90px;}
 }
 .click-qr img{width:100%;max-width:360px;height:auto;display:block;}
 
-/* ✅ Subcategories bottom sheet */
-.sub-open-wrap{padding:0 14px 10px;}
-.sub-open-btn{
-  width:100%;
-  min-width:auto;
-  border-radius:20px;
-  padding:12px 14px;
-  border:1px solid rgba(17,24,39,.10);
-  background:rgba(255,255,255,.92);
-  box-shadow: 0 12px 26px rgba(0,0,0,.12);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  cursor:pointer;
-  font-weight:900;
-  color:#0b1220;
+/* ✅ SUBCATS BOTTOM SHEET */
+.sub-backdrop{
+  position:fixed; inset:0;
+  background: rgba(0,0,0,.28);
+  opacity:0; pointer-events:none;
+  transition:.18s;
+  z-index:1100;
 }
-.sub-open-left{display:flex;align-items:center;gap:10px;min-width:0;}
-.sub-open-ico{
-  width:36px;height:36px;border-radius:14px;
-  display:flex;align-items:center;justify-content:center;
-  background:rgba(120,191,255,.16);
-  border:1px solid rgba(17,24,39,.08);
-}
-.sub-open-txt{display:flex;flex-direction:column;min-width:0;}
-.sub-open-title{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.sub-open-sub{font-size:12px;opacity:.75;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px;}
-.sub-open-right{opacity:.65;font-weight:900;}
-
-.sub-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.30);opacity:0;pointer-events:none;transition:.18s;z-index:1500;}
 .sub-backdrop.show{opacity:1;pointer-events:auto;}
 .sub-sheet{
-  position:fixed;left:0;right:0;bottom:-100%;
+  position:fixed; left:0; right:0; bottom:-100%;
   background:rgba(255,255,255,.92);
+  color:#0b1220;
   border-top-left-radius:22px;border-top-right-radius:22px;
   border:1px solid rgba(17,24,39,.10);
   box-shadow:0 18px 40px rgba(0,0,0,.18);
   transition:.22s;
-  z-index:1510;
-  padding:10px 12px 16px;
-  max-height: 78vh;
+  z-index:1110;
+  padding:10px 12px 14px;
+  max-height: 76vh;
   overflow:auto;
   -webkit-overflow-scrolling:touch;
-  color:#0b1220;
 }
 .sub-sheet.show{bottom:0;}
-.sub-head{display:flex;align-items:center;justify-content:space-between;padding:2px 4px 10px;}
+.sub-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:2px 4px 10px;}
 .sub-head b{font-size:16px;}
 .sub-close{width:38px;height:38px;border:none;border-radius:12px;background:transparent;cursor:pointer;font-size:22px;line-height:1;color:#777;}
 .sub-grid{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap:10px;
+  padding:4px 2px 2px;
 }
-.sub-ico-btn{
-  border-radius:18px;
+.sub-icbtn{
   border:1px solid rgba(17,24,39,.10);
   background:#fff;
-  box-shadow:0 12px 24px rgba(0,0,0,.10);
-  padding:12px 10px;
+  border-radius:18px;
+  padding:10px 8px;
+  box-shadow: 0 12px 24px rgba(0,0,0,.10);
   cursor:pointer;
-  text-align:center;
-  transition:.15s;
-}
-.sub-ico-btn:active{transform:scale(.98);}
-.sub-ico{
-  width:42px;height:42px;border-radius:18px;margin:0 auto 8px;
-  display:flex;align-items:center;justify-content:center;
-  background:rgba(120,191,255,.16);
-  border:1px solid rgba(17,24,39,.08);
-  font-size:20px;
-}
-.sub-ico-name{
-  font-weight:900;
-  font-size:12px;
-  line-height:1.15;
-  min-height:30px;
   display:flex;
+  flex-direction:column;
   align-items:center;
   justify-content:center;
+  gap:6px;
+  min-height:84px;
+  text-align:center;
+  font-weight:900;
+  color:#0b1220;
+  transition:.15s;
 }
-.sub-ico-btn.active{
+.sub-icbtn:active{transform:scale(.98);}
+.sub-icbtn.active{
   background: linear-gradient(180deg, rgba(120,191,255,1), rgba(47,126,247,1));
   color:#fff;
   border:1px solid rgba(255,255,255,.55);
 }
-.sub-ico-btn.active .sub-ico{
-  background:rgba(255,255,255,.20);
-  border:1px solid rgba(255,255,255,.40);
-}
+.sub-emoji{font-size:22px;line-height:1;}
+.sub-txt{font-size:11px;line-height:1.15;word-break:break-word;opacity:.95;}
 
 @media (max-width:420px){
   .brand-title{font-size:28px;}
@@ -578,7 +508,7 @@ textarea.input{height:90px;}
   .products{gap:14px;}
   .online-box{width:92%;}
   .click-box{width:92%;}
-  .sub-grid{grid-template-columns:repeat(3,1fr);}
+  .sub-grid{grid-template-columns: repeat(3, minmax(0, 1fr));}
 }
 @media (max-width:360px){
   .header img{width:76px;height:76px;left:10px;}
@@ -589,7 +519,7 @@ textarea.input{height:90px;}
   .cat-btn{min-width:126px;padding:12px 16px;font-size:13px;}
   .langs .btn{min-width:86px;padding:10px 10px;font-size:13px;}
   .welcome{font-size:12px;padding:6px 9px;}
-  .sub-grid{grid-template-columns:repeat(2,1fr);}
+  .sub-grid{grid-template-columns: repeat(3, minmax(0, 1fr));}
 }
 </style>
 </head>
@@ -793,6 +723,17 @@ textarea.input{height:90px;}
   </div>
 </div>
 
+<!-- ✅ Subcategories Bottom Sheet -->
+<div class="sub-backdrop" id="subBackdrop" onclick="closeSubcats()"></div>
+<div class="sub-sheet" id="subSheet">
+  <div class="menu-handle"></div>
+  <div class="sub-head">
+    <b id="subTitle">Подкатегории</b>
+    <button class="sub-close" onclick="closeSubcats()">×</button>
+  </div>
+  <div class="sub-grid" id="subGrid"></div>
+</div>
+
 <!-- search -->
 <div class="search-title" id="searchTitle">Результаты поиска</div>
 <div class="search-wrap" id="searchWrap">
@@ -818,35 +759,10 @@ textarea.input{height:90px;}
   <div class="mini-row" id="giftRow"></div>
 </div>
 
-<!-- ✅ Категории -->
+<!-- ✅ Убрали поле телефона после "Рекомендуем" (оставляем только в payload через localStorage) -->
+<input id="phone" class="input" style="display:none" />
+
 <div class="categories" id="cats"></div>
-
-<!-- ✅ Подкатегории: кнопка открытия (лист снизу) -->
-<div class="sub-open-wrap">
-  <div class="sub-open-btn" onclick="openSubSheet()">
-    <div class="sub-open-left">
-      <div class="sub-open-ico">🧩</div>
-      <div class="sub-open-txt">
-        <div class="sub-open-title" id="subOpenTitle">Подкатегории</div>
-        <div class="sub-open-sub" id="subOpenSub">—</div>
-      </div>
-    </div>
-    <div class="sub-open-right">›</div>
-  </div>
-</div>
-
-<!-- ✅ Подкатегории: всплывающее окно снизу -->
-<div class="sub-backdrop" id="subBackdrop" onclick="closeSubSheet()"></div>
-<div class="sub-sheet" id="subSheet" role="dialog" aria-modal="true">
-  <div class="menu-handle"></div>
-  <div class="sub-head">
-    <b id="subSheetTitle">Подкатегории</b>
-    <button class="sub-close" onclick="closeSubSheet()">×</button>
-  </div>
-  <div class="sub-grid" id="subGrid"></div>
-</div>
-
-<!-- ✅ Товары -->
 <div class="products" id="products"></div>
 
 <div class="cart" id="cartBox">
@@ -948,14 +864,6 @@ const PHONE1_DISPLAY = "+998 90 100 11 10";
 const PHONE1_TEL = "tel:+998901001110";
 const PHONE2_DISPLAY = "+998 91 285 99 99";
 const PHONE2_TEL = "tel:+998912859999";
-
-/* ✅ quick actions settings */
-const SUPPORT_PHONE_TEL = PHONE1_TEL;
-/* ✅ without inventing username: use Telegram share sheet */
-function openTelegramShare(text){
-  const t = encodeURIComponent(text || "");
-  openLink(`https://t.me/share/url?text=${t}`);
-}
 
 /* ✅ branches */
 const BRANCHES = {
@@ -1072,6 +980,7 @@ const UI = {
     aboutPhone:'📞 Телефон', aboutHours:'🕒 График работы',
     searchResults:'Результаты поиска',
     popular:'🔥 Популярное', gift:'⭐ Рекомендуем',
+    phone:'📞 Телефон',
     cart:'🛒 Корзина', total:'Итого', order:'Оформить заказ', comment:'✍️ Комментарий к заказу',
     cash:'💵 Наличные', click:'💳 CLICK', online:'💳 Онлайн',
     sum:'сум',
@@ -1082,10 +991,7 @@ const UI = {
     clickHint:'Отсканируйте QR в приложении CLICK, затем нажмите «Оформить заказ».',
     welcome:'👋 Добро пожаловать',
     brandSub:'APPLE TECH STORE',
-    subcatsTitle:'Подкатегории',
-    subOpen:'Подкатегории',
-    qaTg:'💬 Написать',
-    qaCall:'📞 Позвонить'
+    subcats:'Подкатегории'
   },
   uz:{
     menu:'Menyu',
@@ -1103,6 +1009,7 @@ const UI = {
     aboutPhone:'📞 Telefon', aboutHours:'🕒 Ish vaqti',
     searchResults:'Qidiruv natijalari',
     popular:'🔥 Ommabop', gift:'⭐ Tavsiya',
+    phone:'📞 Telefon',
     cart:'🛒 Savat', total:'Jami', order:'Buyurtma berish', comment:'✍️ Izoh',
     cash:'💵 Naqd', click:'💳 CLICK', online:'💳 Onlayn',
     sum:"so‘m",
@@ -1113,10 +1020,7 @@ const UI = {
     clickHint:"CLICK ilovasida QR ni skaner qiling, so‘ng “Buyurtma berish”ni bosing.",
     welcome:'👋 Xush kelibsiz',
     brandSub:'APPLE TECH STORE',
-    subcatsTitle:'Подкатегории',
-    subOpen:'Подкатегории',
-    qaTg:'💬 Yozish',
-    qaCall:'📞 Qo‘ng‘iroq'
+    subcats:'Subkategoriyalar'
   },
   en:{
     menu:'Menu',
@@ -1134,6 +1038,7 @@ const UI = {
     aboutPhone:'📞 Phone', aboutHours:'🕒 Working hours',
     searchResults:'Search results',
     popular:'🔥 Popular', gift:'⭐ Recommended',
+    phone:'📞 Phone',
     cart:'🛒 Cart', total:'Total', order:'Place order', comment:'✍️ Comment',
     cash:'💵 Cash', click:'💳 CLICK', online:'💳 Online',
     sum:'sum',
@@ -1144,10 +1049,7 @@ const UI = {
     clickHint:'Scan the QR in CLICK app, then press “Place order”.',
     welcome:'👋 Welcome',
     brandSub:'APPLE TECH STORE',
-    subcatsTitle:'Subcategories',
-    subOpen:'Subcategories',
-    qaTg:'💬 Message',
-    qaCall:'📞 Call'
+    subcats:'Subcategories'
   }
 };
 
@@ -1159,200 +1061,363 @@ const CATS = {
   en:{iphone:'📱 iPhone', mac:'💻 Mac', ipad:'📲 iPad', watch:'⌚ Watch', airpods:'🎧 AirPods', accessories:'🧩 Accessories'}
 };
 
-/* ✅ Подкатегории в виде иконок (для bottom sheet) */
+/* ✅ FULL SUBCATEGORIES (icons + bottom sheet) */
 const SUBCATS = {
-  iphone:[
-    {k:'iphone_17', t:'iPhone 17', ico:'📱'},
-    {k:'iphone_16', t:'iPhone 16', ico:'📱'},
-    {k:'iphone_15', t:'iPhone 15', ico:'📱'},
-    {k:'iphone_14', t:'iPhone 14', ico:'📱'},
-    {k:'iphone_13', t:'iPhone 13', ico:'📱'},
-    {k:'iphone_12', t:'iPhone 12', ico:'📱'},
-    {k:'iphone_11', t:'iPhone 11', ico:'📱'},
-    {k:'other', t:'Остальные', ico:'🧾'}
+  iphone: [
+    {k:'iphone_17', e:'📱', ru:'iPhone 17', uz:'iPhone 17', en:'iPhone 17'},
+    {k:'iphone_16', e:'📱', ru:'iPhone 16', uz:'iPhone 16', en:'iPhone 16'},
+    {k:'iphone_15', e:'📱', ru:'iPhone 15', uz:'iPhone 15', en:'iPhone 15'},
+    {k:'iphone_14', e:'📱', ru:'iPhone 14', uz:'iPhone 14', en:'iPhone 14'},
+    {k:'iphone_13', e:'📱', ru:'iPhone 13', uz:'iPhone 13', en:'iPhone 13'},
+    {k:'iphone_12', e:'📱', ru:'iPhone 12', uz:'iPhone 12', en:'iPhone 12'},
+    {k:'iphone_11', e:'📱', ru:'iPhone 11', uz:'iPhone 11', en:'iPhone 11'},
+    {k:'iphone_other', e:'✨', ru:'Остальные', uz:'Boshqa', en:'Others'}
   ],
-  mac:[
-    {k:'mba_13_m4', t:'Air 13 (M4)', ico:'💻'},
-    {k:'mba_15_m4', t:'Air 15 (M4)', ico:'💻'},
-    {k:'mba_m3', t:'Air (M3)', ico:'💻'},
-    {k:'mba_m2', t:'Air (M2)', ico:'💻'},
-    {k:'mbp_m4', t:'Pro (M4)', ico:'🖥️'},
-    {k:'mbp_m3', t:'Pro (M3)', ico:'🖥️'}
+  accessories: [
+    {k:'acc_cases', e:'🧩', ru:'Чехлы', uz:'G‘ilof', en:'Cases'},
+    {k:'acc_glass', e:'🛡️', ru:'Стекла', uz:'Oyna', en:'Glass'},
+    {k:'acc_charger', e:'🔌', ru:'Зарядки', uz:'Zaryad', en:'Chargers'},
+    {k:'acc_magsafe', e:'🧲', ru:'MagSafe', uz:'MagSafe', en:'MagSafe'},
+    {k:'acc_usb', e:'🔗', ru:'Кабели USB', uz:'USB kabel', en:'USB Cables'},
+    {k:'acc_straps', e:'⌚', ru:'Ремешки', uz:'Remeshok', en:'Straps'},
+    {k:'acc_airtag', e:'📍', ru:'AirTag', uz:'AirTag', en:'AirTag'}
   ],
-  ipad:[
-    {k:'ipad_pro_m5', t:'iPad Pro (M5)', ico:'📲'},
-    {k:'ipad_pro_m4', t:'iPad Pro (M4)', ico:'📲'},
-    {k:'ipad_air_m3', t:'iPad Air (M3)', ico:'📲'},
-    {k:'ipad_air_m2', t:'iPad Air (M2)', ico:'📲'},
-    {k:'ipad_mini', t:'iPad mini', ico:'📲'}
+  mac: [
+    {k:'mac_air_13_m4', e:'💻', ru:'Air 13 (M4)', uz:'Air 13 (M4)', en:'Air 13 (M4)'},
+    {k:'mac_air_15_m4', e:'💻', ru:'Air 15 (M4)', uz:'Air 15 (M4)', en:'Air 15 (M4)'},
+    {k:'mac_air_m3', e:'💻', ru:'Air (M3)', uz:'Air (M3)', en:'Air (M3)'},
+    {k:'mac_air_m2', e:'💻', ru:'Air (M2)', uz:'Air (M2)', en:'Air (M2)'},
+    {k:'mac_air_m1', e:'💻', ru:'Air (M1)', uz:'Air (M1)', en:'Air (M1)'},
+    {k:'mac_pro_m4', e:'🖥️', ru:'Pro (M4)', uz:'Pro (M4)', en:'Pro (M4)'},
+    {k:'mac_pro_m3', e:'🖥️', ru:'Pro (M3)', uz:'Pro (M3)', en:'Pro (M3)'}
   ],
-  watch:[
-    {k:'ultra_3', t:'Ultra 3', ico:'⌚'},
-    {k:'ultra_2', t:'Ultra 2', ico:'⌚'},
-    {k:'s11', t:'Series 11', ico:'⌚'},
-    {k:'se3', t:'SE 3', ico:'⌚'},
-    {k:'s10', t:'Series 10', ico:'⌚'},
-    {k:'s9', t:'Series 9', ico:'⌚'}
+  ipad: [
+    {k:'ipad_pro_m5', e:'📲', ru:'iPad Pro (M5)', uz:'iPad Pro (M5)', en:'iPad Pro (M5)'},
+    {k:'ipad_pro_m4', e:'📲', ru:'iPad Pro (M4)', uz:'iPad Pro (M4)', en:'iPad Pro (M4)'},
+    {k:'ipad_air_m3', e:'📲', ru:'iPad Air (M3)', uz:'iPad Air (M3)', en:'iPad Air (M3)'},
+    {k:'ipad_air_m2', e:'📲', ru:'iPad Air (M2)', uz:'iPad Air (M2)', en:'iPad Air (M2)'},
+    {k:'ipad_mini',   e:'📲', ru:'iPad mini',    uz:'iPad mini',    en:'iPad mini'}
   ],
-  airpods:[
-    {k:'max', t:'AirPods Max', ico:'🎧'},
-    {k:'ap4', t:'AirPods 4', ico:'🎧'},
-    {k:'ap3', t:'AirPods 3', ico:'🎧'},
-    {k:'pro2', t:'Pro 2', ico:'🎧'}
+  watch: [
+    {k:'watch_ultra_3', e:'⌚', ru:'Ultra 3', uz:'Ultra 3', en:'Ultra 3'},
+    {k:'watch_ultra_2', e:'⌚', ru:'Ultra 2', uz:'Ultra 2', en:'Ultra 2'},
+    {k:'watch_11',      e:'⌚', ru:'Series 11', uz:'Series 11', en:'Series 11'},
+    {k:'watch_se_3',    e:'⌚', ru:'SE 3', uz:'SE 3', en:'SE 3'},
+    {k:'watch_se_2',    e:'⌚', ru:'SE 2', uz:'SE 2', en:'SE 2'},
+    {k:'watch_10',      e:'⌚', ru:'Series 10', uz:'Series 10', en:'Series 10'},
+    {k:'watch_9',       e:'⌚', ru:'Series 9', uz:'Series 9', en:'Series 9'},
+    {k:'watch_7',       e:'⌚', ru:'Series 7', uz:'Series 7', en:'Series 7'}
   ],
-  accessories:[
-    {k:'cases', t:'Чехлы', ico:'🛡️'},
-    {k:'glass', t:'Стекла', ico:'🪟'},
-    {k:'charger', t:'Зарядки', ico:'🔌'},
-    {k:'magsafe', t:'MagSafe', ico:'🧲'},
-    {k:'cables', t:'Кабели', ico:'🧵'},
-    {k:'bands', t:'Ремешки', ico:'⌚'},
-    {k:'airtag', t:'AirTag', ico:'📍'}
+  airpods: [
+    {k:'airpods_max', e:'🎧', ru:'AirPods Max', uz:'AirPods Max', en:'AirPods Max'},
+    {k:'airpods_4',   e:'🎧', ru:'AirPods 4',   uz:'AirPods 4',   en:'AirPods 4'},
+    {k:'airpods_3',   e:'🎧', ru:'AirPods 3',   uz:'AirPods 3',   en:'AirPods 3'},
+    {k:'airpods_2p',  e:'🎧', ru:'AirPods 2 Pro', uz:'AirPods 2 Pro', en:'AirPods 2 Pro'}
   ]
 };
 
-/* ✅ Автогенерация товаров по спискам (чтобы не забивать вручную) */
-function makeId(...parts){
-  return parts.join('_').toLowerCase().replace(/[^a-z0-9_]+/g,'_').replace(/_+/g,'_').replace(/^_|_$/g,'');
-}
-function genIphoneVariants(modelKey, modelTitle, basePrice){
-  const storages = [128,256,512];
-  const colors = ['Black','White','Blue','Natural'];
-  const out=[];
-  storages.forEach((gb,si)=>{
-    colors.forEach((c,ci)=>{
-      const price = basePrice + (si*700000) + (ci*50000);
-      const id = makeId('ip', modelKey, gb, c);
-      out.push({
-        id,
-        p: price,
-        img: `images/${id}.jpg`,
-        sub: modelKey,
-        n:{
-          ru:`${modelTitle} ${gb}GB (${c})`,
-          uz:`${modelTitle} ${gb}GB (${c})`,
-          en:`${modelTitle} ${gb}GB (${c})`
-        }
-      });
-    });
-  });
-  return out;
-}
-function genMacVariants(lineKey, title, basePrice){
-  const ram = [8,16,24];
-  const ssd = [256,512,1000];
-  const out=[];
-  ram.forEach((r,ri)=>{
-    ssd.forEach((s,si)=>{
-      const price = basePrice + (ri*900000) + (si*800000);
-      const id = makeId('mac', lineKey, `${r}gb`, `${s}ssd`);
-      out.push({
-        id,
-        p: price,
-        img: `images/${id}.jpg`,
-        sub: lineKey,
-        n:{
-          ru:`${title} ${r}GB / ${s}GB`,
-          uz:`${title} ${r}GB / ${s}GB`,
-          en:`${title} ${r}GB / ${s}GB`
-        }
-      });
-    });
-  });
-  return out;
-}
+/* ✅ FULL MENU (auto-generated for ALL subcategories) */
+function ruNum(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,' '); }
+function mkName(ru, uz, en){ return {ru, uz, en}; }
+function imgOrDefault(path){ return path || 'images/logo.png'; }
 
-/* ✅ Базовый каталог (можете менять цены и/или добавить модели) */
-const AUTO_CATALOG = {
-  iphone:{
-    iphone_15: genIphoneVariants('iphone_15','iPhone 15',12900000),
-    iphone_15_pro: genIphoneVariants('iphone_15_pro','iPhone 15 Pro',16900000),
-    iphone_15_pro_max: genIphoneVariants('iphone_15_pro_max','iPhone 15 Pro Max',18900000),
-    iphone_14: genIphoneVariants('iphone_14','iPhone 14',10500000),
-    iphone_13: genIphoneVariants('iphone_13','iPhone 13',9500000),
-    iphone_12: genIphoneVariants('iphone_12','iPhone 12',8200000),
-    iphone_11: genIphoneVariants('iphone_11','iPhone 11',6900000)
-  },
-  mac:{
-    mba_m2: genMacVariants('mba_m2','MacBook Air M2',13500000),
-    mba_m3: genMacVariants('mba_m3','MacBook Air M3',15500000),
-    mbp_m3: genMacVariants('mbp_m3','MacBook Pro M3',21000000)
-  }
-};
+// Prices are placeholders. You can replace with your real prices later.
+const PRICE = {
+  // iPhone base (by gen)
+  iphone_17: {base: 0, plus: 0, pro: 0, pm: 0},
+  iphone_16: {base: 0, plus: 0, pro: 0, pm: 0},
+  iphone_15: {base: 12900000, plus: 13900000, pro: 16900000, pm: 18900000},
+  iphone_14: {base: 10500000, plus: 11500000, pro: 0, pm: 0},
+  iphone_13: {mini: 0, base: 8900000, pro: 0, pm: 0},
+  iphone_12: {mini: 0, base: 6900000, pro: 0, pm: 0},
+  iphone_11: {base: 5900000, pro: 0, pm: 0},
 
-/* ✅ MENU (не удаляем — расширяем автогенерацией) */
-const MENU = {
-  iphone:[],
-  mac:[],
-  ipad:[
-    {id:'ipad_pro_m4_256', p:17500000, img:'images/ipad_pro.jpg', sub:'ipad_pro_m4', n:{ru:'iPad Pro (M4) 256GB', uz:'iPad Pro (M4) 256GB', en:'iPad Pro (M4) 256GB'}},
-    {id:'ipad_air_m2_256', p:13900000, img:'images/ipad_air.jpg', sub:'ipad_air_m2', n:{ru:'iPad Air (M2) 256GB', uz:'iPad Air (M2) 256GB', en:'iPad Air (M2) 256GB'}},
-    {id:'ipad_mini_256', p:8900000, img:'images/ipad_10.jpg', sub:'ipad_mini', n:{ru:'iPad mini 256GB', uz:'iPad mini 256GB', en:'iPad mini 256GB'}}
-  ],
-  watch:[
-    {id:'watch_ultra_2_49', p:10900000, img:'images/watch_ultra_2.jpg', sub:'ultra_2', n:{ru:'Apple Watch Ultra 2 49mm', uz:'Apple Watch Ultra 2 49mm', en:'Apple Watch Ultra 2 49mm'}},
-    {id:'watch_series_9_45', p:5900000, img:'images/watch_series_9.jpg', sub:'s9', n:{ru:'Apple Watch Series 9 45mm', uz:'Apple Watch Series 9 45mm', en:'Apple Watch Series 9 45mm'}},
-    {id:'watch_se_44', p:4200000, img:'images/watch_se.jpg', sub:'se3', n:{ru:'Apple Watch SE 44mm', uz:'Apple Watch SE 44mm', en:'Apple Watch SE 44mm'}}
-  ],
-  airpods:[
-    {id:'airpods_pro2', p:3200000, img:'images/airpods_pro_2.jpg', sub:'pro2', n:{ru:'AirPods Pro 2', uz:'AirPods Pro 2', en:'AirPods Pro 2'}},
-    {id:'airpods_3', p:2400000, img:'images/airpods_3.jpg', sub:'ap3', n:{ru:'AirPods 3', uz:'AirPods 3', en:'AirPods 3'}},
-    {id:'airpods_max', p:7200000, img:'images/airpods_max.jpg', sub:'max', n:{ru:'AirPods Max', uz:'AirPods Max', en:'AirPods Max'}}
-  ],
-  accessories:[
-    {id:'acc_case_iphone', p:290000, img:'images/acc_case_iphone.jpg', sub:'cases', n:{ru:'Чехол для iPhone', uz:'iPhone g‘ilofi', en:'iPhone Case'}},
-    {id:'acc_glass', p:190000, img:'images/acc_glass_iphone.jpg', sub:'glass', n:{ru:'Защитное стекло', uz:'Himoya oynasi', en:'Screen Protector'}},
-    {id:'acc_charger_20w', p:280000, img:'images/acc_charger_20w.jpg', sub:'charger', n:{ru:'Зарядка 20W', uz:'20W zaryadlovchi', en:'20W Charger'}},
-    {id:'acc_cable_typec', p:160000, img:'images/acc_cable_typec.jpg', sub:'cables', n:{ru:'Кабель Type-C', uz:'Type-C kabel', en:'Type-C Cable'}}
-  ]
-};
-
-/* ✅ добавить автотовары в MENU */
-(function hydrateAutoCatalog(){
-  // iphone
-  const iph = AUTO_CATALOG.iphone || {};
-  Object.keys(iph).forEach(k=>{
-    (iph[k]||[]).forEach(it=>{
-      // sub = ключ подкатегории
-      it.sub = k;
-      MENU.iphone.push(it);
-    });
-  });
   // mac
-  const mac = AUTO_CATALOG.mac || {};
-  Object.keys(mac).forEach(k=>{
-    (mac[k]||[]).forEach(it=>{
-      it.sub = k;
-      MENU.mac.push(it);
+  mac_air_13_m4: 0,
+  mac_air_15_m4: 0,
+  mac_air_m3: 15500000,
+  mac_air_m2: 13500000,
+  mac_air_m1: 0,
+  mac_pro_m4: 0,
+  mac_pro_m3: 21000000,
+
+  // ipad
+  ipad_pro_m5: 0,
+  ipad_pro_m4: 17500000,
+  ipad_air_m3: 0,
+  ipad_air_m2: 13900000,
+  ipad_mini: 0,
+
+  // watch
+  watch_ultra_3: 0,
+  watch_ultra_2: 10900000,
+  watch_11: 0,
+  watch_se_3: 0,
+  watch_se_2: 0,
+  watch_10: 0,
+  watch_9: 5900000,
+  watch_7: 0,
+
+  // airpods
+  airpods_max: 7200000,
+  airpods_4: 0,
+  airpods_3: 2400000,
+  airpods_2p: 3200000,
+
+  // accessories base
+  acc_cases: 290000,
+  acc_glass: 190000,
+  acc_charger: 280000,
+  acc_magsafe: 0,
+  acc_usb: 160000,
+  acc_straps: 0,
+  acc_airtag: 0
+};
+
+const MENU = { iphone:[], mac:[], ipad:[], watch:[], airpods:[], accessories:[] };
+
+// ---------- iPhone generator (Pro/Max INCLUDED in same subcategory list) ----------
+function addIphoneFamily(subKey, genLabel, options){
+  // options: {hasPlus, hasMini, hasPro, hasProMax, storagesBase, storagesPro}
+  const S_BASE = options.storagesBase || [128,256,512];
+  const S_PRO  = options.storagesPro  || [128,256,512,1024];
+
+  const addModel = (modelRu, modelUz, modelEn, priceBase, storages, imgName, tag)=>{
+    storages.forEach(mem=>{
+      const memLabel = mem===1024 ? '1TB' : (mem + 'GB');
+      const id = `ip_${subKey}_${tag}_${mem}`;
+      MENU.iphone.push({
+        id,
+        sub: subKey,
+        p: priceBase || 0,
+        img: imgOrDefault(`images/${imgName || 'iphone.jpg'}`),
+        n: mkName(`${modelRu} ${memLabel}`, `${modelUz} ${memLabel}`, `${modelEn} ${memLabel}`)
+      });
+    });
+  };
+
+  // Base
+  addModel(`iPhone ${genLabel}`, `iPhone ${genLabel}`, `iPhone ${genLabel}`, PRICE[subKey]?.base, S_BASE, `iphone_${genLabel}.jpg`, 'base');
+
+  // Plus (if)
+  if(options.hasPlus){
+    addModel(`iPhone ${genLabel} Plus`, `iPhone ${genLabel} Plus`, `iPhone ${genLabel} Plus`, PRICE[subKey]?.plus, S_BASE, `iphone_${genLabel}_plus.jpg`, 'plus');
+  }
+
+  // Mini (if)
+  if(options.hasMini){
+    addModel(`iPhone ${genLabel} mini`, `iPhone ${genLabel} mini`, `iPhone ${genLabel} mini`, PRICE[subKey]?.mini, [64,128,256], `iphone_${genLabel}_mini.jpg`, 'mini');
+  }
+
+  // Pro
+  if(options.hasPro){
+    addModel(`iPhone ${genLabel} Pro`, `iPhone ${genLabel} Pro`, `iPhone ${genLabel} Pro`, PRICE[subKey]?.pro, S_PRO, `iphone_${genLabel}_pro.jpg`, 'pro');
+  }
+
+  // Pro Max
+  if(options.hasProMax){
+    addModel(`iPhone ${genLabel} Pro Max`, `iPhone ${genLabel} Pro Max`, `iPhone ${genLabel} Pro Max`, PRICE[subKey]?.pm, S_PRO, `iphone_${genLabel}_pro_max.jpg`, 'pm');
+  }
+}
+
+// iPhone 17 (placeholder but FULL list)
+addIphoneFamily('iphone_17','17',{hasPlus:true,hasPro:true,hasProMax:true,storagesBase:[128,256,512],storagesPro:[256,512,1024]});
+// iPhone 16 (full)
+addIphoneFamily('iphone_16','16',{hasPlus:true,hasPro:true,hasProMax:true,storagesBase:[128,256,512],storagesPro:[256,512,1024]});
+// iPhone 15 (full)
+addIphoneFamily('iphone_15','15',{hasPlus:true,hasPro:true,hasProMax:true,storagesBase:[128,256,512],storagesPro:[128,256,512,1024]});
+// iPhone 14 (base + plus + pro/pro max)
+addIphoneFamily('iphone_14','14',{hasPlus:true,hasPro:true,hasProMax:true,storagesBase:[128,256,512],storagesPro:[128,256,512,1024]});
+// iPhone 13 (mini + base + pro/pro max)
+addIphoneFamily('iphone_13','13',{hasMini:true,hasPro:true,hasProMax:true,storagesBase:[128,256,512],storagesPro:[128,256,512,1024]});
+// iPhone 12 (mini + base + pro/pro max)
+addIphoneFamily('iphone_12','12',{hasMini:true,hasPro:true,hasProMax:true,storagesBase:[64,128,256],storagesPro:[128,256,512]});
+// iPhone 11 (base + pro/pro max)
+addIphoneFamily('iphone_11','11',{hasPro:true,hasProMax:true,storagesBase:[64,128,256],storagesPro:[64,256,512]});
+
+// Other models list
+[
+  {m:'iPhone SE (2022)', mem:[64,128,256]},
+  {m:'iPhone XR', mem:[64,128,256]},
+  {m:'iPhone XS', mem:[64,256,512]},
+  {m:'iPhone XS Max', mem:[64,256,512]},
+  {m:'iPhone X', mem:[64,256]},
+  {m:'iPhone 8', mem:[64,256]},
+  {m:'iPhone 8 Plus', mem:[64,256]},
+].forEach((x,i)=>{
+  x.mem.forEach(mem=>{
+    MENU.iphone.push({
+      id:`ip_other_${i}_${mem}`,
+      sub:'iphone_other',
+      p:0,
+      img:'images/iphone_other.jpg',
+      n: mkName(`${x.m} ${mem}GB`, `${x.m} ${mem}GB`, `${x.m} ${mem}GB`)
     });
   });
-})();
+});
 
-/* ✅ Индекс */
+// ---------- Mac generator ----------
+function addMac(subKey, baseNameRu, baseNameUz, baseNameEn, basePrice, configs){
+  (configs||[]).forEach((c,idx)=>{
+    const id=`mac_${subKey}_${idx}`;
+    MENU.mac.push({
+      id,
+      sub: subKey,
+      p: basePrice || 0,
+      img: `images/${subKey}.jpg`,
+      n: mkName(`${baseNameRu} — ${c}`, `${baseNameUz} — ${c}`, `${baseNameEn} — ${c}`)
+    });
+  });
+}
+addMac('mac_air_13_m4','MacBook Air 13 (M4)','MacBook Air 13 (M4)','MacBook Air 13 (M4)', PRICE.mac_air_13_m4, [
+  '8/256','16/512','24/512','24/1TB'
+]);
+addMac('mac_air_15_m4','MacBook Air 15 (M4)','MacBook Air 15 (M4)','MacBook Air 15 (M4)', PRICE.mac_air_15_m4, [
+  '8/256','16/512','24/512','24/1TB'
+]);
+addMac('mac_air_m3','MacBook Air (M3)','MacBook Air (M3)','MacBook Air (M3)', PRICE.mac_air_m3, [
+  '8/256','16/512','24/512','24/1TB'
+]);
+addMac('mac_air_m2','MacBook Air (M2)','MacBook Air (M2)','MacBook Air (M2)', PRICE.mac_air_m2, [
+  '8/256','16/512','24/512','24/1TB'
+]);
+addMac('mac_air_m1','MacBook Air (M1)','MacBook Air (M1)','MacBook Air (M1)', PRICE.mac_air_m1, [
+  '8/256','8/512','16/512'
+]);
+addMac('mac_pro_m4','MacBook Pro (M4)','MacBook Pro (M4)','MacBook Pro (M4)', PRICE.mac_pro_m4, [
+  '14" 16/512','14" 24/1TB','16" 24/1TB','16" 36/1TB'
+]);
+addMac('mac_pro_m3','MacBook Pro (M3)','MacBook Pro (M3)','MacBook Pro (M3)', PRICE.mac_pro_m3, [
+  '14" 8/512','14" 16/1TB','16" 18/512','16" 36/1TB'
+]);
+
+// ---------- iPad generator ----------
+function addIpad(subKey, nameRu, nameUz, nameEn, basePrice, configs){
+  (configs||[]).forEach((c,idx)=>{
+    MENU.ipad.push({
+      id:`ipad_${subKey}_${idx}`,
+      sub: subKey,
+      p: basePrice || 0,
+      img: `images/${subKey}.jpg`,
+      n: mkName(`${nameRu} — ${c}`, `${nameUz} — ${c}`, `${nameEn} — ${c}`)
+    });
+  });
+}
+addIpad('ipad_pro_m5','iPad Pro (M5)','iPad Pro (M5)','iPad Pro (M5)', PRICE.ipad_pro_m5, [
+  '11" 256','11" 512','11" 1TB','13" 256','13" 512','13" 1TB'
+]);
+addIpad('ipad_pro_m4','iPad Pro (M4)','iPad Pro (M4)','iPad Pro (M4)', PRICE.ipad_pro_m4, [
+  '11" 256','11" 512','11" 1TB','13" 256','13" 512','13" 1TB'
+]);
+addIpad('ipad_air_m3','iPad Air (M3)','iPad Air (M3)','iPad Air (M3)', PRICE.ipad_air_m3, [
+  '11" 128','11" 256','11" 512','13" 128','13" 256','13" 512'
+]);
+addIpad('ipad_air_m2','iPad Air (M2)','iPad Air (M2)','iPad Air (M2)', PRICE.ipad_air_m2, [
+  '64','256','512'
+]);
+addIpad('ipad_mini','iPad mini','iPad mini','iPad mini', PRICE.ipad_mini, [
+  '64','256'
+]);
+
+// ---------- Watch generator ----------
+function addWatch(subKey, nameRu, nameUz, nameEn, basePrice, variants){
+  (variants||[]).forEach((v,idx)=>{
+    MENU.watch.push({
+      id:`watch_${subKey}_${idx}`,
+      sub: subKey,
+      p: basePrice || 0,
+      img: `images/${subKey}.jpg`,
+      n: mkName(`${nameRu} — ${v}`, `${nameUz} — ${v}`, `${nameEn} — ${v}`)
+    });
+  });
+}
+addWatch('watch_ultra_3','Apple Watch Ultra 3','Apple Watch Ultra 3','Apple Watch Ultra 3', PRICE.watch_ultra_3, ['Titanium','Titanium + Trail Loop','Titanium + Ocean Band']);
+addWatch('watch_ultra_2','Apple Watch Ultra 2','Apple Watch Ultra 2','Apple Watch Ultra 2', PRICE.watch_ultra_2, ['Titanium','Titanium + Trail Loop','Titanium + Ocean Band']);
+addWatch('watch_11','Apple Watch Series 11','Apple Watch Series 11','Apple Watch Series 11', PRICE.watch_11, ['41mm','45mm']);
+addWatch('watch_se_3','Apple Watch SE 3','Apple Watch SE 3','Apple Watch SE 3', PRICE.watch_se_3, ['40mm','44mm']);
+addWatch('watch_se_2','Apple Watch SE 2','Apple Watch SE 2','Apple Watch SE 2', PRICE.watch_se_2, ['40mm','44mm']);
+addWatch('watch_10','Apple Watch Series 10','Apple Watch Series 10','Apple Watch Series 10', PRICE.watch_10, ['41mm','45mm']);
+addWatch('watch_9','Apple Watch Series 9','Apple Watch Series 9','Apple Watch Series 9', PRICE.watch_9, ['41mm','45mm']);
+addWatch('watch_7','Apple Watch Series 7','Apple Watch Series 7','Apple Watch Series 7', PRICE.watch_7, ['41mm','45mm']);
+
+// ---------- AirPods generator ----------
+function addAirpods(subKey, nameRu, nameUz, nameEn, basePrice, variants){
+  (variants||[]).forEach((v,idx)=>{
+    MENU.airpods.push({
+      id:`ap_${subKey}_${idx}`,
+      sub: subKey,
+      p: basePrice || 0,
+      img: `images/${subKey}.jpg`,
+      n: mkName(`${nameRu}${v?(' — '+v):''}`, `${nameUz}${v?(' — '+v):''}`, `${nameEn}${v?(' — '+v):''}`)
+    });
+  });
+}
+addAirpods('airpods_max','AirPods Max','AirPods Max','AirPods Max', PRICE.airpods_max, ['USB-C','Lightning']);
+addAirpods('airpods_4','AirPods 4','AirPods 4','AirPods 4', PRICE.airpods_4, ['Standard','ANC']);
+addAirpods('airpods_3','AirPods 3','AirPods 3','AirPods 3', PRICE.airpods_3, ['MagSafe','Lightning']);
+addAirpods('airpods_2p','AirPods Pro (2)','AirPods Pro (2)','AirPods Pro (2)', PRICE.airpods_2p, ['USB-C','Lightning']);
+
+// ---------- Accessories generator ----------
+function addAcc(subKey, nameRu, nameUz, nameEn, basePrice, variants, img){
+  (variants||[]).forEach((v,idx)=>{
+    MENU.accessories.push({
+      id:`acc_${subKey}_${idx}`,
+      sub: subKey,
+      p: basePrice || 0,
+      img: imgOrDefault(img || `images/${subKey}.jpg`),
+      n: mkName(`${nameRu} — ${v}`, `${nameUz} — ${v}`, `${nameEn} — ${v}`)
+    });
+  });
+}
+addAcc('acc_cases','Чехол для iPhone','iPhone g‘ilofi','iPhone Case', PRICE.acc_cases, [
+  'Silicone','Leather','Clear','Shockproof','MagSafe Compatible'
+], 'images/acc_cases.jpg');
+addAcc('acc_glass','Защитное стекло','Himoya oynasi','Screen Protector', PRICE.acc_glass, [
+  '2.5D','3D','Privacy','Matte','Camera Protector'
+], 'images/acc_glass.jpg');
+addAcc('acc_charger','Зарядное устройство','Zaryadlovchi','Charger', PRICE.acc_charger, [
+  '20W Type-C','35W Dual USB-C','USB-A 12W','Car Charger','GaN Fast Charger'
+], 'images/acc_charger.jpg');
+addAcc('acc_magsafe','MagSafe аксессуары','MagSafe aksessuarlari','MagSafe accessories', PRICE.acc_magsafe, [
+  'MagSafe Charger','MagSafe Wallet','MagSafe PowerBank','MagSafe Stand'
+], 'images/acc_magsafe.jpg');
+addAcc('acc_usb','Кабель','Kabel','Cable', PRICE.acc_usb, [
+  'Type-C to Type-C','Type-C to Lightning','USB-A to Lightning','Braided Cable','2m Cable'
+], 'images/acc_usb.jpg');
+addAcc('acc_straps','Ремешок Apple Watch','Apple Watch remeshok','Apple Watch Strap', PRICE.acc_straps, [
+  'Sport Band','Solo Loop','Braided Loop','Leather Link','Metal Bracelet'
+], 'images/acc_straps.jpg');
+addAcc('acc_airtag','Трекер','Trekker','Tracker', PRICE.acc_airtag, [
+  'AirTag (1 pack)','AirTag (4 pack)','Keyring','Case','Holder'
+], 'images/acc_airtag.jpg');
+
+/* Build ITEM_INDEX */
 const ITEM_INDEX = {};
-for (const c in MENU){ (MENU[c]||[]).forEach(it => ITEM_INDEX[it.id]=it); }
+for (const c in MENU){ MENU[c].forEach(it => ITEM_INDEX[it.id]=it); }
 
-/* carousels */
-const POPULAR = ['airpods_pro2','watch_series_9_45','acc_charger_20w']; // можно менять
-const GIFT_ITEMS = ['ipad_air_m2_256','airpods_max','acc_case_iphone'];
+/* ✅ carousels (NO badges) */
+const POPULAR = [
+  // pick representative items that exist
+  MENU.iphone.find(x=>x.sub==='iphone_15' && (x.n?.ru||'').includes('Pro'))?.id,
+  MENU.mac.find(x=>x.sub==='mac_air_m2')?.id,
+  MENU.airpods.find(x=>x.sub==='airpods_2p')?.id
+].filter(Boolean);
+
+const GIFT_ITEMS = [
+  MENU.watch.find(x=>x.sub==='watch_9')?.id,
+  MENU.ipad.find(x=>x.sub==='ipad_air_m2')?.id,
+  MENU.accessories.find(x=>x.sub==='acc_charger')?.id
+].filter(Boolean);
 
 /* state */
 let lang='uz',
-    category=localStorage.getItem('sebtech_cat') || 'iphone',
-    subcat=localStorage.getItem('sebtech_subcat') || '',
+    category = localStorage.getItem('sebtech_cat') || 'iphone',
+    subcat   = localStorage.getItem('sebtech_subcat') || (SUBCATS[category]?.[0]?.k || ''),
     payment='cash',
     cart={};
 
 if(!MENU[category]) category='iphone';
-
-function subcatsListForCat(cat){
-  return (SUBCATS[cat]||[]).map(x=>x.k);
-}
-function normalizeSubcat(){
-  const list=subcatsListForCat(category);
-  if(!list.length){ subcat=''; return; }
-  if(!subcat || !list.includes(subcat)) subcat=list[0];
-}
+if(!SUBCATS[category]?.some(s=>s.k===subcat)) subcat = (SUBCATS[category]?.[0]?.k || '');
 
 /* helpers */
 function escapeHtml(s){return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
@@ -1383,7 +1448,7 @@ function clearSearch(){ closeSearch(); }
 function onSearchKey(e){ if(e.key==='Enter') closeSearch(); }
 function matchesQuery(it,q){
   if(!q) return true;
-  const all=[it.n?.ru,it.n?.uz,it.n?.en,String(it.id||''), String(it.sub||'')].filter(Boolean).join(' ').toLowerCase();
+  const all=[it.n?.ru,it.n?.uz,it.n?.en,String(it.id||''),String(it.sub||'')].filter(Boolean).join(' ').toLowerCase();
   return all.includes(q);
 }
 function searchProducts(){
@@ -1393,7 +1458,7 @@ function searchProducts(){
 
   let found=0;
   for(const c in MENU){
-    (MENU[c]||[]).forEach(it=>{
+    MENU[c].forEach(it=>{
       if(matchesQuery(it,q)){
         cart[it.id]=cart[it.id]||0;
         products.innerHTML += cardHTML(it);
@@ -1418,106 +1483,89 @@ function renderCats(){
 function onCategoryClick(k){
   category=k;
   localStorage.setItem('sebtech_cat', category);
-  normalizeSubcat();
+
+  // ✅ reset subcat to first for that category and OPEN bottom sheet immediately
+  subcat = (SUBCATS[category]?.[0]?.k || '');
   localStorage.setItem('sebtech_subcat', subcat);
 
   renderCats();
-  renderSubOpenLine();
-  renderSubGrid();
+  openSubcats();      // ✅ show sheet right away
+  renderSubcatsSheet();
   if(!isSearchOpen()) renderProducts();
 }
 
-/* ✅ subcategories sheet */
-function openSubSheet(){
-  renderSubGrid();
+/* ✅ subcategories bottom sheet */
+function subTitleForCat(){
+  const catName = (CATS[lang]?.[category] || category);
+  return `${UI[lang].subcats}: ${catName}`;
+}
+function openSubcats(){
+  subTitle.innerText = subTitleForCat();
   subBackdrop.classList.add('show');
   subSheet.classList.add('show');
-  try{Telegram.WebApp.HapticFeedback?.impactOccurred?.('light');}catch(_){}
+  Telegram.WebApp.HapticFeedback?.impactOccurred?.('light');
 }
-function closeSubSheet(){
+function closeSubcats(){
   subBackdrop.classList.remove('show');
   subSheet.classList.remove('show');
 }
-function getSubMeta(cat, key){
-  return (SUBCATS[cat]||[]).find(x=>x.k===key) || null;
+function subLabel(s){
+  if(lang==='uz') return s.uz;
+  if(lang==='en') return s.en;
+  return s.ru;
 }
-function renderSubOpenLine(){
-  // title + current selection
-  subOpenTitle.innerText = UI[lang].subOpen;
-  const meta = getSubMeta(category, subcat);
-  subOpenSub.innerText = meta ? meta.t : '—';
-  subSheetTitle.innerText = UI[lang].subcatsTitle;
-}
-function renderSubGrid(){
-  const list = SUBCATS[category] || [];
+function renderSubcatsSheet(){
+  subTitle.innerText = subTitleForCat();
   subGrid.innerHTML='';
-  if(!list.length){
-    subGrid.innerHTML = `<div style="grid-column:1/-1;padding:14px;font-weight:900;opacity:.8;background:rgba(17,24,39,.04);border:1px solid rgba(17,24,39,.08);border-radius:18px;text-align:center;">
-      ${lang==='ru'?'Подкатегорий нет':lang==='uz'?'Podkategoriya yo‘q':'No subcategories'}
-    </div>`;
-    return;
-  }
-  list.forEach(sc=>{
-    const active = sc.k===subcat ? 'active' : '';
+  (SUBCATS[category]||[]).forEach(s=>{
+    const active = (s.k===subcat);
     subGrid.innerHTML += `
-      <button class="sub-ico-btn ${active}" type="button" onclick="pickSub('${sc.k}')">
-        <div class="sub-ico">${escapeHtml(sc.ico||'🧩')}</div>
-        <div class="sub-ico-name">${escapeHtml(sc.t)}</div>
-      </button>`;
+      <button class="sub-icbtn ${active?'active':''}" onclick="pickSubcat('${s.k}')">
+        <div class="sub-emoji">${s.e||'🔹'}</div>
+        <div class="sub-txt">${escapeHtml(subLabel(s))}</div>
+      </button>
+    `;
   });
 }
-function pickSub(k){
-  subcat = k;
+function pickSubcat(k){
+  subcat=k;
   localStorage.setItem('sebtech_subcat', subcat);
-  renderSubOpenLine();
-  renderSubGrid();
+  renderSubcatsSheet();
   if(!isSearchOpen()) renderProducts();
-  closeSubSheet();
-  try{Telegram.WebApp.HapticFeedback?.notificationOccurred?.('success');}catch(_){}
+  closeSubcats();
+  Telegram.WebApp.HapticFeedback?.notificationOccurred?.('success');
 }
 
 /* products */
 function cardHTML(it){
   const id=it.id;
   const qty=cart[id]||0;
-
-  // “Написать” + “Позвонить” (в карточке товара)
-  const msgText =
-    (lang==='ru' ? `Здравствуйте! Интересует: ${nameOf(id)}. Подкатегория: ${it.sub||''}.` :
-     lang==='uz' ? `Salom! Qiziqtiradi: ${nameOf(id)}. Bo‘lim: ${it.sub||''}.` :
-                   `Hello! I'm interested in: ${nameOf(id)}. Sub: ${it.sub||''}.`);
-
   return `
   <div class="card">
     <div class="img"><img src="${it.img}" onerror="this.src='images/logo.png'" onclick="openImage(event,'${id}')"></div>
     <div class="item-name">${escapeHtml(nameOf(id))}</div>
     <div class="price">${formatSum(it.p)} <small>${UI[lang].sum}</small></div>
-
     <div class="counter">
       <button onclick="chg('${id}',-1)">−</button>
       <span id="c_${id}">${qty}</span>
       <button onclick="chg('${id}',1)">+</button>
     </div>
-
-    <div class="card-actions">
-      <button class="qa-btn primary" type="button" onclick="qaTelegram(event,'${id}', ${JSON.stringify(msgText).replace(/</g,'\\u003c')})">${UI[lang].qaTg}</button>
-      <button class="qa-btn" type="button" onclick="qaCall(event)">${UI[lang].qaCall}</button>
-    </div>
   </div>`;
 }
 function renderProducts(){
   products.innerHTML='';
-  normalizeSubcat();
 
   const list=(MENU[category]||[]).filter(it=>{
+    // ✅ filter by subcat (full list is already grouped: Pro/Max are inside the same sub)
     if(!subcat) return true;
     return String(it.sub||'') === String(subcat);
   });
 
   if(!list.length){
-    products.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:18px;font-weight:900;opacity:.9;background:rgba(17,24,39,.04);border:1px solid rgba(17,24,39,.08);border-radius:18px;">
-      ${lang==='ru'?'Пока нет товаров в этой подкатегории':lang==='uz'?'Bu bo‘limda hozircha mahsulot yo‘q':'No products in this subcategory yet'}
+    products.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:18px;font-weight:900;opacity:.9;background:rgba(17,24,39,.04);border:1px solid rgba(17,24,39,.08);border-radius:18px;">
+      ${lang==='ru'?'Пока нет товаров в этой подкатегории':lang==='uz'?'Bu subkategoriyada hozircha mahsulot yo‘q':'No items in this subcategory yet'}
     </div>`;
+    updateTotal();
     return;
   }
 
@@ -1525,27 +1573,15 @@ function renderProducts(){
     cart[it.id]=cart[it.id]||0;
     products.innerHTML += cardHTML(it);
   });
+
+  updateTotal();
 }
 
-/* quick actions */
-function qaTelegram(e, id, text){
-  try{e.preventDefault();e.stopPropagation();}catch(_){}
-  // share sheet (не требует username)
-  const it = ITEM_INDEX[id] || {};
-  const price = it?.p ? ` ${formatSum(it.p)} ${UI[lang].sum}` : '';
-  openTelegramShare(`${text}${price}`);
-}
-function qaCall(e){
-  try{e?.preventDefault?.();e?.stopPropagation?.();}catch(_){}
-  try{Telegram.WebApp.openLink(SUPPORT_PHONE_TEL);}catch(_){window.location.href=SUPPORT_PHONE_TEL;}
-}
-
-/* carousels */
-function popCardHTML(it,label){
+/* carousels (NO badges) */
+function popCardHTML(it){
   const id=it.id;
   return `
   <div class="pop-card" onclick="onCardClick(event,'${id}')">
-    <div class="badge-pill">${escapeHtml(label)}</div>
     <div class="pop-img" onclick="openImage(event,'${id}')"><img src="${it.img}" onerror="this.src='images/logo.png'"></div>
     <div class="pop-name">${escapeHtml(nameOf(id))}</div>
     <div class="pop-price">${formatSum(it.p)} <small>${UI[lang].sum}</small></div>
@@ -1556,11 +1592,10 @@ function popCardHTML(it,label){
     </div>
   </div>`;
 }
-function miniCardHTML(it,label){
+function miniCardHTML(it){
   const id=it.id;
   return `
   <div class="mini-card" onclick="onCardClick(event,'${id}')">
-    <div class="badge-pill">${escapeHtml(label)}</div>
     <div class="mini-img" onclick="openImage(event,'${id}')"><img src="${it.img}" onerror="this.src='images/logo.png'"></div>
     <div class="mini-name">${escapeHtml(nameOf(id))}</div>
     <div class="mini-price">${formatSum(it.p)} <small>${UI[lang].sum}</small></div>
@@ -1576,7 +1611,7 @@ function renderPopular(){
   POPULAR.forEach(id=>{
     const it=ITEM_INDEX[id]; if(!it) return;
     cart[id]=cart[id]||0;
-    popularRow.innerHTML += popCardHTML(it, lang==='ru'?'Популярное':lang==='uz'?'Ommabop':'Popular');
+    popularRow.innerHTML += popCardHTML(it);
   });
 }
 function renderGift(){
@@ -1584,7 +1619,7 @@ function renderGift(){
   GIFT_ITEMS.forEach(id=>{
     const it=ITEM_INDEX[id]; if(!it) return;
     cart[id]=cart[id]||0;
-    giftRow.innerHTML += miniCardHTML(it, lang==='ru'?'Рекомендуем':lang==='uz'?'Tavsiya':'Recommended');
+    giftRow.innerHTML += miniCardHTML(it);
   });
 }
 
@@ -1741,15 +1776,20 @@ function sendConsult(e){
   if(!needHelp) return;
 
   const question = (document.getElementById('vipQuestion')?.value || '').trim();
+  if(!question){
+    showToast(lang==='ru'?'Напишите вопрос':lang==='uz'?'Savol yozing':'Type your question');
+    return;
+  }
+
   const payload = {
-    action:'consult',
+    action:'consultation',              // ✅ matches your bot handler
     to_admin_id: ADMIN_ID,
     brand:'SEBTECH',
     branch,
     branch_title: branchTitleForLang(),
     branch_address: branchAddressForLang(),
     tg:{id:tg_id,username:tg_username,first_name:tg_first_name},
-    message: question || null,
+    text: question,                     // ✅ your bot expects "text"
     time: new Date().toISOString()
   };
 
@@ -1757,6 +1797,7 @@ function sendConsult(e){
     Telegram.WebApp.HapticFeedback?.notificationOccurred?.('success');
     Telegram.WebApp.sendData(JSON.stringify(payload));
     showToast(UI[lang].consultSent);
+    document.getElementById('vipQuestion').value='';
     closeTopMenu();
   }catch(_){
     showToast("✅");
@@ -1842,11 +1883,8 @@ function applyUI(){
   applyBranchToUI();
   syncBranchUI();
 
-  normalizeSubcat();
   renderCats();
-  renderSubOpenLine();
-  renderSubGrid();
-
+  renderSubcatsSheet();     // ✅ refresh sheet texts with language
   if(!isSearchOpen()) renderProducts();
   renderPopular(); renderGift();
   updateTotal();
@@ -1877,14 +1915,7 @@ function sendOrder(){
     const qty=Number(cart[id]||0);
     if(qty>0){
       const it=ITEM_INDEX[id]||{};
-      items.push({
-        id,
-        qty,
-        price:it.p||0,
-        name_ru:it.n?.ru||id,
-        name_lang:nameOf(id),
-        sub:it.sub||''
-      });
+      items.push({id,qty,price:it.p||0,name_ru:it.n?.ru||id,name_lang:nameOf(id), sub: it.sub || ''});
     }
   }
   if(items.length===0){ alert(UI[lang].empty); return; }
@@ -1903,6 +1934,7 @@ function sendOrder(){
     total_with_delivery: formatSum(itemsSum),
     total_num: itemsSum,
     payment,
+    phone: localStorage.getItem('sebtech_phone') || '',  // ✅ no visible phone field
     comment:comment.value,
     order_id: genOrderId(),
     lang,
@@ -1932,15 +1964,12 @@ lang='uz';
 document.querySelectorAll('.langs .btn').forEach(b=>b.classList.remove('active'));
 document.getElementById('langUZ')?.classList.add('active');
 
-/* defaults */
-normalizeSubcat();
+phone.value = localStorage.getItem('sebtech_phone') || PHONE1_DISPLAY;
+phone.addEventListener('input',()=>localStorage.setItem('sebtech_phone',phone.value));
+
 setPayment('cash');
 
-/* render */
 renderCats();
-renderSubOpenLine();
-renderSubGrid();
-renderProducts();
 renderPopular();
 renderGift();
 syncNeedHelpUI();
@@ -1950,6 +1979,17 @@ setTimeout(syncStickyHeight, 50);
 
 /* ensure nothing auto-hides categories/products */
 closeSearch();
+
+/* ✅ open subcats sheet when user taps active category again (nice UX) */
+cats.addEventListener('click', (e)=>{
+  const b = e.target.closest('.cat-btn');
+  if(!b) return;
+  // if clicked on active category, show subcats
+  if(b.classList.contains('active')){
+    renderSubcatsSheet();
+    openSubcats();
+  }
+});
 </script>
 </body>
 </html>
