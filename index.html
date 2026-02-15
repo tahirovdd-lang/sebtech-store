@@ -6,20 +6,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-<!-- ✅ New fonts (SF-like via system stack + Inter) -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 :root{
   /* ✅ Dark Apple/Telegram palette */
-  --bg:#000000;          /* deep black */
-  --bg2:#0B0F14;         /* dark graphite */
-  --panel:#111827;       /* dark blue-gray */
-  --panel2:#0F172A;      /* darker */
+  --bg:#000000;
+  --bg2:#0B0F14;
+  --panel:#111827;
+  --panel2:#0F172A;
   --white:#ffffff;
 
   --text:#ffffff;
-  --muted: rgba(229,231,235,.72); /* E5E7EB */
+  --muted: rgba(229,231,235,.72);
 
   --stroke: rgba(255,255,255,.10);
   --stroke2: rgba(255,255,255,.08);
@@ -31,10 +30,9 @@
   --vh: 1vh;
   --sticky-h: 86px;
 
-  --accent:#3B82F6;   /* blue */
-  --accent2:#2563EB;  /* deep blue */
+  --accent:#3B82F6;
+  --accent2:#2563EB;
 
-  /* ✅ header black + white text */
   --header-bg:#0B0B0C;
   --header-text:#ffffff;
 }
@@ -207,8 +205,18 @@ body{
   transition:.15s;
   color:#E5E7EB;
 }
-.img{height:170px;display:flex;align-items:center;justify-content:center;margin-bottom:6px;}
-.img img{max-width:150px;max-height:150px;object-fit:cover;transform:scale(1.06);cursor:pointer;border-radius:18px;}
+
+/* ✅ bigger item icons/photos a bit */
+.img{height:184px;display:flex;align-items:center;justify-content:center;margin-bottom:6px;}
+.img img{
+  max-width:168px;
+  max-height:168px;
+  object-fit:cover;
+  transform:scale(1.10);
+  cursor:pointer;
+  border-radius:18px;
+}
+
 .item-name{margin-top:2px;padding:0 6px;font-weight:900;line-height:1.15;min-height:42px;display:flex;align-items:center;justify-content:center;word-break:break-word;}
 .price{font-weight:900;color:var(--accent);margin-top:6px;}
 .price small{font-weight:800;opacity:.75;margin-left:4px;color:rgba(229,231,235,.75);}
@@ -226,14 +234,21 @@ body{
 .popular-title{width:100%;font-weight:900;padding:8px 2px 10px;display:flex;align-items:center;gap:8px;color:#E5E7EB;}
 .popular-row,.mini-row{display:flex;gap:12px;overflow-x:auto;padding:2px 2px 10px;-webkit-overflow-scrolling:touch;}
 .pop-card,.mini-card{
-  min-width:150px;border-radius:24px;padding:10px;
+  min-width:160px;border-radius:24px;padding:10px;
   background: rgba(30,41,59,.60);
   border:1px solid var(--stroke2);
   box-shadow: 0 12px 26px rgba(0,0,0,.55);
   cursor:pointer;transition:.15s;position:relative;
   color:#E5E7EB;
 }
-.pop-img,.mini-img{height:86px;border-radius:18px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:rgba(59,130,246,.14);cursor:pointer;}
+.pop-img,.mini-img{
+  height:92px;
+  border-radius:18px;
+  overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(59,130,246,.14);
+  cursor:pointer;
+}
 .pop-img img,.mini-img img{width:100%;height:100%;object-fit:cover;border-radius:18px;}
 .pop-name{font-weight:900;margin-top:8px;}
 .pop-price,.mini-price{font-weight:900;color:var(--accent);margin-top:4px;}
@@ -243,7 +258,7 @@ body{
   background: linear-gradient(180deg, var(--accent), var(--accent2));
   color:#fff;font-size:18px;font-weight:900;box-shadow:0 12px 24px rgba(0,0,0,.55);
 }
-.mini-card{min-width:132px;border-radius:22px;}
+.mini-card{min-width:140px;border-radius:22px;}
 .mini-counter button{width:28px;height:28px;}
 .mini-name{font-weight:900;margin-top:8px;font-size:12px;line-height:1.15;min-height:28px;}
 .pop-counter span,.mini-counter span{font-weight:900; min-width:18px; text-align:center;}
@@ -287,7 +302,7 @@ textarea.input{height:90px;}
   color:#fff;
 }
 
-/* image modal */
+/* ✅ image/spec modal */
 .img-modal{
   position:fixed; inset:0;
   background:rgba(0,0,0,.72);
@@ -299,7 +314,7 @@ textarea.input{height:90px;}
 }
 .img-modal.show{opacity:1;pointer-events:auto;}
 .img-modal-box{
-  width:min(520px, 100%);
+  width:min(560px, 100%);
   border-radius:22px;
   overflow:hidden;
   background: rgba(15,23,42,.96);
@@ -317,7 +332,64 @@ textarea.input{height:90px;}
   width:38px;height:38px;border:none;border-radius:14px;background:transparent;cursor:pointer;
   font-size:22px;line-height:1;color:rgba(229,231,235,.72);
 }
-.img-modal-img{width:100%;max-height:70vh;object-fit:contain;background:transparent;display:block;}
+
+/* ✅ body: image left, text right (top->bottom) */
+.img-modal-body{
+  display:flex;
+  gap:12px;
+  padding:12px;
+}
+.img-modal-left{
+  flex: 0 0 46%;
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.img-modal-img{
+  width:100%;
+  max-height:70vh;
+  object-fit:contain;
+  display:block;
+}
+.img-modal-right{
+  flex: 1 1 auto;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+  padding:12px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  min-width:0;
+}
+.spec-row{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:flex-start;
+  font-weight:900;
+}
+.spec-k{
+  color: rgba(229,231,235,.72);
+  font-weight:900;
+  flex:0 0 auto;
+}
+.spec-v{
+  color:#fff;
+  text-align:right;
+  word-break:break-word;
+  flex: 1 1 auto;
+}
+.spec-price{
+  margin-top:2px;
+  padding-top:10px;
+  border-top:1px solid rgba(255,255,255,.10);
+}
+.spec-price .spec-v{ color: var(--accent); }
 
 /* sticky */
 .sticky-checkout{
@@ -509,6 +581,10 @@ textarea.input{height:90px;}
 .sub-emoji{font-size:22px;line-height:1;}
 .sub-txt{font-size:11px;line-height:1.15;word-break:break-word;opacity:.95;}
 
+@media (max-width:520px){
+  .img-modal-body{flex-direction:column;}
+  .img-modal-left{flex:0 0 auto;}
+}
 @media (max-width:420px){
   .brand-title{font-size:28px;}
   .brand-title2{font-size:13px;}
@@ -758,7 +834,12 @@ textarea.input{height:90px;}
   <button class="btn" id="langEN" onclick="setLang('en',this)"><span class="lang-flag">🇬🇧</span>EN</button>
 </div>
 
-<!-- ✅ categories & menu restored -->
+<!-- ✅ NEW: Акция (only phones) ABOVE Popular -->
+<div class="popular-wrap" id="saleWrap">
+  <div class="popular-title" id="saleTitle">💥 Акция</div>
+  <div class="popular-row" id="saleRow"></div>
+</div>
+
 <div class="popular-wrap" id="popularWrap">
   <div class="popular-title" id="popularTitle">🔥 Популярное</div>
   <div class="popular-row" id="popularRow"></div>
@@ -769,7 +850,6 @@ textarea.input{height:90px;}
   <div class="mini-row" id="giftRow"></div>
 </div>
 
-<!-- ✅ Убрали поле телефона после "Рекомендуем" (оставляем только в payload через localStorage) -->
 <input id="phone" class="input" style="display:none" />
 
 <div class="categories" id="cats"></div>
@@ -823,13 +903,29 @@ textarea.input{height:90px;}
 
 <div class="popup" id="popup"><div class="popup-box" id="popupText">✅</div></div>
 
+<!-- ✅ Modal with photo + specs -->
 <div class="img-modal" id="imgModal" onclick="closeImgModal(event)">
   <div class="img-modal-box" onclick="event.stopPropagation()">
     <div class="img-modal-top">
       <div class="img-modal-title" id="imgModalTitle">Фото</div>
       <button class="img-modal-close" onclick="closeImgModal(event)">×</button>
     </div>
-    <img class="img-modal-img" id="imgModalImg" src="" alt="">
+
+    <div class="img-modal-body">
+      <div class="img-modal-left">
+        <img class="img-modal-img" id="imgModalImg" src="" alt="">
+      </div>
+
+      <div class="img-modal-right" id="specBox">
+        <div class="spec-row"><div class="spec-k">Model</div><div class="spec-v" id="specModel">—</div></div>
+        <div class="spec-row"><div class="spec-k">Region</div><div class="spec-v" id="specRegion">—</div></div>
+        <div class="spec-row"><div class="spec-k">Color</div><div class="spec-v" id="specColor">—</div></div>
+        <div class="spec-row"><div class="spec-k">Memory</div><div class="spec-v" id="specMemory">—</div></div>
+        <div class="spec-row"><div class="spec-k">Battery</div><div class="spec-v" id="specBattery">—</div></div>
+        <div class="spec-row"><div class="spec-k">UZIME</div><div class="spec-v" id="specUzime">—</div></div>
+        <div class="spec-row spec-price"><div class="spec-k">Price</div><div class="spec-v" id="specPrice">—</div></div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -989,6 +1085,7 @@ const UI = {
     aboutAddr:'📍 Адрес', aboutRoute:'📍 Построить маршрут',
     aboutPhone:'📞 Телефон', aboutHours:'🕒 График работы',
     searchResults:'Результаты поиска',
+    sale:'💥 Акция',
     popular:'🔥 Популярное', gift:'⭐ Рекомендуем',
     phone:'📞 Телефон',
     cart:'🛒 Корзина', total:'Итого', order:'Оформить заказ', comment:'✍️ Комментарий к заказу',
@@ -1001,7 +1098,8 @@ const UI = {
     clickHint:'Отсканируйте QR в приложении CLICK, затем нажмите «Оформить заказ».',
     welcome:'👋 Добро пожаловать',
     brandSub:'APPLE TECH STORE',
-    subcats:'Подкатегории'
+    subcats:'Подкатегории',
+    priceAsk:'Цена уточняйте'
   },
   uz:{
     menu:'Menyu',
@@ -1018,6 +1116,7 @@ const UI = {
     aboutAddr:'📍 Manzil', aboutRoute:"📍 Yo‘l ko‘rsatish",
     aboutPhone:'📞 Telefon', aboutHours:'🕒 Ish vaqti',
     searchResults:'Qidiruv natijalari',
+    sale:'💥 Aksiya',
     popular:'🔥 Ommabop', gift:'⭐ Tavsiya',
     phone:'📞 Telefon',
     cart:'🛒 Savat', total:'Jami', order:'Buyurtma berish', comment:'✍️ Izoh',
@@ -1030,7 +1129,8 @@ const UI = {
     clickHint:"CLICK ilovasida QR ni skaner qiling, so‘ng “Buyurtma berish”ni bosing.",
     welcome:'👋 Xush kelibsiz',
     brandSub:'APPLE TECH STORE',
-    subcats:'Subkategoriyalar'
+    subcats:'Subkategoriyalar',
+    priceAsk:'Narxni so‘rang'
   },
   en:{
     menu:'Menu',
@@ -1047,6 +1147,7 @@ const UI = {
     aboutAddr:'📍 Address', aboutRoute:'📍 Get directions',
     aboutPhone:'📞 Phone', aboutHours:'🕒 Working hours',
     searchResults:'Search results',
+    sale:'💥 Sale',
     popular:'🔥 Popular', gift:'⭐ Recommended',
     phone:'📞 Phone',
     cart:'🛒 Cart', total:'Total', order:'Place order', comment:'✍️ Comment',
@@ -1059,7 +1160,8 @@ const UI = {
     clickHint:'Scan the QR in CLICK app, then press “Place order”.',
     welcome:'👋 Welcome',
     brandSub:'APPLE TECH STORE',
-    subcats:'Subcategories'
+    subcats:'Subcategories',
+    priceAsk:'Ask price'
   }
 };
 
@@ -1126,218 +1228,224 @@ const SUBCATS = {
   ]
 };
 
-/* ✅ FULL MENU (auto-generated for ALL subcategories) */
-function ruNum(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,' '); }
-function mkName(ru, uz, en){ return {ru, uz, en}; }
-function imgOrDefault(path){ return path || 'images/logo.png'; }
-
-// Prices are placeholders. You can replace with your real prices later.
+/* ========= PRICES (✅ FIX: to show + cart counts) =========
+   Поменяй на свои реальные цены когда нужно.
+*/
 const PRICE = {
-  // iPhone base (by gen)
-  iphone_17: {base: 0, plus: 0, pro: 0, pm: 0},
-  iphone_16: {base: 0, plus: 0, pro: 0, pm: 0},
+  iphone_17: {base: 17900000, plus: 19900000, pro: 23900000, pm: 26900000},
+  iphone_16: {base: 15900000, plus: 17900000, pro: 21900000, pm: 24900000},
   iphone_15: {base: 12900000, plus: 13900000, pro: 16900000, pm: 18900000},
-  iphone_14: {base: 10500000, plus: 11500000, pro: 0, pm: 0},
-  iphone_13: {mini: 0, base: 8900000, pro: 0, pm: 0},
-  iphone_12: {mini: 0, base: 6900000, pro: 0, pm: 0},
-  iphone_11: {base: 5900000, pro: 0, pm: 0},
+  iphone_14: {base: 10500000, plus: 11500000, pro: 13900000, pm: 15900000},
+  iphone_13: {mini: 8900000, base: 9200000, pro: 11900000, pm: 12900000},
+  iphone_12: {mini: 6900000, base: 7200000, pro: 8900000, pm: 9900000},
+  iphone_11: {base: 5900000, pro: 6900000, pm: 7600000},
 
-  // mac
-  mac_air_13_m4: 0,
-  mac_air_15_m4: 0,
+  mac_air_13_m4: 16900000,
+  mac_air_15_m4: 18900000,
   mac_air_m3: 15500000,
   mac_air_m2: 13500000,
-  mac_air_m1: 0,
-  mac_pro_m4: 0,
+  mac_air_m1: 10900000,
+  mac_pro_m4: 24900000,
   mac_pro_m3: 21000000,
 
-  // ipad
-  ipad_pro_m5: 0,
+  ipad_pro_m5: 22900000,
   ipad_pro_m4: 17500000,
-  ipad_air_m3: 0,
+  ipad_air_m3: 15900000,
   ipad_air_m2: 13900000,
-  ipad_mini: 0,
+  ipad_mini: 9900000,
 
-  // watch
-  watch_ultra_3: 0,
+  watch_ultra_3: 13900000,
   watch_ultra_2: 10900000,
-  watch_11: 0,
-  watch_se_3: 0,
-  watch_se_2: 0,
-  watch_10: 0,
+  watch_11: 6900000,
+  watch_se_3: 4900000,
+  watch_se_2: 4500000,
+  watch_10: 6500000,
   watch_9: 5900000,
-  watch_7: 0,
+  watch_7: 4700000,
 
-  // airpods
   airpods_max: 7200000,
-  airpods_4: 0,
+  airpods_4: 2400000,
   airpods_3: 2400000,
   airpods_2p: 3200000,
 
-  // accessories base
   acc_cases: 290000,
   acc_glass: 190000,
   acc_charger: 280000,
-  acc_magsafe: 0,
+  acc_magsafe: 390000,
   acc_usb: 160000,
-  acc_straps: 0,
-  acc_airtag: 0
+  acc_straps: 220000,
+  acc_airtag: 590000
+};
+
+/* ✅ FULL MENU */
+function mkName(ru, uz, en){ return {ru, uz, en}; }
+function imgOrDefault(path){ return path || 'images/logo.png'; }
+
+/* ✅ specs defaults */
+const SPEC_DEFAULTS = {
+  region: "Global",
+  color: "Mix",
+  battery: "100%",
+  uzime: "✅"
 };
 
 const MENU = { iphone:[], mac:[], ipad:[], watch:[], airpods:[], accessories:[] };
 
-// ---------- iPhone generator (Pro/Max INCLUDED in same subcategory list) ----------
+/* ---------- iPhone generator (Pro/Max in same subcategory) ---------- */
 function addIphoneFamily(subKey, genLabel, options){
-  // options: {hasPlus, hasMini, hasPro, hasProMax, storagesBase, storagesPro}
   const S_BASE = options.storagesBase || [128,256,512];
-  const S_PRO  = options.storagesPro  || [128,256,512,1024];
+  const S_PRO  = options.storagesPro  || [256,512,1024];
 
   const addModel = (modelRu, modelUz, modelEn, priceBase, storages, imgName, tag)=>{
     storages.forEach(mem=>{
       const memLabel = mem===1024 ? '1TB' : (mem + 'GB');
       const id = `ip_${subKey}_${tag}_${mem}`;
+      const modelName = `${modelEn} ${memLabel}`; // for modal "Model"
       MENU.iphone.push({
         id,
         sub: subKey,
-        p: priceBase || 0,
+        p: Number(priceBase)||0,
         img: imgOrDefault(`images/${imgName || 'iphone.jpg'}`),
-        n: mkName(`${modelRu} ${memLabel}`, `${modelUz} ${memLabel}`, `${modelEn} ${memLabel}`)
+        n: mkName(`${modelRu} ${memLabel}`, `${modelUz} ${memLabel}`, `${modelEn} ${memLabel}`),
+        spec: {
+          model: modelName,
+          region: SPEC_DEFAULTS.region,
+          color: SPEC_DEFAULTS.color,
+          memory: memLabel,
+          battery: SPEC_DEFAULTS.battery,
+          uzime: SPEC_DEFAULTS.uzime
+        }
       });
     });
   };
 
-  // Base
   addModel(`iPhone ${genLabel}`, `iPhone ${genLabel}`, `iPhone ${genLabel}`, PRICE[subKey]?.base, S_BASE, `iphone_${genLabel}.jpg`, 'base');
 
-  // Plus (if)
   if(options.hasPlus){
     addModel(`iPhone ${genLabel} Plus`, `iPhone ${genLabel} Plus`, `iPhone ${genLabel} Plus`, PRICE[subKey]?.plus, S_BASE, `iphone_${genLabel}_plus.jpg`, 'plus');
   }
-
-  // Mini (if)
   if(options.hasMini){
     addModel(`iPhone ${genLabel} mini`, `iPhone ${genLabel} mini`, `iPhone ${genLabel} mini`, PRICE[subKey]?.mini, [64,128,256], `iphone_${genLabel}_mini.jpg`, 'mini');
   }
-
-  // Pro
   if(options.hasPro){
     addModel(`iPhone ${genLabel} Pro`, `iPhone ${genLabel} Pro`, `iPhone ${genLabel} Pro`, PRICE[subKey]?.pro, S_PRO, `iphone_${genLabel}_pro.jpg`, 'pro');
   }
-
-  // Pro Max
   if(options.hasProMax){
     addModel(`iPhone ${genLabel} Pro Max`, `iPhone ${genLabel} Pro Max`, `iPhone ${genLabel} Pro Max`, PRICE[subKey]?.pm, S_PRO, `iphone_${genLabel}_pro_max.jpg`, 'pm');
   }
 }
 
-// iPhone 17 (placeholder but FULL list)
+/* generate iPhones */
 addIphoneFamily('iphone_17','17',{hasPlus:true,hasPro:true,hasProMax:true,storagesBase:[128,256,512],storagesPro:[256,512,1024]});
-// iPhone 16 (full)
 addIphoneFamily('iphone_16','16',{hasPlus:true,hasPro:true,hasProMax:true,storagesBase:[128,256,512],storagesPro:[256,512,1024]});
-// iPhone 15 (full)
 addIphoneFamily('iphone_15','15',{hasPlus:true,hasPro:true,hasProMax:true,storagesBase:[128,256,512],storagesPro:[128,256,512,1024]});
-// iPhone 14 (base + plus + pro/pro max)
 addIphoneFamily('iphone_14','14',{hasPlus:true,hasPro:true,hasProMax:true,storagesBase:[128,256,512],storagesPro:[128,256,512,1024]});
-// iPhone 13 (mini + base + pro/pro max)
 addIphoneFamily('iphone_13','13',{hasMini:true,hasPro:true,hasProMax:true,storagesBase:[128,256,512],storagesPro:[128,256,512,1024]});
-// iPhone 12 (mini + base + pro/pro max)
 addIphoneFamily('iphone_12','12',{hasMini:true,hasPro:true,hasProMax:true,storagesBase:[64,128,256],storagesPro:[128,256,512]});
-// iPhone 11 (base + pro/pro max)
 addIphoneFamily('iphone_11','11',{hasPro:true,hasProMax:true,storagesBase:[64,128,256],storagesPro:[64,256,512]});
 
-// Other models list
+/* Other iPhones */
 [
-  {m:'iPhone SE (2022)', mem:[64,128,256]},
-  {m:'iPhone XR', mem:[64,128,256]},
-  {m:'iPhone XS', mem:[64,256,512]},
-  {m:'iPhone XS Max', mem:[64,256,512]},
-  {m:'iPhone X', mem:[64,256]},
-  {m:'iPhone 8', mem:[64,256]},
-  {m:'iPhone 8 Plus', mem:[64,256]},
+  {m:'iPhone SE (2022)', mem:[64,128,256], price: 4500000},
+  {m:'iPhone XR', mem:[64,128,256], price: 3900000},
+  {m:'iPhone XS', mem:[64,256,512], price: 4200000},
+  {m:'iPhone XS Max', mem:[64,256,512], price: 4600000},
+  {m:'iPhone X', mem:[64,256], price: 3200000},
+  {m:'iPhone 8', mem:[64,256], price: 2600000},
+  {m:'iPhone 8 Plus', mem:[64,256], price: 2900000},
 ].forEach((x,i)=>{
   x.mem.forEach(mem=>{
+    const memLabel = mem + 'GB';
     MENU.iphone.push({
       id:`ip_other_${i}_${mem}`,
       sub:'iphone_other',
-      p:0,
+      p:Number(x.price)||0,
       img:'images/iphone_other.jpg',
-      n: mkName(`${x.m} ${mem}GB`, `${x.m} ${mem}GB`, `${x.m} ${mem}GB`)
+      n: mkName(`${x.m} ${memLabel}`, `${x.m} ${memLabel}`, `${x.m} ${memLabel}`),
+      spec:{
+        model: `${x.m}`,
+        region: SPEC_DEFAULTS.region,
+        color: SPEC_DEFAULTS.color,
+        memory: memLabel,
+        battery: SPEC_DEFAULTS.battery,
+        uzime: SPEC_DEFAULTS.uzime
+      }
     });
   });
 });
 
-// ---------- Mac generator ----------
+/* ---------- Mac generator ---------- */
 function addMac(subKey, baseNameRu, baseNameUz, baseNameEn, basePrice, configs){
   (configs||[]).forEach((c,idx)=>{
     const id=`mac_${subKey}_${idx}`;
     MENU.mac.push({
       id,
       sub: subKey,
-      p: basePrice || 0,
+      p: Number(basePrice)||0,
       img: `images/${subKey}.jpg`,
-      n: mkName(`${baseNameRu} — ${c}`, `${baseNameUz} — ${c}`, `${baseNameEn} — ${c}`)
+      n: mkName(`${baseNameRu} — ${c}`, `${baseNameUz} — ${c}`, `${baseNameEn} — ${c}`),
+      spec:{
+        model: `${baseNameEn}`,
+        region: SPEC_DEFAULTS.region,
+        color: SPEC_DEFAULTS.color,
+        memory: String(c||'').includes('/') ? String(c||'').split('/')[1] : '—',
+        battery: SPEC_DEFAULTS.battery,
+        uzime: SPEC_DEFAULTS.uzime
+      }
     });
   });
 }
-addMac('mac_air_13_m4','MacBook Air 13 (M4)','MacBook Air 13 (M4)','MacBook Air 13 (M4)', PRICE.mac_air_13_m4, [
-  '8/256','16/512','24/512','24/1TB'
-]);
-addMac('mac_air_15_m4','MacBook Air 15 (M4)','MacBook Air 15 (M4)','MacBook Air 15 (M4)', PRICE.mac_air_15_m4, [
-  '8/256','16/512','24/512','24/1TB'
-]);
-addMac('mac_air_m3','MacBook Air (M3)','MacBook Air (M3)','MacBook Air (M3)', PRICE.mac_air_m3, [
-  '8/256','16/512','24/512','24/1TB'
-]);
-addMac('mac_air_m2','MacBook Air (M2)','MacBook Air (M2)','MacBook Air (M2)', PRICE.mac_air_m2, [
-  '8/256','16/512','24/512','24/1TB'
-]);
-addMac('mac_air_m1','MacBook Air (M1)','MacBook Air (M1)','MacBook Air (M1)', PRICE.mac_air_m1, [
-  '8/256','8/512','16/512'
-]);
-addMac('mac_pro_m4','MacBook Pro (M4)','MacBook Pro (M4)','MacBook Pro (M4)', PRICE.mac_pro_m4, [
-  '14" 16/512','14" 24/1TB','16" 24/1TB','16" 36/1TB'
-]);
-addMac('mac_pro_m3','MacBook Pro (M3)','MacBook Pro (M3)','MacBook Pro (M3)', PRICE.mac_pro_m3, [
-  '14" 8/512','14" 16/1TB','16" 18/512','16" 36/1TB'
-]);
+addMac('mac_air_13_m4','MacBook Air 13 (M4)','MacBook Air 13 (M4)','MacBook Air 13 (M4)', PRICE.mac_air_13_m4, ['8/256','16/512','24/512','24/1TB']);
+addMac('mac_air_15_m4','MacBook Air 15 (M4)','MacBook Air 15 (M4)','MacBook Air 15 (M4)', PRICE.mac_air_15_m4, ['8/256','16/512','24/512','24/1TB']);
+addMac('mac_air_m3','MacBook Air (M3)','MacBook Air (M3)','MacBook Air (M3)', PRICE.mac_air_m3, ['8/256','16/512','24/512','24/1TB']);
+addMac('mac_air_m2','MacBook Air (M2)','MacBook Air (M2)','MacBook Air (M2)', PRICE.mac_air_m2, ['8/256','16/512','24/512','24/1TB']);
+addMac('mac_air_m1','MacBook Air (M1)','MacBook Air (M1)','MacBook Air (M1)', PRICE.mac_air_m1, ['8/256','8/512','16/512']);
+addMac('mac_pro_m4','MacBook Pro (M4)','MacBook Pro (M4)','MacBook Pro (M4)', PRICE.mac_pro_m4, ['14" 16/512','14" 24/1TB','16" 24/1TB','16" 36/1TB']);
+addMac('mac_pro_m3','MacBook Pro (M3)','MacBook Pro (M3)','MacBook Pro (M3)', PRICE.mac_pro_m3, ['14" 8/512','14" 16/1TB','16" 18/512','16" 36/1TB']);
 
-// ---------- iPad generator ----------
+/* ---------- iPad generator ---------- */
 function addIpad(subKey, nameRu, nameUz, nameEn, basePrice, configs){
   (configs||[]).forEach((c,idx)=>{
     MENU.ipad.push({
       id:`ipad_${subKey}_${idx}`,
       sub: subKey,
-      p: basePrice || 0,
+      p: Number(basePrice)||0,
       img: `images/${subKey}.jpg`,
-      n: mkName(`${nameRu} — ${c}`, `${nameUz} — ${c}`, `${nameEn} — ${c}`)
+      n: mkName(`${nameRu} — ${c}`, `${nameUz} — ${c}`, `${nameEn} — ${c}`),
+      spec:{
+        model: `${nameEn}`,
+        region: SPEC_DEFAULTS.region,
+        color: SPEC_DEFAULTS.color,
+        memory: String(c||'').includes('TB') ? String(c||'').match(/(\d+TB)/)?.[1] : (String(c||'').match(/(\d+)/)?.[1] ? (String(c||'').match(/(\d+)/)[1]+'GB') : '—'),
+        battery: SPEC_DEFAULTS.battery,
+        uzime: SPEC_DEFAULTS.uzime
+      }
     });
   });
 }
-addIpad('ipad_pro_m5','iPad Pro (M5)','iPad Pro (M5)','iPad Pro (M5)', PRICE.ipad_pro_m5, [
-  '11" 256','11" 512','11" 1TB','13" 256','13" 512','13" 1TB'
-]);
-addIpad('ipad_pro_m4','iPad Pro (M4)','iPad Pro (M4)','iPad Pro (M4)', PRICE.ipad_pro_m4, [
-  '11" 256','11" 512','11" 1TB','13" 256','13" 512','13" 1TB'
-]);
-addIpad('ipad_air_m3','iPad Air (M3)','iPad Air (M3)','iPad Air (M3)', PRICE.ipad_air_m3, [
-  '11" 128','11" 256','11" 512','13" 128','13" 256','13" 512'
-]);
-addIpad('ipad_air_m2','iPad Air (M2)','iPad Air (M2)','iPad Air (M2)', PRICE.ipad_air_m2, [
-  '64','256','512'
-]);
-addIpad('ipad_mini','iPad mini','iPad mini','iPad mini', PRICE.ipad_mini, [
-  '64','256'
-]);
+addIpad('ipad_pro_m5','iPad Pro (M5)','iPad Pro (M5)','iPad Pro (M5)', PRICE.ipad_pro_m5, ['11" 256','11" 512','11" 1TB','13" 256','13" 512','13" 1TB']);
+addIpad('ipad_pro_m4','iPad Pro (M4)','iPad Pro (M4)','iPad Pro (M4)', PRICE.ipad_pro_m4, ['11" 256','11" 512','11" 1TB','13" 256','13" 512','13" 1TB']);
+addIpad('ipad_air_m3','iPad Air (M3)','iPad Air (M3)','iPad Air (M3)', PRICE.ipad_air_m3, ['11" 128','11" 256','11" 512','13" 128','13" 256','13" 512']);
+addIpad('ipad_air_m2','iPad Air (M2)','iPad Air (M2)','iPad Air (M2)', PRICE.ipad_air_m2, ['64','256','512']);
+addIpad('ipad_mini','iPad mini','iPad mini','iPad mini', PRICE.ipad_mini, ['64','256']);
 
-// ---------- Watch generator ----------
+/* ---------- Watch generator ---------- */
 function addWatch(subKey, nameRu, nameUz, nameEn, basePrice, variants){
   (variants||[]).forEach((v,idx)=>{
     MENU.watch.push({
       id:`watch_${subKey}_${idx}`,
       sub: subKey,
-      p: basePrice || 0,
+      p: Number(basePrice)||0,
       img: `images/${subKey}.jpg`,
-      n: mkName(`${nameRu} — ${v}`, `${nameUz} — ${v}`, `${nameEn} — ${v}`)
+      n: mkName(`${nameRu} — ${v}`, `${nameUz} — ${v}`, `${nameEn} — ${v}`),
+      spec:{
+        model: `${nameEn}`,
+        region: SPEC_DEFAULTS.region,
+        color: SPEC_DEFAULTS.color,
+        memory: '—',
+        battery: SPEC_DEFAULTS.battery,
+        uzime: SPEC_DEFAULTS.uzime
+      }
     });
   });
 }
@@ -1350,15 +1458,23 @@ addWatch('watch_10','Apple Watch Series 10','Apple Watch Series 10','Apple Watch
 addWatch('watch_9','Apple Watch Series 9','Apple Watch Series 9','Apple Watch Series 9', PRICE.watch_9, ['41mm','45mm']);
 addWatch('watch_7','Apple Watch Series 7','Apple Watch Series 7','Apple Watch Series 7', PRICE.watch_7, ['41mm','45mm']);
 
-// ---------- AirPods generator ----------
+/* ---------- AirPods generator ---------- */
 function addAirpods(subKey, nameRu, nameUz, nameEn, basePrice, variants){
   (variants||[]).forEach((v,idx)=>{
     MENU.airpods.push({
       id:`ap_${subKey}_${idx}`,
       sub: subKey,
-      p: basePrice || 0,
+      p: Number(basePrice)||0,
       img: `images/${subKey}.jpg`,
-      n: mkName(`${nameRu}${v?(' — '+v):''}`, `${nameUz}${v?(' — '+v):''}`, `${nameEn}${v?(' — '+v):''}`)
+      n: mkName(`${nameRu}${v?(' — '+v):''}`, `${nameUz}${v?(' — '+v):''}`, `${nameEn}${v?(' — '+v):''}`),
+      spec:{
+        model: `${nameEn}`,
+        region: SPEC_DEFAULTS.region,
+        color: SPEC_DEFAULTS.color,
+        memory: '—',
+        battery: SPEC_DEFAULTS.battery,
+        uzime: SPEC_DEFAULTS.uzime
+      }
     });
   });
 }
@@ -1367,47 +1483,40 @@ addAirpods('airpods_4','AirPods 4','AirPods 4','AirPods 4', PRICE.airpods_4, ['S
 addAirpods('airpods_3','AirPods 3','AirPods 3','AirPods 3', PRICE.airpods_3, ['MagSafe','Lightning']);
 addAirpods('airpods_2p','AirPods Pro (2)','AirPods Pro (2)','AirPods Pro (2)', PRICE.airpods_2p, ['USB-C','Lightning']);
 
-// ---------- Accessories generator ----------
+/* ---------- Accessories generator ---------- */
 function addAcc(subKey, nameRu, nameUz, nameEn, basePrice, variants, img){
   (variants||[]).forEach((v,idx)=>{
     MENU.accessories.push({
       id:`acc_${subKey}_${idx}`,
       sub: subKey,
-      p: basePrice || 0,
+      p: Number(basePrice)||0,
       img: imgOrDefault(img || `images/${subKey}.jpg`),
-      n: mkName(`${nameRu} — ${v}`, `${nameUz} — ${v}`, `${nameEn} — ${v}`)
+      n: mkName(`${nameRu} — ${v}`, `${nameUz} — ${v}`, `${nameEn} — ${v}`),
+      spec:{
+        model: `${nameEn}`,
+        region: SPEC_DEFAULTS.region,
+        color: SPEC_DEFAULTS.color,
+        memory: '—',
+        battery: '—',
+        uzime: SPEC_DEFAULTS.uzime
+      }
     });
   });
 }
-addAcc('acc_cases','Чехол для iPhone','iPhone g‘ilofi','iPhone Case', PRICE.acc_cases, [
-  'Silicone','Leather','Clear','Shockproof','MagSafe Compatible'
-], 'images/acc_cases.jpg');
-addAcc('acc_glass','Защитное стекло','Himoya oynasi','Screen Protector', PRICE.acc_glass, [
-  '2.5D','3D','Privacy','Matte','Camera Protector'
-], 'images/acc_glass.jpg');
-addAcc('acc_charger','Зарядное устройство','Zaryadlovchi','Charger', PRICE.acc_charger, [
-  '20W Type-C','35W Dual USB-C','USB-A 12W','Car Charger','GaN Fast Charger'
-], 'images/acc_charger.jpg');
-addAcc('acc_magsafe','MagSafe аксессуары','MagSafe aksessuarlari','MagSafe accessories', PRICE.acc_magsafe, [
-  'MagSafe Charger','MagSafe Wallet','MagSafe PowerBank','MagSafe Stand'
-], 'images/acc_magsafe.jpg');
-addAcc('acc_usb','Кабель','Kabel','Cable', PRICE.acc_usb, [
-  'Type-C to Type-C','Type-C to Lightning','USB-A to Lightning','Braided Cable','2m Cable'
-], 'images/acc_usb.jpg');
-addAcc('acc_straps','Ремешок Apple Watch','Apple Watch remeshok','Apple Watch Strap', PRICE.acc_straps, [
-  'Sport Band','Solo Loop','Braided Loop','Leather Link','Metal Bracelet'
-], 'images/acc_straps.jpg');
-addAcc('acc_airtag','Трекер','Trekker','Tracker', PRICE.acc_airtag, [
-  'AirTag (1 pack)','AirTag (4 pack)','Keyring','Case','Holder'
-], 'images/acc_airtag.jpg');
+addAcc('acc_cases','Чехол для iPhone','iPhone g‘ilofi','iPhone Case', PRICE.acc_cases, ['Silicone','Leather','Clear','Shockproof','MagSafe Compatible'], 'images/acc_cases.jpg');
+addAcc('acc_glass','Защитное стекло','Himoya oynasi','Screen Protector', PRICE.acc_glass, ['2.5D','3D','Privacy','Matte','Camera Protector'], 'images/acc_glass.jpg');
+addAcc('acc_charger','Зарядное устройство','Zaryadlovchi','Charger', PRICE.acc_charger, ['20W Type-C','35W Dual USB-C','USB-A 12W','Car Charger','GaN Fast Charger'], 'images/acc_charger.jpg');
+addAcc('acc_magsafe','MagSafe аксессуары','MagSafe aksessuarlari','MagSafe accessories', PRICE.acc_magsafe, ['MagSafe Charger','MagSafe Wallet','MagSafe PowerBank','MagSafe Stand'], 'images/acc_magsafe.jpg');
+addAcc('acc_usb','Кабель','Kabel','Cable', PRICE.acc_usb, ['Type-C to Type-C','Type-C to Lightning','USB-A to Lightning','Braided Cable','2m Cable'], 'images/acc_usb.jpg');
+addAcc('acc_straps','Ремешок Apple Watch','Apple Watch remeshok','Apple Watch Strap', PRICE.acc_straps, ['Sport Band','Solo Loop','Braided Loop','Leather Link','Metal Bracelet'], 'images/acc_straps.jpg');
+addAcc('acc_airtag','Трекер','Trekker','Tracker', PRICE.acc_airtag, ['AirTag (1 pack)','AirTag (4 pack)','Keyring','Case','Holder'], 'images/acc_airtag.jpg');
 
 /* Build ITEM_INDEX */
 const ITEM_INDEX = {};
 for (const c in MENU){ MENU[c].forEach(it => ITEM_INDEX[it.id]=it); }
 
-/* ✅ carousels (NO badges) */
+/* ✅ Carousels */
 const POPULAR = [
-  // pick representative items that exist
   MENU.iphone.find(x=>x.sub==='iphone_15' && (x.n?.ru||'').includes('Pro'))?.id,
   MENU.mac.find(x=>x.sub==='mac_air_m2')?.id,
   MENU.airpods.find(x=>x.sub==='airpods_2p')?.id
@@ -1417,6 +1526,14 @@ const GIFT_ITEMS = [
   MENU.watch.find(x=>x.sub==='watch_9')?.id,
   MENU.ipad.find(x=>x.sub==='ipad_air_m2')?.id,
   MENU.accessories.find(x=>x.sub==='acc_charger')?.id
+].filter(Boolean);
+
+/* ✅ NEW: SALE (only phones) */
+const SALE_ITEMS = [
+  MENU.iphone.find(x=>x.sub==='iphone_15' && (x.n?.ru||'').includes('Pro Max'))?.id,
+  MENU.iphone.find(x=>x.sub==='iphone_14' && (x.n?.ru||'').includes('Pro'))?.id,
+  MENU.iphone.find(x=>x.sub==='iphone_13' && (x.n?.ru||'').includes('mini'))?.id,
+  MENU.iphone.find(x=>x.sub==='iphone_12' && (x.n?.ru||'').includes('Pro'))?.id
 ].filter(Boolean);
 
 /* state */
@@ -1433,6 +1550,11 @@ if(!SUBCATS[category]?.some(s=>s.k===subcat)) subcat = (SUBCATS[category]?.[0]?.
 function escapeHtml(s){return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
 function nameOf(id){const it = ITEM_INDEX[id]; return (it && it.n && (it.n[lang] || it.n.ru)) ? (it.n[lang] || it.n.ru) : id;}
 function formatSum(x){const n = Number(x) || 0; return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ');}
+function priceText(p){
+  const n = Number(p)||0;
+  if(n>0) return `${formatSum(n)} ${UI[lang].sum}`;
+  return UI[lang].priceAsk;
+}
 
 /* menu open/close */
 function openTopMenu(){ closeSearch(); menuBackdrop.classList.add('show'); menuSheet.classList.add('show'); }
@@ -1481,6 +1603,7 @@ function searchProducts(){
       ${lang==='ru'?'Ничего не найдено':lang==='uz'?'Hech narsa topilmadi':'Nothing found'}
     </div>`;
   }
+  updateTotal();
 }
 
 /* categories */
@@ -1493,13 +1616,11 @@ function renderCats(){
 function onCategoryClick(k){
   category=k;
   localStorage.setItem('sebtech_cat', category);
-
-  // ✅ reset subcat to first for that category and OPEN bottom sheet immediately
   subcat = (SUBCATS[category]?.[0]?.k || '');
   localStorage.setItem('sebtech_subcat', subcat);
 
   renderCats();
-  openSubcats();      // ✅ show sheet right away
+  openSubcats();
   renderSubcatsSheet();
   if(!isSearchOpen()) renderProducts();
 }
@@ -1554,7 +1675,7 @@ function cardHTML(it){
   <div class="card">
     <div class="img"><img src="${it.img}" onerror="this.src='images/logo.png'" onclick="openImage(event,'${id}')"></div>
     <div class="item-name">${escapeHtml(nameOf(id))}</div>
-    <div class="price">${formatSum(it.p)} <small>${UI[lang].sum}</small></div>
+    <div class="price">${priceText(it.p)}</div>
     <div class="counter">
       <button onclick="chg('${id}',-1)">−</button>
       <span id="c_${id}">${qty}</span>
@@ -1562,11 +1683,11 @@ function cardHTML(it){
     </div>
   </div>`;
 }
+
 function renderProducts(){
   products.innerHTML='';
 
   const list=(MENU[category]||[]).filter(it=>{
-    // ✅ filter by subcat (full list is already grouped: Pro/Max are inside the same sub)
     if(!subcat) return true;
     return String(it.sub||'') === String(subcat);
   });
@@ -1588,16 +1709,17 @@ function renderProducts(){
 }
 
 /* carousels (NO badges) */
-function popCardHTML(it){
+function popCardHTML(it, prefix){
   const id=it.id;
+  const px = prefix || 'pc_';
   return `
   <div class="pop-card" onclick="onCardClick(event,'${id}')">
     <div class="pop-img" onclick="openImage(event,'${id}')"><img src="${it.img}" onerror="this.src='images/logo.png'"></div>
     <div class="pop-name">${escapeHtml(nameOf(id))}</div>
-    <div class="pop-price">${formatSum(it.p)} <small>${UI[lang].sum}</small></div>
+    <div class="pop-price">${priceText(it.p)}</div>
     <div class="pop-counter">
       <button type="button" onclick="chgFrom(event,'${id}',-1)">−</button>
-      <span id="pc_${id}">${cart[id]||0}</span>
+      <span id="${px}${id}">${cart[id]||0}</span>
       <button type="button" onclick="chgFrom(event,'${id}',1)">+</button>
     </div>
   </div>`;
@@ -1608,7 +1730,7 @@ function miniCardHTML(it){
   <div class="mini-card" onclick="onCardClick(event,'${id}')">
     <div class="mini-img" onclick="openImage(event,'${id}')"><img src="${it.img}" onerror="this.src='images/logo.png'"></div>
     <div class="mini-name">${escapeHtml(nameOf(id))}</div>
-    <div class="mini-price">${formatSum(it.p)} <small>${UI[lang].sum}</small></div>
+    <div class="mini-price">${priceText(it.p)}</div>
     <div class="mini-counter">
       <button type="button" onclick="chgFrom(event,'${id}',-1)">−</button>
       <span id="mc_${id}">${cart[id]||0}</span>
@@ -1616,12 +1738,24 @@ function miniCardHTML(it){
     </div>
   </div>`;
 }
+
+function renderSale(){
+  saleRow.innerHTML='';
+  if(!SALE_ITEMS.length){ saleWrap.style.display='none'; return; }
+  saleWrap.style.display='block';
+  SALE_ITEMS.forEach(id=>{
+    const it=ITEM_INDEX[id]; if(!it) return;
+    cart[id]=cart[id]||0;
+    saleRow.innerHTML += popCardHTML(it, 'sc_');
+  });
+}
+
 function renderPopular(){
   popularRow.innerHTML='';
   POPULAR.forEach(id=>{
     const it=ITEM_INDEX[id]; if(!it) return;
     cart[id]=cart[id]||0;
-    popularRow.innerHTML += popCardHTML(it);
+    popularRow.innerHTML += popCardHTML(it, 'pc_');
   });
 }
 function renderGift(){
@@ -1646,18 +1780,28 @@ function syncCounters(id){
   const a=document.getElementById('pc_'+id); if(a) a.innerText=cart[id]||0;
   const b=document.getElementById('mc_'+id); if(b) b.innerText=cart[id]||0;
   const c=document.getElementById('c_'+id);  if(c) c.innerText=cart[id]||0;
+
+  const s=document.getElementById('sc_'+id); if(s) s.innerText=cart[id]||0;
 }
+
 function calcItemsSum(){
   let s=0;
-  for(const id in cart) s += (cart[id]||0) * (ITEM_INDEX[id]?.p||0);
+  for(const id in cart){
+    const qty = Number(cart[id]||0);
+    const price = Number(ITEM_INDEX[id]?.p||0);
+    s += qty * price;
+  }
   return s;
 }
+
+/* ✅ FIX: totals always update and show */
 function updateTotal(){
-  const itemsSum=calcItemsSum();
-  total.innerText=formatSum(itemsSum);
-  grandTotal.innerText=formatSum(itemsSum);
-  stickyTotal.innerText=formatSum(itemsSum);
+  const itemsSum = calcItemsSum();
+  total.innerText = formatSum(itemsSum);
+  grandTotal.innerText = formatSum(itemsSum);
+  stickyTotal.innerText = formatSum(itemsSum);
 }
+
 function chg(id,delta){
   cart[id]=Math.max(0,(cart[id]||0)+delta);
   syncCounters(id);
@@ -1679,13 +1823,24 @@ function openCart(){
   try{ el.scrollIntoView({behavior:'smooth', block:'start'}); }catch(_){}
 }
 
-/* image modal */
+/* ✅ image + specs modal */
 function openImage(e,id){
   try{e.preventDefault();e.stopPropagation();}catch(_){}
-  const it=ITEM_INDEX[id];
-  imgModalTitle.innerText=nameOf(id);
-  imgModalImg.src=it?.img||'images/logo.png';
+  const it = ITEM_INDEX[id];
+
+  imgModalTitle.innerText = nameOf(id);
+  imgModalImg.src = it?.img || 'images/logo.png';
   imgModalImg.onerror=function(){this.onerror=null;this.src='images/logo.png';};
+
+  const spec = it?.spec || {};
+  document.getElementById('specModel').innerText   = spec.model   || nameOf(id) || '—';
+  document.getElementById('specRegion').innerText  = spec.region  || '—';
+  document.getElementById('specColor').innerText   = spec.color   || '—';
+  document.getElementById('specMemory').innerText  = spec.memory  || '—';
+  document.getElementById('specBattery').innerText = spec.battery || '—';
+  document.getElementById('specUzime').innerText   = spec.uzime   || '—';
+  document.getElementById('specPrice').innerText   = priceText(it?.p);
+
   imgModal.classList.add('show');
 }
 function closeImgModal(e){
@@ -1859,6 +2014,7 @@ function applyUI(){
 
   searchTitle.innerText = UI[lang].searchResults;
 
+  saleTitle.innerText = UI[lang].sale;
   popularTitle.innerText = UI[lang].popular;
   giftTitle.innerText = UI[lang].gift;
 
@@ -1895,8 +2051,11 @@ function applyUI(){
 
   renderCats();
   renderSubcatsSheet();
+  renderSale();
+  renderPopular();
+  renderGift();
+
   if(!isSearchOpen()) renderProducts();
-  renderPopular(); renderGift();
   updateTotal();
 
   setTimeout(syncStickyHeight, 50);
@@ -1980,8 +2139,10 @@ phone.addEventListener('input',()=>localStorage.setItem('sebtech_phone',phone.va
 setPayment('cash');
 
 renderCats();
+renderSale();
 renderPopular();
 renderGift();
+
 syncNeedHelpUI();
 applyUI();
 updateTotal();
@@ -1990,7 +2151,7 @@ setTimeout(syncStickyHeight, 50);
 /* ensure nothing auto-hides categories/products */
 closeSearch();
 
-/* ✅ open subcats sheet when user taps active category again (nice UX) */
+/* ✅ open subcats sheet when user taps active category again */
 cats.addEventListener('click', (e)=>{
   const b = e.target.closest('.cat-btn');
   if(!b) return;
