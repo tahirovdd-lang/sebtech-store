@@ -19,8 +19,8 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 if not BOT_TOKEN:
     raise RuntimeError("❌ BOT_TOKEN не найден. Добавь переменную окружения BOT_TOKEN.")
 
-# ✅ поменяй на username твоего бота (без @)
-BOT_USERNAME = os.getenv("BOT_USERNAME", "sebtech_bot").replace("@", "")
+# ✅ username твоего бота (без @)
+BOT_USERNAME = os.getenv("BOT_USERNAME", "Sebtech_store_bot").replace("@", "")
 
 # ✅ твой Telegram ID (админ)
 ADMIN_ID = int(os.getenv("ADMIN_ID", "6013591658"))
@@ -28,8 +28,11 @@ ADMIN_ID = int(os.getenv("ADMIN_ID", "6013591658"))
 # ✅ канал магазина (если нужен пост с кнопкой)
 CHANNEL_ID = os.getenv("CHANNEL_ID", "@SEBTECH_APPLE_STORE")
 
-# ✅ GitHub Pages WebApp (замени на свой репозиторий)
-WEBAPP_URL = os.getenv("WEBAPP_URL", "https://tahirovdd-lang.github.io/sebtech/?v=1")
+# ✅ GitHub Pages WebApp (ВАЖНО: твоя рабочая ссылка)
+WEBAPP_URL = os.getenv("WEBAPP_URL", "https://tahirovdd-lang.github.io/sebtech-store/?v=2")
+
+# ✅ Логируем реальную ссылку (чтобы сразу видеть в логах BotHost)
+logging.info(f"WEBAPP_URL (effective) = {WEBAPP_URL}")
 
 bot = Bot(token=BOT_TOKEN, default=DefaultBotProperties(parse_mode="HTML"))
 dp = Dispatcher()
@@ -54,10 +57,11 @@ def kb_webapp_reply() -> ReplyKeyboardMarkup:
         resize_keyboard=True
     )
 
-def kb_channel_deeplink() -> InlineKeyboardMarkup:
-    deeplink = f"https://t.me/{BOT_USERNAME}?startapp=shop"
+def kb_channel_url() -> InlineKeyboardMarkup:
+    # ✅ В канал даём ПРЯМУЮ ссылку на сайт (не deep-link),
+    # чтобы исключить 404 из-за startapp/кэша Telegram.
     return InlineKeyboardMarkup(
-        inline_keyboard=[[InlineKeyboardButton(text=BTN_OPEN_MULTI, url=deeplink)]]
+        inline_keyboard=[[InlineKeyboardButton(text=BTN_OPEN_MULTI, url=WEBAPP_URL)]]
     )
 
 # ====== ТЕКСТ ======
@@ -84,6 +88,13 @@ async def startapp(message: types.Message):
         return
     await message.answer(welcome_text(), reply_markup=kb_webapp_reply())
 
+# ====== DEBUG: показать текущий WEBAPP_URL в Telegram ======
+@dp.message(Command("debug_url"))
+async def debug_url(message: types.Message):
+    if message.from_user.id != ADMIN_ID:
+        return
+    await message.answer(f"WEBAPP_URL = <code>{WEBAPP_URL}</code>")
+
 # ====== ПОСТ В КАНАЛ ======
 @dp.message(Command("post_shop"))
 async def post_shop(message: types.Message):
@@ -97,7 +108,7 @@ async def post_shop(message: types.Message):
     )
 
     try:
-        sent = await bot.send_message(CHANNEL_ID, text, reply_markup=kb_channel_deeplink())
+        sent = await bot.send_message(CHANNEL_ID, text, reply_markup=kb_channel_url())
         try:
             await bot.pin_chat_message(CHANNEL_ID, sent.message_id, disable_notification=True)
             await message.answer("✅ Пост отправлен в канал и закреплён.")
