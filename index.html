@@ -50,10 +50,7 @@
       top: calc(var(--safeT) + 10px);
       z-index: 20;
     }
-    .brand{
-      display:flex; flex-direction:column; gap:2px;
-      line-height:1.05;
-    }
+    .brand{display:flex; flex-direction:column; gap:2px; line-height:1.05;}
     .brand b{font-size:18px;}
     .brand span{font-size:12px; color:var(--muted);}
     .top-actions{display:flex; gap:8px; align-items:center;}
@@ -104,9 +101,7 @@
       border-color: rgba(47,124,255,.35);
     }
 
-    .main{
-      min-width:0;
-    }
+    .main{min-width:0;}
 
     .subcats{
       display:flex;
@@ -147,28 +142,10 @@
       padding:12px;
       overflow:hidden;
     }
-    .title{
-      font-weight:900;
-      font-size:14px;
-      line-height:1.2;
-      margin:0 0 6px 0;
-    }
-    .meta{
-      color:var(--muted);
-      font-size:12px;
-      margin-bottom:10px;
-      line-height:1.25;
-    }
-    .row{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:10px;
-    }
-    .price{
-      font-weight:900;
-      font-size:14px;
-    }
+    .title{font-weight:900; font-size:14px; line-height:1.2; margin:0 0 6px 0;}
+    .meta{color:var(--muted); font-size:12px; margin-bottom:10px; line-height:1.25;}
+    .row{display:flex; justify-content:space-between; align-items:center; gap:10px;}
+    .price{font-weight:900; font-size:14px;}
     .add{
       padding:9px 10px;
       border-radius:14px;
@@ -187,35 +164,6 @@
       padding: 12px 12px calc(var(--safeB) + 12px);
       background: linear-gradient(180deg, rgba(11,11,12,0), rgba(11,11,12,.90) 45%, rgba(11,11,12,.95));
       z-index:30;
-    }
-    .bottom-inner{
-      display:flex;
-      gap:10px;
-      align-items:center;
-    }
-    .cartbtn{
-      flex:1;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.08);
-      border-radius:18px;
-      padding:12px 14px;
-      cursor:pointer;
-    }
-    .cartbtn b{font-size:14px;}
-    .cartbtn span{color:var(--muted); font-weight:800; font-size:12px;}
-    .checkout{
-      width:140px;
-      border-radius:18px;
-      padding:12px 14px;
-      font-weight:900;
-      border:1px solid rgba(47,124,255,.65);
-      background: linear-gradient(180deg, rgba(47,124,255,.90), rgba(47,124,255,.55));
-      cursor:pointer;
-      color:var(--text);
     }
 
     /* drawer */
@@ -256,9 +204,7 @@
       display:flex; justify-content:space-between; gap:10px; align-items:center;
       margin-bottom:10px;
     }
-    .qty{
-      display:flex; gap:6px; align-items:center;
-    }
+    .qty{display:flex; gap:6px; align-items:center;}
     .qbtn{
       width:34px;height:34px;border-radius:12px;
       border:1px solid var(--stroke);
@@ -344,7 +290,6 @@
       cursor:pointer;
       color:var(--text);
     }
-
     .note{margin-top:10px; color:var(--muted); font-size:12px; line-height:1.3;}
   </style>
 </head>
@@ -381,7 +326,7 @@
       <span id="totalSum">0 сум</span>
     </div>
     <button class="send" id="btnCheckout">Оформить заказ</button>
-    <div class="note">Телефон после “рекомендуем” не спрашиваем. При оформлении — можно указать комментарий/адрес.</div>
+    <div class="note">Телефон не запрашиваем. Можно указать комментарий и адрес при доставке.</div>
   </div>
 
   <!-- CHECKOUT MODAL -->
@@ -400,11 +345,9 @@
         <input class="field" id="address" placeholder="Адрес (если доставка)" />
       </div>
 
-      <!-- ✅ ВАЖНО: никаких всплывающих окон телефона “после рекомендуем” -->
-      <!-- Телефон делаем необязательным полем прямо тут, без модалок и без принудиловки -->
       <div class="two">
-        <input class="field" id="phone" placeholder="Телефон (необязательно)" />
         <input class="field" id="orderId" placeholder="ID заказа (авто)" disabled />
+        <div></div>
       </div>
 
       <div class="payrow" id="payrow">
@@ -429,7 +372,7 @@
       </div>
       <textarea class="field" id="consultText" placeholder="Напишите, что вас интересует (модель, память, цвет, цена, наличие)…"></textarea>
       <button class="send" id="btnSendConsult">Отправить</button>
-      <div class="note">Админу уйдёт именно ваш текст + ваш ник Telegram.</div>
+      <div class="note">Админу уйдёт ваш текст + ваш ник Telegram.</div>
     </div>
   </div>
 
@@ -437,12 +380,12 @@
   const tg = window.Telegram?.WebApp;
   try { tg?.ready(); tg?.expand(); } catch(e){}
 
-  // ====== КАТЕГОРИИ + ПОДКАТЕГОРИИ (по твоему списку) ======
+  // ====== КАТЕГОРИИ + ПОДКАТЕГОРИИ (как вы просили) ======
   const CATEGORIES = [
     {
       key: "iphone",
       name: "iPhone",
-      subs: ["iPhone 17","iPhone 16","iPhone 15","iPhone 14","iPhone 13","iPhone 12","iPhone 11","Остальные модели"]
+      subs: ["Iphone 17","Iphone 16","Iphone 15","Iphone 14","Iphone 13","Iphone 12","Iphone 11","Остальные модели"]
     },
     {
       key: "accessories",
@@ -471,13 +414,14 @@
     }
   ];
 
-  // ====== ПРОДУКТЫ (примерная структура; ты можешь дальше заполнить реальные модели/цены) ======
-  // Главное: у каждого товара есть category + subcategory
+  // ====== ПРОДУКТЫ (пример, заполните ценами/моделями) ======
   const PRODUCTS = [
-    { id:"ip16-128", category:"iphone", subcategory:"iPhone 16", name:"iPhone 16 128GB", desc:"Новый / гарантия", price: 0 },
-    { id:"ip15-256", category:"iphone", subcategory:"iPhone 15", name:"iPhone 15 256GB", desc:"Новый / гарантия", price: 0 },
+    { id:"ip16-128", category:"iphone", subcategory:"Iphone 16", name:"iPhone 16 128GB", desc:"Новый / гарантия", price: 0 },
+    { id:"ip15-256", category:"iphone", subcategory:"Iphone 15", name:"iPhone 15 256GB", desc:"Новый / гарантия", price: 0 },
+
     { id:"case-1", category:"accessories", subcategory:"Чехлы для телефона", name:"Силиконовый чехол", desc:"Разные модели", price: 0 },
     { id:"glass-1", category:"accessories", subcategory:"Защитные стекла", name:"Защитное стекло", desc:"Установка по желанию", price: 0 },
+
     { id:"mba13m4", category:"mac", subcategory:"MacBook Air 13 (М4)", name:"MacBook Air 13 (M4)", desc:"Новый / гарантия", price: 0 },
     { id:"ipadprom4", category:"ipad", subcategory:"iPad Pro (М4)", name:"iPad Pro (M4)", desc:"Новый / гарантия", price: 0 },
     { id:"ultra2", category:"watch", subcategory:"Series Ultra 2", name:"Apple Watch Ultra 2", desc:"Новый / гарантия", price: 0 },
@@ -538,7 +482,7 @@
       const empty = document.createElement("div");
       empty.className = "card";
       empty.style.gridColumn = "1 / -1";
-      empty.innerHTML = `<div class="title">Пока нет товаров</div><div class="meta">Добавь товары в эту подкатегорию в коде (PRODUCTS).</div>`;
+      empty.innerHTML = `<div class="title">Пока нет товаров</div><div class="meta">Добавьте товары в эту подкатегорию в коде (PRODUCTS).</div>`;
       gridEl.appendChild(empty);
       return;
     }
@@ -626,7 +570,6 @@
 
   const orderTypeEl = document.getElementById("orderType");
   const addressEl = document.getElementById("address");
-  const phoneEl = document.getElementById("phone");
   const orderIdEl = document.getElementById("orderId");
   const commentEl = document.getElementById("comment");
 
@@ -678,7 +621,6 @@
       total: cartTotal(),
       type: orderTypeEl.value || "—",
       address: (addressEl.value||"").trim() || "—",
-      phone: (phoneEl.value||"").trim() || "—",
       payment,
       comment: (commentEl.value||"").trim()
     };
@@ -690,13 +632,11 @@
       alert("Не удалось отправить. Откройте через Telegram WebApp.");
     }
 
-    // очистка
     cart.clear();
     renderCart();
     overlayCheckout.classList.remove("show");
     drawer.classList.remove("open");
     addressEl.value = "";
-    phoneEl.value = "";
     commentEl.value = "";
   };
 
